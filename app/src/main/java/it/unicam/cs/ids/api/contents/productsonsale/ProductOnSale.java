@@ -12,9 +12,11 @@ public class ProductOnSale implements Content {
 
     private int supplyChainPointId;
 
+    private final String CONTENT_TYPE;
+
     private int productId;
 
-    private final String CONTENT_TYPE;
+    private String productType;
 
     private String name;
 
@@ -42,13 +44,17 @@ public class ProductOnSale implements Content {
         return this.supplyChainPointId;
     }
 
+    @Override
+    public String getContentType() {
+        return this.CONTENT_TYPE;
+    }
+
     public int getProductId() {
         return productId;
     }
 
-    @Override
-    public String getContentType() {
-        return this.CONTENT_TYPE;
+    public String getProductType() {
+        return productType;
     }
 
     @Override
@@ -97,6 +103,19 @@ public class ProductOnSale implements Content {
         if (productId < 0)
             throw new IllegalArgumentException("Illegal product ID");
         this.productId = productId;
+    }
+
+    /**
+     * Sets the product type of the product set on sale.
+     * Once set the product type cannot be changed.
+     *
+     * @param productType the type of the product set on sale.
+     */
+    public void setProductType(String productType) {
+        if (productType == null)
+            throw new NullPointerException("Null product type");
+        if (this.productType == null)
+            this.productType = productType;
     }
 
     @Override
