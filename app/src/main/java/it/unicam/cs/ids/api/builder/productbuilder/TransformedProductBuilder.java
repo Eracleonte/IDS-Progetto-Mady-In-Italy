@@ -45,7 +45,7 @@ public class TransformedProductBuilder implements SingleProductBuilder {
         this.transformedProduct.setVariety(variety);
     }
 
-    public void setTransformationProcess(int transformationProcessId) {
+    public void setTransformationProcessId(int transformationProcessId) {
         this.transformedProduct.setTransformationProcessId(transformationProcessId);
     }
 

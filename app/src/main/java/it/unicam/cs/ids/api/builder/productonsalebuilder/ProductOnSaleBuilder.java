@@ -22,6 +22,14 @@ public class ProductOnSaleBuilder implements ContentBuilder {
         this.productOnSale.setSupplyChainPointId(supplyChainPointID);
     }
 
+    public void setProductId(int productId) {
+        this.productOnSale.setProductId(productId);
+    }
+
+    public void setProductType(String productType) {
+        productOnSale.setProductType(productType);
+    }
+
     @Override
     public void setName(String name) {
         productOnSale.setName(name);
