@@ -16,7 +16,7 @@ dependencies {
 }
 
 application {
-    mainClass.set("it.unicam.cs.ids.Main")
+    mainClass.set("it.unicam.cs.ids.app.Main")
 }
 
 tasks.test {
