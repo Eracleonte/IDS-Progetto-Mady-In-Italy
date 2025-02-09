@@ -13,6 +13,9 @@ public class ValidationRequest {
 
     private String contentType;
 
+    public ValidationRequest() {
+    }
+
     public ValidationRequest(int id, int supplyChainPointId, int contentId, String contentType) {
         if (id < 0)
             throw new IllegalArgumentException("Id must be a positive integer");
@@ -40,6 +43,22 @@ public class ValidationRequest {
 
     public String getContentType() {
         return contentType;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setSupplyChainPointId(int supplyChainPointId) {
+        this.supplyChainPointId = supplyChainPointId;
+    }
+
+    public void setContentId(int contentId) {
+        this.contentId = contentId;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
     }
 
 }

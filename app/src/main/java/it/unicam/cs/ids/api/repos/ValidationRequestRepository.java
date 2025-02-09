@@ -8,13 +8,18 @@ public class ValidationRequestRepository implements Repository<ValidationRequest
 
     private Map<Integer, ValidationRequest> validationRequestMap;
 
+    private int nextValidationRequestId;
+
     public ValidationRequestRepository() {
         this.validationRequestMap = new HashMap<>();
+        this.nextValidationRequestId = 1;
     }
 
     @Override
     public ValidationRequest save(ValidationRequest element) {
+        element.setId(this.nextValidationRequestId);
         this.validationRequestMap.put(element.getId(), element);
+        this.nextValidationRequestId++;
         return element;
     }
 

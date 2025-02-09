@@ -49,8 +49,6 @@ class RawProductControllerTest {
 
     }
 
-    /**
-
     @Test
     void testAddNewRawProduct() {
         // Initial check of raw products status in the system and validation requests
@@ -62,7 +60,5 @@ class RawProductControllerTest {
         Assertions.assertEquals(1, rawProductController.getRawProducts().size());
         Assertions.assertEquals(1, validationRequestController.getValidationRequests().size());
     }
-
-    */
 
 }
