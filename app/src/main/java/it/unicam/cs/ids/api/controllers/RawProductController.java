@@ -8,7 +8,6 @@ import it.unicam.cs.ids.api.model.builder.ValidationRequestBuilder;
 import it.unicam.cs.ids.api.model.builder.contentbuilders.productbuilder.RawProductBuilder;
 import it.unicam.cs.ids.api.model.contents.ValidationRequest;
 import it.unicam.cs.ids.api.model.contents.products.singles.RawProduct;
-import it.unicam.cs.ids.api.model.supplychain.SupplyChainPoint;
 
 import java.util.List;
 
