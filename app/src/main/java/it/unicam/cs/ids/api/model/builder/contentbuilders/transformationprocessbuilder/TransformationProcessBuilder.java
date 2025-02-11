@@ -1,7 +1,7 @@
 package it.unicam.cs.ids.api.model.builder.contentbuilders.transformationprocessbuilder;
 
+import it.unicam.cs.ids.api.dto.TransformationProcessDTO;
 import it.unicam.cs.ids.api.model.builder.contentbuilders.ContentBuilder;
-import it.unicam.cs.ids.api.model.contents.Content;
 import it.unicam.cs.ids.api.model.contents.transformationprocesses.TransformationProcess;
 
 public class TransformationProcessBuilder implements ContentBuilder {
@@ -20,6 +20,17 @@ public class TransformationProcessBuilder implements ContentBuilder {
     @Override
     public void setSupplyChainPointID(int supplyChainPointID) {
        this.transformationProcess.setSupplyChainPointId(supplyChainPointID);
+    }
+
+    public TransformationProcess buildTransformationProcessFromDTO(TransformationProcessDTO transformationProcessDTO) {
+        this.reset();
+        this.setSupplyChainPointID(transformationProcessDTO.getId());
+        this.setName(transformationProcessDTO.getName());
+        this.setDescription(transformationProcessDTO.getDescription());
+        this.setAuthor(transformationProcessDTO.getAuthor());
+        this.setCertification(transformationProcessDTO.getCertification());
+        this.setTransformationPhases(transformationProcessDTO.getTransformationPhases());
+        return this.getResult();
     }
 
     @Override
@@ -46,7 +57,7 @@ public class TransformationProcessBuilder implements ContentBuilder {
     }
 
     @Override
-    public Content getResult() {
+    public TransformationProcess getResult() {
         return transformationProcess;
     }
 

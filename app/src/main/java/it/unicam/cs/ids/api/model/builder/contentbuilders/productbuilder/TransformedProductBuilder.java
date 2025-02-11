@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.api.model.builder.contentbuilders.productbuilder;
 
+import it.unicam.cs.ids.api.dto.TransformedProductDTO;
 import it.unicam.cs.ids.api.model.contents.products.singles.TransformedProduct;
 
 public class TransformedProductBuilder implements SingleProductBuilder {
@@ -18,6 +19,18 @@ public class TransformedProductBuilder implements SingleProductBuilder {
     @Override
     public void setSupplyChainPointID(int supplyChainPointID) {
         this.transformedProduct.setSupplyChainPointId(supplyChainPointID);
+    }
+
+    public TransformedProduct buildTransformedProductFromDTO(TransformedProductDTO transformedProductDTO) {
+        this.reset();
+        this.setSupplyChainPointID(transformedProductDTO.getId());
+        this.setName(transformedProductDTO.getName());
+        this.setDescription(transformedProductDTO.getDescription());
+        this.setAuthor(transformedProductDTO.getAuthor());
+        this.setCertification(transformedProductDTO.getCertification());
+        this.setVariety(transformedProductDTO.getVariety());
+        this.setTransformationProcessId(transformedProductDTO.getTransformationProcessID());
+        return this.getResult();
     }
 
     @Override

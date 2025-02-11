@@ -13,9 +13,9 @@ public class ValidationRequestBuilder {
 
     public ValidationRequest buildValidationRequestFromDTO(ValidationRequestDTO validationRequestDTO) {
         this.reset();
-        this.request.setSupplyChainPointId(validationRequestDTO.getSupplyChainPointId());
-        this.request.setContentId(validationRequestDTO.getContentId());
-        this.request.setContentType(validationRequestDTO.getContentType());
+        this.setSupplyChainPointId(validationRequestDTO.getSupplyChainPointId());
+        this.setContentId(validationRequestDTO.getContentId());
+        this.setContentType(validationRequestDTO.getContentType());
         return this.getResult();
     }
 
