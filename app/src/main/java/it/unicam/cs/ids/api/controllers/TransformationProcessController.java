@@ -11,7 +11,7 @@ public class TransformationProcessController {
     private TransformationProcessHandler transformationProcessHandler;
 
     public TransformationProcessController(TransformationProcessHandler transformationProcessHandler) {
-        this.transformationProcessHandler = transformationProcessHandler;;
+        this.transformationProcessHandler = transformationProcessHandler;
     }
 
     // CREATION
