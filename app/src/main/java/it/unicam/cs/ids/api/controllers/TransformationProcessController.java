@@ -1,68 +1,33 @@
 package it.unicam.cs.ids.api.controllers;
 
-import it.unicam.cs.ids.api.dto.TransformationProcessDTO;
-import it.unicam.cs.ids.api.dto.output.OutputValidationRequestDTO;
+import it.unicam.cs.ids.api.dto.input.InputTransformationProcessDTO;
+import it.unicam.cs.ids.api.dto.output.OutputTransformationProcessDTO;
 import it.unicam.cs.ids.api.handlers.TransformationProcessHandler;
-import it.unicam.cs.ids.api.handlers.ValidationRequestHandler;
-import it.unicam.cs.ids.api.model.builder.ValidationRequestBuilder;
-import it.unicam.cs.ids.api.model.builder.contentbuilders.transformationprocessbuilder.TransformationProcessBuilder;
-import it.unicam.cs.ids.api.model.contents.ValidationRequest;
-import it.unicam.cs.ids.api.model.contents.transformationprocesses.TransformationProcess;
-
 
 import java.util.List;
 
 public class TransformationProcessController {
 
-    // TODO refactor
-
-    /**
-
     private TransformationProcessHandler transformationProcessHandler;
 
-    private ValidationRequestHandler validationRequestHandler;
-
-    private TransformationProcessBuilder transformationProcessBuilder;
-
-    private ValidationRequestBuilder validationRequestBuilder;
-
-    public TransformationProcessController(TransformationProcessHandler transformationProcessHandler,
-                                ValidationRequestHandler validationRequestHandler) {
-        this.transformationProcessHandler = transformationProcessHandler;
-        this.validationRequestHandler = validationRequestHandler;
-        this.transformationProcessBuilder = new TransformationProcessBuilder();
-        this.validationRequestBuilder = new ValidationRequestBuilder();
+    public TransformationProcessController(TransformationProcessHandler transformationProcessHandler) {
+        this.transformationProcessHandler = transformationProcessHandler;;
     }
 
     // CREATION
 
-    public TransformationProcess addNewTransformationProcess(TransformationProcessDTO transformationProcessDTO) {
-        TransformationProcess transformationProcess = this.transformationProcessHandler.saveTransformationProcess(
-                this.transformationProcessBuilder.buildTransformationProcessFromDTO(transformationProcessDTO));
-        this.validationRequestHandler.saveValidationRequest(this.generateValidationRequestFrom(transformationProcessDTO));
-        return transformationProcess;
+    public int addNewTransformationProcess(InputTransformationProcessDTO inputTransformationProcessDTO) {
+        return this.transformationProcessHandler.saveTransformationProcess(inputTransformationProcessDTO);
     }
 
     // READ
 
-    public TransformationProcess getTransformationProcessById(int id) {
+    public OutputTransformationProcessDTO getTransformationProcessById(int id) {
         return this.transformationProcessHandler.findTransformationProcessById(id);
     }
 
-    public List<TransformationProcess> getTransformationProcesses() {
-        return this.transformationProcessHandler.findAllTransformationProcesses();
+    public List<OutputTransformationProcessDTO> getTransformationProcesses() {
+        return this.transformationProcessHandler.findAllTransformationProcess();
     }
-
-    // UTILITIES
-
-    private ValidationRequest generateValidationRequestFrom(TransformationProcessDTO transformationProcessDTO) {
-        OutputValidationRequestDTO validationRequestDTO = new OutputValidationRequestDTO();
-        validationRequestDTO.setSupplyChainPointId(transformationProcessDTO.getSupplyChainPointId());
-        validationRequestDTO.setContentId(transformationProcessDTO.getId());
-        validationRequestDTO.setContentType(transformationProcessDTO.getContentType());
-        return this.validationRequestBuilder.buildValidationRequestFromDTO(validationRequestDTO);
-    }
-
-     */
 
 }

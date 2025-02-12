@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.api.model.builder.contentbuilders.productbuilder;
 
-import it.unicam.cs.ids.api.dto.TransformedProductDTO;
+import it.unicam.cs.ids.api.dto.input.InputTransformedProductDTO;
 import it.unicam.cs.ids.api.model.contents.products.singles.TransformedProduct;
 
 public class TransformedProductBuilder implements SingleProductBuilder {
@@ -21,15 +21,15 @@ public class TransformedProductBuilder implements SingleProductBuilder {
         this.transformedProduct.setSupplyChainPointId(supplyChainPointID);
     }
 
-    public TransformedProduct buildTransformedProductFromDTO(TransformedProductDTO transformedProductDTO) {
+    public TransformedProduct buildTransformedProductFromDTO(InputTransformedProductDTO inputTransformedProductDTO) {
         this.reset();
-        this.setSupplyChainPointID(transformedProductDTO.getId());
-        this.setName(transformedProductDTO.getName());
-        this.setDescription(transformedProductDTO.getDescription());
-        this.setAuthor(transformedProductDTO.getAuthor());
-        this.setCertification(transformedProductDTO.getCertification());
-        this.setVariety(transformedProductDTO.getVariety());
-        this.setTransformationProcessId(transformedProductDTO.getTransformationProcessID());
+        this.setSupplyChainPointID(inputTransformedProductDTO.supplyChainPointId());
+        this.setName(inputTransformedProductDTO.name());
+        this.setDescription(inputTransformedProductDTO.description());
+        this.setAuthor(inputTransformedProductDTO.author());
+        this.setCertification(inputTransformedProductDTO.certification());
+        this.setVariety(inputTransformedProductDTO.variety());
+        this.setTransformationProcessId(inputTransformedProductDTO.transformationProcessId());
         return this.getResult();
     }
 

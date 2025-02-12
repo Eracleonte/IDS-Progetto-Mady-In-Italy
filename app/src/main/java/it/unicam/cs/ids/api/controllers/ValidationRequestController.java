@@ -13,7 +13,7 @@ public class ValidationRequestController {
         this.validationRequestHandler = validationRequestHandler;
     }
 
-    public OutputValidationRequestDTO findValidationRequestById(Integer id) {
+    public OutputValidationRequestDTO getValidationRequestById(Integer id) {
         return this.validationRequestHandler.findValidationRequestById(id);
     }
 

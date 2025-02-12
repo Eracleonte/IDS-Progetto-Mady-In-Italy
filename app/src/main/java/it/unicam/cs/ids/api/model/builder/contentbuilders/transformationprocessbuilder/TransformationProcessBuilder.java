@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.api.model.builder.contentbuilders.transformationprocessbuilder;
 
-import it.unicam.cs.ids.api.dto.TransformationProcessDTO;
+import it.unicam.cs.ids.api.dto.input.InputTransformationProcessDTO;
 import it.unicam.cs.ids.api.model.builder.contentbuilders.ContentBuilder;
 import it.unicam.cs.ids.api.model.contents.transformationprocesses.TransformationProcess;
 
@@ -22,14 +22,14 @@ public class TransformationProcessBuilder implements ContentBuilder {
        this.transformationProcess.setSupplyChainPointId(supplyChainPointID);
     }
 
-    public TransformationProcess buildTransformationProcessFromDTO(TransformationProcessDTO transformationProcessDTO) {
+    public TransformationProcess buildTransformationProcessFromDTO(InputTransformationProcessDTO inputTransformationProcessDTO) {
         this.reset();
-        this.setSupplyChainPointID(transformationProcessDTO.getId());
-        this.setName(transformationProcessDTO.getName());
-        this.setDescription(transformationProcessDTO.getDescription());
-        this.setAuthor(transformationProcessDTO.getAuthor());
-        this.setCertification(transformationProcessDTO.getCertification());
-        this.setTransformationPhases(transformationProcessDTO.getTransformationPhases());
+        this.setSupplyChainPointID(inputTransformationProcessDTO.supplyChainPointId());
+        this.setName(inputTransformationProcessDTO.name());
+        this.setDescription(inputTransformationProcessDTO.description());
+        this.setAuthor(inputTransformationProcessDTO.author());
+        this.setCertification(inputTransformationProcessDTO.certification());
+        this.setTransformationPhases(inputTransformationProcessDTO.transformationPhases());
         return this.getResult();
     }
 

@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.api.model.contents.transformationprocesses;
 
+import it.unicam.cs.ids.api.dto.output.OutputTransformationProcessDTO;
 import it.unicam.cs.ids.api.model.contents.Content;
 import it.unicam.cs.ids.api.model.contents.ContentType;
 
@@ -129,6 +130,17 @@ public class TransformationProcess implements Content {
         if (transformationPhases == null || transformationPhases.isEmpty())
             throw new IllegalArgumentException("TransformationPhase cannot be null or empty");
         this.transformationPhases = transformationPhases;
+    }
+
+    public OutputTransformationProcessDTO getOutputTransformationProcessDTO() {
+        return new OutputTransformationProcessDTO(this.getContentId(),
+                this.getSupplyChainPointId(),
+                this.getName(),
+                this.getDescription(),
+                this.getAuthor(),
+                this.getCertification(),
+                this.getTransformationPhases()
+        );
     }
 
 }

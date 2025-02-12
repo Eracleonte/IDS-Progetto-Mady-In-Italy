@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.api.controllers;
 
-import it.unicam.cs.ids.api.dto.TransformationProcessDTO;
+import it.unicam.cs.ids.api.dto.input.InputTransformationProcessDTO;
 import it.unicam.cs.ids.api.handlers.TransformationProcessHandler;
 import it.unicam.cs.ids.api.handlers.ValidationRequestHandler;
 import it.unicam.cs.ids.api.repos.ValidationRequestRepository;
@@ -11,42 +11,37 @@ import org.junit.jupiter.api.Test;
 
 class TransformationProcessControllerTest {
 
-    // TODO refactor
-
-    /**
-
     private TransformationProcessController transformationProcessController;
 
     private ValidationRequestController validationRequestController;
 
-    private TransformationProcessDTO dto;
+    private InputTransformationProcessDTO dto;
 
     @BeforeEach
     void setUp() {
 
-        // Setting up RawProductController
-
-        TransformationProcessRepository transformationProcessRepository= new TransformationProcessRepository();
-        TransformationProcessHandler transformationProcessHandler = new TransformationProcessHandler(transformationProcessRepository);
+        // Setting up TransformationProcessController
 
         ValidationRequestRepository validationRequestRepository = new ValidationRequestRepository();
+
         ValidationRequestHandler validationRequestHandler = new ValidationRequestHandler(validationRequestRepository);
-
-        transformationProcessController = new TransformationProcessController(transformationProcessHandler, validationRequestHandler);
-
-        // Setting up ValidationRequestController
 
         validationRequestController = new ValidationRequestController(validationRequestHandler);
 
+        TransformationProcessRepository transformationProcessRepository = new TransformationProcessRepository();
+
+        TransformationProcessHandler transformationProcessHandler = new TransformationProcessHandler(transformationProcessRepository, validationRequestHandler);
+
+        transformationProcessController = new TransformationProcessController(transformationProcessHandler);
+
         // DTO Setup
-        dto = new TransformationProcessDTO();
-        dto.setId(1);
-        dto.setSupplyChainPointId(1);
-        dto.setName("test_name");
-        dto.setDescription("test_description");
-        dto.setAuthor("test_author");
-        dto.setCertification("test_certification");
-        dto.setTransformationPhases("test_phases");
+        dto = new InputTransformationProcessDTO(1,
+                "test_name",
+                "test_description",
+                "test_author",
+                "test_certification",
+                "test_phases"
+        );
 
     }
 
@@ -60,7 +55,9 @@ class TransformationProcessControllerTest {
         // Checking if system has been updated with a new raw product
         Assertions.assertEquals(1, transformationProcessController.getTransformationProcesses().size());
         Assertions.assertEquals(1, validationRequestController.getValidationRequests().size());
+        // Printing get results
+        System.out.println(transformationProcessController.getTransformationProcessById(1).toString());
+        System.out.println(validationRequestController.getValidationRequestById(1).toString());
     }
-    */
 
 }
