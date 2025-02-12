@@ -18,8 +18,8 @@ public class RawProductHandler {
 
     private ValidationRequestHandler validationRequestHandler;
 
-    public RawProductHandler(ValidationRequestHandler validationRequestHandler,
-                             RawProductRepository rawProductRepository) {
+    public RawProductHandler(RawProductRepository rawProductRepository,
+                             ValidationRequestHandler validationRequestHandler) {
         this.rawProductBuilder = new RawProductBuilder();
         this.rawProductRepository = rawProductRepository;
         this.validationRequestHandler = validationRequestHandler;
