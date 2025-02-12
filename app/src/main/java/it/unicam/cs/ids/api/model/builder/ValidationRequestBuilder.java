@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.api.model.builder;
 
-import it.unicam.cs.ids.api.dto.ValidationRequestDTO;
+import it.unicam.cs.ids.api.dto.output.OutputValidationRequestDTO;
 import it.unicam.cs.ids.api.model.contents.ValidationRequest;
 
 public class ValidationRequestBuilder {
@@ -11,11 +11,11 @@ public class ValidationRequestBuilder {
         this.request = new ValidationRequest();
     }
 
-    public ValidationRequest buildValidationRequestFromDTO(ValidationRequestDTO validationRequestDTO) {
+    public ValidationRequest buildValidationRequestFromDTO(OutputValidationRequestDTO outputValidationRequestDTO) {
         this.reset();
-        this.setSupplyChainPointId(validationRequestDTO.getSupplyChainPointId());
-        this.setContentId(validationRequestDTO.getContentId());
-        this.setContentType(validationRequestDTO.getContentType());
+        this.setSupplyChainPointId(outputValidationRequestDTO.supplyChainPointId());
+        this.setContentId(outputValidationRequestDTO.contentId());
+        this.setContentType(outputValidationRequestDTO.contentType());
         return this.getResult();
     }
 

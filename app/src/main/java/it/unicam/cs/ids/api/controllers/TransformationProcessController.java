@@ -1,7 +1,7 @@
 package it.unicam.cs.ids.api.controllers;
 
 import it.unicam.cs.ids.api.dto.TransformationProcessDTO;
-import it.unicam.cs.ids.api.dto.ValidationRequestDTO;
+import it.unicam.cs.ids.api.dto.output.OutputValidationRequestDTO;
 import it.unicam.cs.ids.api.handlers.TransformationProcessHandler;
 import it.unicam.cs.ids.api.handlers.ValidationRequestHandler;
 import it.unicam.cs.ids.api.model.builder.ValidationRequestBuilder;
@@ -13,6 +13,10 @@ import it.unicam.cs.ids.api.model.contents.transformationprocesses.Transformatio
 import java.util.List;
 
 public class TransformationProcessController {
+
+    // TODO refactor
+
+    /**
 
     private TransformationProcessHandler transformationProcessHandler;
 
@@ -52,11 +56,13 @@ public class TransformationProcessController {
     // UTILITIES
 
     private ValidationRequest generateValidationRequestFrom(TransformationProcessDTO transformationProcessDTO) {
-        ValidationRequestDTO validationRequestDTO = new ValidationRequestDTO();
+        OutputValidationRequestDTO validationRequestDTO = new OutputValidationRequestDTO();
         validationRequestDTO.setSupplyChainPointId(transformationProcessDTO.getSupplyChainPointId());
         validationRequestDTO.setContentId(transformationProcessDTO.getId());
         validationRequestDTO.setContentType(transformationProcessDTO.getContentType());
         return this.validationRequestBuilder.buildValidationRequestFromDTO(validationRequestDTO);
     }
+
+     */
 
 }

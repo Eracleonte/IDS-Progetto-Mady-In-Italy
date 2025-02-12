@@ -9,13 +9,19 @@ public class SupplyChainPointRepository implements Repository<SupplyChainPoint,I
 
     private Map<Integer, SupplyChainPoint> supplyChainPointMap;
 
+    private int nextSupplyChainPointId;
+
     public SupplyChainPointRepository() {
         this.supplyChainPointMap = new HashMap<>();
+        this.nextSupplyChainPointId = 1;
     }
 
     @Override
     public SupplyChainPoint save(SupplyChainPoint element) {
-        return this.supplyChainPointMap.put(element.getId(), element);
+        element.setId(this.nextSupplyChainPointId);
+        this.supplyChainPointMap.put(element.getId(), element);
+        this.nextSupplyChainPointId++;
+        return element;
     }
 
     @Override

@@ -2,7 +2,7 @@ package it.unicam.cs.ids.api.interfaces;
 
 import it.unicam.cs.ids.api.controllers.RawProductController;
 import it.unicam.cs.ids.api.controllers.SupplyChainPointController;
-import it.unicam.cs.ids.api.dto.RawProductDTO;
+import it.unicam.cs.ids.api.dto.input.InputRawProductDTO;
 import it.unicam.cs.ids.api.model.contents.products.singles.RawProduct;
 import it.unicam.cs.ids.api.model.supplychain.SupplyChainPoint;
 
@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class RawProductCreationInterface {
+
+    /**
 
     private final Scanner scanner = new Scanner(System.in);
 
@@ -27,9 +29,9 @@ public class RawProductCreationInterface {
      * Starts the Raw Product creation procedure.
      *
      * @param author the author who started the Raw Product creation procedure.
-     */
+
     public void startRawProductCreation(String author) {
-        RawProductDTO rawProductDTO = new RawProductDTO();
+        InputRawProductDTO rawProductDTO = new InputRawProductDTO();
         System.out.println("Welcome to Raw Product Creation Process " + author);
         int supplyChainPointId = selectSupplyChainPoint();
         if (supplyChainPointId == -1)
@@ -110,5 +112,7 @@ public class RawProductCreationInterface {
         } while (productionMethod == null || productionMethod.isEmpty());
         return productionMethod;
     }
+
+    */
 
 }

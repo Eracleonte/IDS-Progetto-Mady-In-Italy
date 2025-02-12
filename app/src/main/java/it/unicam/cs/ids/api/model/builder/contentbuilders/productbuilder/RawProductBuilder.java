@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.api.model.builder.contentbuilders.productbuilder;
 
-import it.unicam.cs.ids.api.dto.RawProductDTO;
+import it.unicam.cs.ids.api.dto.input.InputRawProductDTO;
 import it.unicam.cs.ids.api.model.contents.products.singles.RawProduct;
 
 public class RawProductBuilder implements SingleProductBuilder {
@@ -11,6 +11,23 @@ public class RawProductBuilder implements SingleProductBuilder {
         this.rawProduct = new RawProduct();
     }
 
+    /**
+     * Builds a Raw Product from a InputRawProductDTO
+     * @param inputRawProductDTO
+     * @return
+     */
+    public RawProduct buildRawProductFromDTO(InputRawProductDTO inputRawProductDTO) {
+        this.reset();
+        this.setSupplyChainPointID(inputRawProductDTO.supplyChainPointId());
+        this.setName(inputRawProductDTO.name());
+        this.setDescription(inputRawProductDTO.description());
+        this.setAuthor(inputRawProductDTO.author());
+        this.setCertification(inputRawProductDTO.certification());
+        this.setVariety(inputRawProductDTO.variety());
+        this.setProductionMethod(inputRawProductDTO.productionMethod());
+        return this.getResult();
+    }
+
     @Override
     public void setContentID(int contentID) {
         this.rawProduct.setContentId(contentID);
@@ -19,23 +36,6 @@ public class RawProductBuilder implements SingleProductBuilder {
     @Override
     public void setSupplyChainPointID(int supplyChainPointID) {
         this.rawProduct.setSupplyChainPointId(supplyChainPointID);
-    }
-
-    /**
-     * Builds a Raw Product from a RawProductDTO
-     * @param rawProductDTO
-     * @return
-     */
-    public RawProduct buildRawProductFromDTO(RawProductDTO rawProductDTO) {
-        this.reset();
-        this.setSupplyChainPointID(rawProductDTO.getId());
-        this.setName(rawProductDTO.getName());
-        this.setDescription(rawProductDTO.getDescription());
-        this.setAuthor(rawProductDTO.getAuthor());
-        this.setCertification(rawProductDTO.getCertification());
-        this.setVariety(rawProductDTO.getVariety());
-        this.setProductionMethod(rawProductDTO.getProductionMethod());
-        return this.getResult();
     }
 
     @Override

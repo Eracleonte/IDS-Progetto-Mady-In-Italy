@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.api.controllers;
 
+import it.unicam.cs.ids.api.dto.output.OutputSupplyChainPointDTO;
 import it.unicam.cs.ids.api.handlers.SupplyChainPointHandler;
 import it.unicam.cs.ids.api.model.supplychain.SupplyChainPoint;
 
@@ -16,16 +17,16 @@ public class SupplyChainPointController {
 
     // READ
 
-    public SupplyChainPoint getSupplyChainPointById(int id) {
+    public OutputSupplyChainPointDTO getSupplyChainPointById(int id) {
         return this.supplyChainPointHandler.findSupplyChainPointById(id);
     }
 
-    public List<SupplyChainPoint> getAllSupplyChainPoints() {
+    public List<OutputSupplyChainPointDTO> getAllSupplyChainPoints() {
         return this.supplyChainPointHandler.findAllSupplyChainPoints();
     }
 
-    public List<SupplyChainPoint> getSupplyChainPointsIf(Predicate<? super SupplyChainPoint> filter) {
-        return this.supplyChainPointHandler.findAllSupplyChainPoints().stream().filter(filter).toList();
+    public List<OutputSupplyChainPointDTO> getSupplyChainPointsIf(Predicate<? super SupplyChainPoint> filter) {
+        return this.supplyChainPointHandler.getSupplyChainPointsIf(filter);
     }
 
 }

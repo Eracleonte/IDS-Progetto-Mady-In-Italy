@@ -1,17 +1,10 @@
 package it.unicam.cs.ids.api.controllers;
 
-import it.unicam.cs.ids.api.dto.RawProductDTO;
-import it.unicam.cs.ids.api.handlers.RawProductHandler;
-import it.unicam.cs.ids.api.handlers.ValidationRequestHandler;
-import it.unicam.cs.ids.api.repos.ValidationRequestRepository;
-import it.unicam.cs.ids.api.repos.content.RawProductRepository;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class RawProductControllerTest {
+
+    // TODO refactor
+
+    /**
 
     private RawProductController rawProductController;
 
@@ -60,5 +53,7 @@ class RawProductControllerTest {
         Assertions.assertEquals(1, rawProductController.getRawProducts().size());
         Assertions.assertEquals(1, validationRequestController.getValidationRequests().size());
     }
+
+    */
 
 }

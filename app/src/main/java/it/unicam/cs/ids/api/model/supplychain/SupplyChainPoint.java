@@ -1,5 +1,7 @@
 package it.unicam.cs.ids.api.model.supplychain;
 
+import it.unicam.cs.ids.api.dto.output.OutputSupplyChainPointDTO;
+
 /**
  * Represents a supply chain point
  */
@@ -107,6 +109,18 @@ public class SupplyChainPoint {
                 ", isDistribution=" + isDistribution +
                 ", isResale=" + isResale +
                 '}';
+    }
+
+    public OutputSupplyChainPointDTO getOutputSupplyChainPointDTO() {
+        return new OutputSupplyChainPointDTO(this.id,
+                this.latitude,
+                this.longitude,
+                this.name,
+                this.isProduction,
+                this.isTransformation,
+                this.isDistribution,
+                this.isResale
+        );
     }
 
 }

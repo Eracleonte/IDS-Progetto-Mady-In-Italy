@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.api.handlers;
 
+import it.unicam.cs.ids.api.dto.output.OutputValidationRequestDTO;
 import it.unicam.cs.ids.api.model.contents.ValidationRequest;
 import it.unicam.cs.ids.api.repos.ValidationRequestRepository;
 
@@ -14,19 +15,23 @@ public class ValidationRequestHandler {
         this.validationRequestRepository = validationRequestRepository;
     }
 
-    public ValidationRequest saveValidationRequest(ValidationRequest validationRequest) {
+    public int saveValidationRequest(ValidationRequest validationRequest) {
         if (validationRequest == null)
             throw new NullPointerException("Cannot save a null validation request");
-        return this.validationRequestRepository.save(validationRequest);
+        return this.validationRequestRepository.save(validationRequest).getId();
     }
 
-    public ValidationRequest findValidationRequestById(Integer id) {
-        return this.validationRequestRepository.findById(id)
+    public OutputValidationRequestDTO findValidationRequestById(Integer id) {
+        ValidationRequest validationRequest = this.validationRequestRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Cannot find validation request with id: " + id));
+        return validationRequest.getOutputValidationRequestDTO();
     }
 
-    public List<ValidationRequest> findAllValidationRequests() {
-        return this.validationRequestRepository.findAll();
+    public List<OutputValidationRequestDTO> findAllValidationRequests() {
+        return this.validationRequestRepository.findAll()
+                .stream()
+                .map(ValidationRequest::getOutputValidationRequestDTO)
+                .toList();
     }
 
 }

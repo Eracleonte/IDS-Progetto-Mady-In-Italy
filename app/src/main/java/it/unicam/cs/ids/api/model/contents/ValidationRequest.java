@@ -1,5 +1,7 @@
 package it.unicam.cs.ids.api.model.contents;
 
+import it.unicam.cs.ids.api.dto.output.OutputValidationRequestDTO;
+
 /**
  * Represents a validation request a Curator may handle
  */
@@ -59,6 +61,13 @@ public class ValidationRequest {
 
     public void setContentType(String contentType) {
         this.contentType = contentType;
+    }
+
+    public OutputValidationRequestDTO getOutputValidationRequestDTO() {
+        return new OutputValidationRequestDTO(this.id,
+                this.supplyChainPointId,
+                this.contentId,
+                this.contentType);
     }
 
 }

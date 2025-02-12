@@ -1,7 +1,7 @@
 package it.unicam.cs.ids.api.controllers;
 
+import it.unicam.cs.ids.api.dto.output.OutputValidationRequestDTO;
 import it.unicam.cs.ids.api.handlers.ValidationRequestHandler;
-import it.unicam.cs.ids.api.model.contents.ValidationRequest;
 
 import java.util.List;
 
@@ -13,7 +13,11 @@ public class ValidationRequestController {
         this.validationRequestHandler = validationRequestHandler;
     }
 
-    public List<ValidationRequest> getValidationRequests() {
+    public OutputValidationRequestDTO findValidationRequestById(Integer id) {
+        return this.validationRequestHandler.findValidationRequestById(id);
+    }
+
+    public List<OutputValidationRequestDTO> getValidationRequests() {
         return this.validationRequestHandler.findAllValidationRequests();
     }
 

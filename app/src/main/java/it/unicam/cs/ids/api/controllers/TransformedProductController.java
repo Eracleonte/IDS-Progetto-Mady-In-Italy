@@ -1,7 +1,7 @@
 package it.unicam.cs.ids.api.controllers;
 
 import it.unicam.cs.ids.api.dto.TransformedProductDTO;
-import it.unicam.cs.ids.api.dto.ValidationRequestDTO;
+import it.unicam.cs.ids.api.dto.output.OutputValidationRequestDTO;
 import it.unicam.cs.ids.api.handlers.TransformedProductHandler;
 import it.unicam.cs.ids.api.handlers.ValidationRequestHandler;
 import it.unicam.cs.ids.api.model.builder.ValidationRequestBuilder;
@@ -13,6 +13,10 @@ import it.unicam.cs.ids.api.model.contents.products.singles.TransformedProduct;
 import java.util.List;
 
 public class TransformedProductController {
+
+    // TODO refactor
+
+    /**
 
     private TransformedProductHandler transformedProductHandler;
 
@@ -53,11 +57,13 @@ public class TransformedProductController {
     // UTILITIES
 
     private ValidationRequest generateValidationRequestFrom(TransformedProductDTO transformedProductDTO) {
-        ValidationRequestDTO validationRequestDTO = new ValidationRequestDTO();
+        OutputValidationRequestDTO validationRequestDTO = new OutputValidationRequestDTO();
         validationRequestDTO.setSupplyChainPointId(transformedProductDTO.getSupplyChainPointId());
         validationRequestDTO.setContentId(transformedProductDTO.getId());
         validationRequestDTO.setContentType(transformedProductDTO.getContentType());
         return this.validationRequestBuilder.buildValidationRequestFromDTO(validationRequestDTO);
     }
+
+     */
 
 }
