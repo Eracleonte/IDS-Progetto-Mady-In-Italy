@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.api.model.contents.productsonsale;
 
+import it.unicam.cs.ids.api.dto.output.OutputProductOnSaleDTO;
 import it.unicam.cs.ids.api.model.contents.Content;
 import it.unicam.cs.ids.api.model.contents.ContentType;
 import it.unicam.cs.ids.api.model.contents.ValidationRequest;
@@ -169,6 +170,18 @@ public class ProductOnSale implements Content {
         validationRequest.setContentId(this.getContentId());
         validationRequest.setContentType(this.getContentType());
         return validationRequest;
+    }
+
+    public OutputProductOnSaleDTO getOutputProductOnSaleDTO() {
+        return new OutputProductOnSaleDTO(this.id ,
+                this.supplyChainPointId ,
+                this.productId ,
+                this.productType ,
+                this.name ,
+                this.description ,
+                this.author ,
+                this.price ,
+                this.quantity);
     }
 
 }
