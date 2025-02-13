@@ -1,8 +1,14 @@
 package it.unicam.cs.ids.api.model.builder.contentbuilders.productbuilder;
 
+import it.unicam.cs.ids.api.dto.input.InputProductPackageDTO;
+import it.unicam.cs.ids.api.dto.input.InputProductPackageElementDTO;
 import it.unicam.cs.ids.api.model.builder.contentbuilders.ContentBuilder;
 import it.unicam.cs.ids.api.model.contents.Content;
 import it.unicam.cs.ids.api.model.contents.products.productpackages.ProductPackage;
+import it.unicam.cs.ids.api.model.contents.products.productpackages.ProductPackageElement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductPackageBuilder implements ContentBuilder {
 
@@ -10,6 +16,28 @@ public class ProductPackageBuilder implements ContentBuilder {
 
     public ProductPackageBuilder() {
         this.productPackage = new ProductPackage();
+    }
+
+    public ProductPackage buildProductPackageFromDTO(InputProductPackageDTO inputProductPackageDTO) {
+        this.reset();
+        this.setSupplyChainPointID(inputProductPackageDTO.supplyChainPointId());
+        this.setName(inputProductPackageDTO.name());
+        this.setDescription(inputProductPackageDTO.description());
+        this.setAuthor(inputProductPackageDTO.author());
+        this.setProductPackageElements(getProductPackageElements(inputProductPackageDTO.packageElements()));
+        return this.productPackage;
+    }
+
+    private List<ProductPackageElement> getProductPackageElements
+            (List<InputProductPackageElementDTO> inputProductPackageElementDTOS) {
+        List<ProductPackageElement> toReturn = new ArrayList<>();
+        for (InputProductPackageElementDTO inputProductPackageElementDTO : inputProductPackageElementDTOS) {
+            ProductPackageElement productPackageElement = new ProductPackageElement();
+            productPackageElement.setProductId(inputProductPackageElementDTO.productId());
+            productPackageElement.setContentType(inputProductPackageElementDTO.productType());
+            toReturn.add(productPackageElement);
+        }
+        return toReturn;
     }
 
     @Override
@@ -35,6 +63,10 @@ public class ProductPackageBuilder implements ContentBuilder {
     @Override
     public void setAuthor(String author) {
         this.productPackage.setAuthor(author);
+    }
+
+    public void setProductPackageElements(List<ProductPackageElement> productPackageElements) {
+        this.productPackage.setProductsIncluded(productPackageElements);
     }
 
     @Override

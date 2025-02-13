@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.api.model.contents.products.productpackages;
 
+import it.unicam.cs.ids.api.dto.output.OutputProductPackageElementDTO;
 import it.unicam.cs.ids.api.model.contents.ContentType;
 
 public class ProductPackageElement {
@@ -10,6 +11,10 @@ public class ProductPackageElement {
 
     private String contentType;
 
+    public ProductPackageElement() {
+    }
+
+    /**
     public ProductPackageElement(int packageId, int productId, ContentType contentType) {
         if (packageId < 0)
             throw new IllegalArgumentException("PackageId cannot be lesser than 0");
@@ -22,6 +27,7 @@ public class ProductPackageElement {
         this.productId = productId;
         this.contentType = contentType.getValue();
     }
+     */
 
     public int getPackageId() {
         return packageId;
@@ -33,6 +39,29 @@ public class ProductPackageElement {
 
     public String getContentType() {
         return contentType;
+    }
+
+    public void setPackageId(int packageId) {
+        if (packageId < 0)
+            throw new IllegalArgumentException("PackageId cannot be lesser than 0");
+        this.packageId = packageId;
+    }
+
+    public void setProductId(int productId) {
+        if (productId < 0)
+            throw new IllegalArgumentException("ProductId cannot be lesser than 0");
+        this.productId = productId;
+    }
+
+    public void setContentType(String contentType) {
+        if (! contentType.equals(ContentType.RAW_PRODUCT.getValue())
+                && ! contentType.equals(ContentType.TRANSFORMED_PRODUCT.getValue()))
+            throw new IllegalArgumentException("ContentType not supported");
+        this.contentType = contentType;
+    }
+
+    public OutputProductPackageElementDTO getOutputProductPackageElementDTO() {
+        return new OutputProductPackageElementDTO(productId, contentType);
     }
 
 }
