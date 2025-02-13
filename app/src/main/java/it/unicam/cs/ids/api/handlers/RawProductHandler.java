@@ -3,7 +3,6 @@ package it.unicam.cs.ids.api.handlers;
 import it.unicam.cs.ids.api.dto.input.InputRawProductDTO;
 import it.unicam.cs.ids.api.dto.output.OutputRawProductDTO;
 import it.unicam.cs.ids.api.model.builder.contentbuilders.productbuilder.RawProductBuilder;
-import it.unicam.cs.ids.api.model.contents.ValidationRequest;
 import it.unicam.cs.ids.api.model.contents.products.singles.RawProduct;
 import it.unicam.cs.ids.api.repos.content.RawProductRepository;
 
