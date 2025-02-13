@@ -33,4 +33,11 @@ public interface Content {
 
     void unpublish();
 
+    /**
+     * Returns a ValidationRequest from the data contained in this content entity
+     *
+     * @return ValidationRequest
+     */
+    ValidationRequest getValidationRequest();
+
 }

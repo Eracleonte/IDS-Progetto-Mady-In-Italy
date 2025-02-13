@@ -3,6 +3,7 @@ package it.unicam.cs.ids.api.model.contents.transformationprocesses;
 import it.unicam.cs.ids.api.dto.output.OutputTransformationProcessDTO;
 import it.unicam.cs.ids.api.model.contents.Content;
 import it.unicam.cs.ids.api.model.contents.ContentType;
+import it.unicam.cs.ids.api.model.contents.ValidationRequest;
 
 /**
  * Represents a Transformation Process
@@ -141,6 +142,15 @@ public class TransformationProcess implements Content {
                 this.getCertification(),
                 this.getTransformationPhases()
         );
+    }
+
+    @Override
+    public ValidationRequest getValidationRequest() {
+        ValidationRequest validationRequest = new ValidationRequest();
+        validationRequest.setSupplyChainPointId(this.getSupplyChainPointId());
+        validationRequest.setContentId(this.getContentId());
+        validationRequest.setContentType(this.getContentType());
+        return validationRequest;
     }
 
 }

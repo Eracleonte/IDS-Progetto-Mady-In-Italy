@@ -2,6 +2,7 @@ package it.unicam.cs.ids.api.model.contents.products;
 
 import it.unicam.cs.ids.api.model.contents.Content;
 import it.unicam.cs.ids.api.model.contents.ContentType;
+import it.unicam.cs.ids.api.model.contents.ValidationRequest;
 
 /**
  * Represents a Product
@@ -104,6 +105,15 @@ public abstract class Product implements Content {
     @Override
     public void unpublish() {
         this.published = false;
+    }
+
+    @Override
+    public ValidationRequest getValidationRequest() {
+        ValidationRequest validationRequest = new ValidationRequest();
+        validationRequest.setSupplyChainPointId(this.getSupplyChainPointId());
+        validationRequest.setContentId(this.getContentId());
+        validationRequest.setContentType(this.getContentType());
+        return validationRequest;
     }
 
 }

@@ -3,7 +3,6 @@ package it.unicam.cs.ids.api.handlers;
 import it.unicam.cs.ids.api.dto.input.InputTransformationProcessDTO;
 import it.unicam.cs.ids.api.dto.output.OutputTransformationProcessDTO;
 import it.unicam.cs.ids.api.model.builder.contentbuilders.transformationprocessbuilder.TransformationProcessBuilder;
-import it.unicam.cs.ids.api.model.contents.ValidationRequest;
 import it.unicam.cs.ids.api.model.contents.transformationprocesses.TransformationProcess;
 import it.unicam.cs.ids.api.repos.content.TransformationProcessRepository;
 
@@ -25,9 +24,12 @@ public class TransformationProcessHandler {
         this.validationRequestHandler = validationRequestHandler;
     }
 
+    // CREATE
+
     public int saveTransformationProcess(InputTransformationProcessDTO inputTransformationProcessDTO) {
-        TransformationProcess transformationProcess = this.transformationProcessRepository.save(this.transformationProcessBuilder.buildTransformationProcessFromDTO(inputTransformationProcessDTO));
-        this.validationRequestHandler.saveValidationRequest(this.generateValidationRequestFrom(transformationProcess));
+        TransformationProcess transformationProcess = this.transformationProcessRepository
+                .save(this.transformationProcessBuilder.buildTransformationProcessFromDTO(inputTransformationProcessDTO));
+        this.validationRequestHandler.saveValidationRequest(transformationProcess.getValidationRequest());
         return transformationProcess.getContentId();
     }
 
@@ -44,16 +46,6 @@ public class TransformationProcessHandler {
                 .stream()
                 .map(TransformationProcess::getOutputTransformationProcessDTO)
                 .toList();
-    }
-
-    // UTILITIES
-
-    private ValidationRequest generateValidationRequestFrom(TransformationProcess transformationProcess) {
-        ValidationRequest validationRequest = new ValidationRequest();
-        validationRequest.setSupplyChainPointId(transformationProcess.getSupplyChainPointId());
-        validationRequest.setContentId(transformationProcess.getContentId());
-        validationRequest.setContentType(transformationProcess.getContentType());
-        return validationRequest;
     }
 
 }

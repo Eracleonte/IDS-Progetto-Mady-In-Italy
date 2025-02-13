@@ -25,9 +25,12 @@ public class RawProductHandler {
         this.validationRequestHandler = validationRequestHandler;
     }
 
+    // CREATE
+
     public int saveRawProduct(InputRawProductDTO inputRawProductDTO) {
-        RawProduct rawProduct = this.rawProductRepository.save(this.rawProductBuilder.buildRawProductFromDTO(inputRawProductDTO));
-        this.validationRequestHandler.saveValidationRequest(this.generateValidationRequestFrom(rawProduct));
+        RawProduct rawProduct = this.rawProductRepository
+                .save(this.rawProductBuilder.buildRawProductFromDTO(inputRawProductDTO));
+        this.validationRequestHandler.saveValidationRequest(rawProduct.getValidationRequest());
         return rawProduct.getContentId();
     }
 
@@ -44,16 +47,6 @@ public class RawProductHandler {
                 .stream()
                 .map(RawProduct::getOutputRawProductDTO)
                 .toList();
-    }
-
-    // UTILITIES
-
-    private ValidationRequest generateValidationRequestFrom(RawProduct rawProduct) {
-        ValidationRequest validationRequest = new ValidationRequest();
-        validationRequest.setSupplyChainPointId(rawProduct.getSupplyChainPointId());
-        validationRequest.setContentId(rawProduct.getContentId());
-        validationRequest.setContentType(rawProduct.getContentType());
-        return validationRequest;
     }
 
 }

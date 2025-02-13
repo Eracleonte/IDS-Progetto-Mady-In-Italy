@@ -2,6 +2,7 @@ package it.unicam.cs.ids.api.model.contents.productsonsale;
 
 import it.unicam.cs.ids.api.model.contents.Content;
 import it.unicam.cs.ids.api.model.contents.ContentType;
+import it.unicam.cs.ids.api.model.contents.ValidationRequest;
 
 /**
  * Represents a Product set on sale
@@ -159,6 +160,15 @@ public class ProductOnSale implements Content {
         if (quantity < 0)
             throw new IllegalArgumentException("Quantity must be greater than zero");
         this.quantity = quantity;
+    }
+
+    @Override
+    public ValidationRequest getValidationRequest() {
+        ValidationRequest validationRequest = new ValidationRequest();
+        validationRequest.setSupplyChainPointId(this.getSupplyChainPointId());
+        validationRequest.setContentId(this.getContentId());
+        validationRequest.setContentType(this.getContentType());
+        return validationRequest;
     }
 
 }

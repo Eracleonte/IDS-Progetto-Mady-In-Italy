@@ -3,7 +3,6 @@ package it.unicam.cs.ids.api.handlers;
 import it.unicam.cs.ids.api.dto.input.InputTransformedProductDTO;
 import it.unicam.cs.ids.api.dto.output.OutputTransformedProductDTO;
 import it.unicam.cs.ids.api.model.builder.contentbuilders.productbuilder.TransformedProductBuilder;
-import it.unicam.cs.ids.api.model.contents.ValidationRequest;
 import it.unicam.cs.ids.api.model.contents.products.singles.TransformedProduct;
 import it.unicam.cs.ids.api.repos.content.TransformedProductRepository;
 
@@ -25,9 +24,12 @@ public class TransformedProductHandler {
         this.validationRequestHandler = validationRequestHandler;
     }
 
+    // CREATE
+
     public int saveTransformedProduct(InputTransformedProductDTO inputTransformedProductDTO) {
-       TransformedProduct transformedProduct = this.transformedProductRepository.save(this.transformedProductBuilder.buildTransformedProductFromDTO(inputTransformedProductDTO));
-        this.validationRequestHandler.saveValidationRequest(this.generateValidationRequestFrom(transformedProduct));
+        TransformedProduct transformedProduct = this.transformedProductRepository
+                .save(this.transformedProductBuilder.buildTransformedProductFromDTO(inputTransformedProductDTO));
+        this.validationRequestHandler.saveValidationRequest(transformedProduct.getValidationRequest());
         return transformedProduct.getContentId();
     }
 
@@ -44,16 +46,6 @@ public class TransformedProductHandler {
                 .stream()
                 .map(TransformedProduct::getOutputTransformedProductDTO)
                 .toList();
-    }
-
-    // UTILITIES
-
-    private ValidationRequest generateValidationRequestFrom(TransformedProduct transformedProduct) {
-        ValidationRequest validationRequest = new ValidationRequest();
-        validationRequest.setSupplyChainPointId(transformedProduct.getSupplyChainPointId());
-        validationRequest.setContentId(transformedProduct.getContentId());
-        validationRequest.setContentType(transformedProduct.getContentType());
-        return validationRequest;
     }
 
 }
