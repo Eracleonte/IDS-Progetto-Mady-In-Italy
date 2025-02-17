@@ -30,14 +30,9 @@ public class ProductPackageBuilder implements ContentBuilder {
 
     private List<ProductPackageElement> getProductPackageElements
             (List<InputProductPackageElementDTO> inputProductPackageElementDTOS) {
-        List<ProductPackageElement> toReturn = new ArrayList<>();
-        for (InputProductPackageElementDTO inputProductPackageElementDTO : inputProductPackageElementDTOS) {
-            ProductPackageElement productPackageElement = new ProductPackageElement();
-            productPackageElement.setProductId(inputProductPackageElementDTO.productId());
-            productPackageElement.setContentType(inputProductPackageElementDTO.productType());
-            toReturn.add(productPackageElement);
-        }
-        return toReturn;
+        return inputProductPackageElementDTOS.stream()
+                .map(dto -> new ProductPackageElement(dto.productId() , dto.productType()))
+                .toList();
     }
 
     @Override

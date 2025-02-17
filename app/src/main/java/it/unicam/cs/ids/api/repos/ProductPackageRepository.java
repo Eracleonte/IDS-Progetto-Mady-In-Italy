@@ -21,7 +21,7 @@ public class ProductPackageRepository implements Repository<ProductPackage, Inte
         element.setContentId(nextPackageId);
         productPackageMap.put(nextPackageId, element);
         this.nextPackageId++;
-        return null;
+        return element;
     }
 
     @Override

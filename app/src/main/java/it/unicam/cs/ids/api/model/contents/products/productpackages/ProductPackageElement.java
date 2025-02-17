@@ -14,20 +14,18 @@ public class ProductPackageElement {
     public ProductPackageElement() {
     }
 
-    /**
-    public ProductPackageElement(int packageId, int productId, ContentType contentType) {
-        if (packageId < 0)
-            throw new IllegalArgumentException("PackageId cannot be lesser than 0");
+
+    public ProductPackageElement(int productId, String contentType) {
         if (productId < 0)
             throw new IllegalArgumentException("ProductId cannot be lesser than 0");
-        if (! contentType.equals(ContentType.RAW_PRODUCT)
-                && ! contentType.equals(ContentType.TRANSFORMED_PRODUCT))
+
+        if (! contentType.equals(ContentType.RAW_PRODUCT.getValue())
+                && ! contentType.equals(ContentType.TRANSFORMED_PRODUCT.getValue()))
             throw new IllegalArgumentException("ContentType must be RAW_PRODUCT or TRANSFORMED_PRODUCT");
-        this.packageId = packageId;
         this.productId = productId;
-        this.contentType = contentType.getValue();
+        this.contentType = contentType;
     }
-     */
+
 
     public int getPackageId() {
         return packageId;

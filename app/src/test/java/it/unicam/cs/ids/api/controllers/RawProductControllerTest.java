@@ -28,7 +28,6 @@ class RawProductControllerTest {
         RawProductRepository rawProductRepository = new RawProductRepository();
         RawProductHandler rawProductHandler = new RawProductHandler(rawProductRepository,validationRequestHandler);
 
-
         rawProductController = new RawProductController(rawProductHandler);
 
         // Setting up ValidationRequestController

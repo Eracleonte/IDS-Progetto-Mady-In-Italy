@@ -17,7 +17,7 @@ public class ProductOnSaleRepository implements Repository<ProductOnSale , Integ
 
     @Override
     public ProductOnSale save(ProductOnSale element) {
-        element.setProductId(nextProductOnSaleId);
+        element.setContentId(nextProductOnSaleId);
         this.productOnSaleMap.put(nextProductOnSaleId, element);
         this.nextProductOnSaleId++;
         return element;
