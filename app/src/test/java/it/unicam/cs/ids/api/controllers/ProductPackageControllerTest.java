@@ -30,7 +30,7 @@ class ProductPackageControllerTest {
         ValidationRequestRepository validationRequestRepository = new ValidationRequestRepository();
         ValidationRequestHandler validationRequestHandler = new ValidationRequestHandler(validationRequestRepository);
 
-        ProductPackageRepository productPackageRepository = new ProductPackageRepository();
+        ProductPackageRepository productPackageRepository = ProductPackageRepository.getInstance();
         ProductPackageHandler productPackageHandler = new ProductPackageHandler(productPackageRepository,
                 validationRequestHandler);
 

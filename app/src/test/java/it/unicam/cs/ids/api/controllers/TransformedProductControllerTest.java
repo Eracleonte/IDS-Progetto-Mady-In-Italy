@@ -28,7 +28,7 @@ class TransformedProductControllerTest {
 
         validationRequestController = new ValidationRequestController(validationRequestHandler);
 
-        TransformedProductRepository transformedProductRepository = new TransformedProductRepository();
+        TransformedProductRepository transformedProductRepository = TransformedProductRepository.getInstance();
 
         TransformedProductHandler transformedProductHandler = new TransformedProductHandler(transformedProductRepository,validationRequestHandler);
 

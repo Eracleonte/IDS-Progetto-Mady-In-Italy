@@ -30,7 +30,7 @@ public class ProductPackageHandler {
         ProductPackage productPackage = this.productPackageRepository
                 .save(this.productPackageBuilder.buildProductPackageFromDTO(inputProductPackageDTO));
         this.validationRequestHandler.saveValidationRequest(productPackage.getValidationRequest());
-        return productPackage.getContentId();
+        return productPackage.getId();
     }
 
     // READ

@@ -9,7 +9,7 @@ public class TransformationProcessRepository extends Repository<TransformationPr
 
     private static TransformationProcessRepository instance;
 
-    public TransformationProcessRepository() {
+    private TransformationProcessRepository() {
         super();
     }
 

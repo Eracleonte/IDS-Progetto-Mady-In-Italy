@@ -28,7 +28,7 @@ public class ProductOnSaleHandler {
         ProductOnSale productOnSale = this.productOnSaleRepository
                 .save(this.productOnSaleBuilder.buildProductOnSaleFromDTO(inputProductOnSaleDTO));
         this.validationRequestHandler.saveValidationRequest(productOnSale.getValidationRequest());
-        return productOnSale.getContentId();
+        return productOnSale.getId();
     }
 
     //READ

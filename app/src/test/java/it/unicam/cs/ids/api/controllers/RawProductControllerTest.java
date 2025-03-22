@@ -25,7 +25,7 @@ class RawProductControllerTest {
         ValidationRequestRepository validationRequestRepository = new ValidationRequestRepository();
         ValidationRequestHandler validationRequestHandler = new ValidationRequestHandler(validationRequestRepository);
 
-        RawProductRepository rawProductRepository = new RawProductRepository();
+        RawProductRepository rawProductRepository = RawProductRepository.getInstance();
         RawProductHandler rawProductHandler = new RawProductHandler(rawProductRepository,validationRequestHandler);
 
         rawProductController = new RawProductController(rawProductHandler);

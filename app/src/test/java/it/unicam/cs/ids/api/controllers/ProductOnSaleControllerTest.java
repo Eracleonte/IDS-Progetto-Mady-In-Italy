@@ -26,7 +26,7 @@ class ProductOnSaleControllerTest {
         ValidationRequestRepository validationRequestRepository = new ValidationRequestRepository();
         ValidationRequestHandler validationRequestHandler = new ValidationRequestHandler(validationRequestRepository);
 
-        ProductOnSaleRepository productOnSaleRepository = new ProductOnSaleRepository();
+        ProductOnSaleRepository productOnSaleRepository = ProductOnSaleRepository.getInstance();
         ProductOnSaleHandler productOnSaleHandler = new ProductOnSaleHandler(productOnSaleRepository, validationRequestHandler);
 
         productOnSaleController = new ProductOnSaleController(productOnSaleHandler);

@@ -7,7 +7,7 @@ public class ProductOnSaleRepository extends Repository<ProductOnSale> {
 
     private static ProductOnSaleRepository instance;
 
-    public ProductOnSaleRepository() {
+    private ProductOnSaleRepository() {
         super();
     }
 
