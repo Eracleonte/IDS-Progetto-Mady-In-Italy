@@ -2,8 +2,6 @@ package it.unicam.cs.ids.api.controllers;
 
 import it.unicam.cs.ids.api.dto.input.InputTransformedProductDTO;
 import it.unicam.cs.ids.api.handlers.TransformedProductHandler;
-import it.unicam.cs.ids.api.handlers.ValidationRequestHandler;
-import it.unicam.cs.ids.api.repos.ValidationRequestRepository;
 import it.unicam.cs.ids.api.repos.content.TransformedProductRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

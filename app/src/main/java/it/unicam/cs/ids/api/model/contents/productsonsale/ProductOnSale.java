@@ -3,7 +3,6 @@ package it.unicam.cs.ids.api.model.contents.productsonsale;
 import it.unicam.cs.ids.api.dto.output.OutputProductOnSaleDTO;
 import it.unicam.cs.ids.api.model.contents.Content;
 import it.unicam.cs.ids.api.model.contents.ContentType;
-import it.unicam.cs.ids.api.model.contents.ValidationRequest;
 
 /**
  * Represents a Product set on sale

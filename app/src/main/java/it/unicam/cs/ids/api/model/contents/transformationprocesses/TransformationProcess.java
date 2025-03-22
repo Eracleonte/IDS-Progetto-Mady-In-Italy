@@ -3,7 +3,6 @@ package it.unicam.cs.ids.api.model.contents.transformationprocesses;
 import it.unicam.cs.ids.api.dto.output.OutputTransformationProcessDTO;
 import it.unicam.cs.ids.api.model.contents.Content;
 import it.unicam.cs.ids.api.model.contents.ContentType;
-import it.unicam.cs.ids.api.model.contents.ValidationRequest;
 
 /**
  * Represents a Transformation Process

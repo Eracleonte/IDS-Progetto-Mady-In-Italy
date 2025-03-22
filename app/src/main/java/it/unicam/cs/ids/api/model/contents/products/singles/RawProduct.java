@@ -22,7 +22,7 @@ public class RawProduct extends SingleProduct {
     }
 
     public OutputRawProductDTO getOutputRawProductDTO() {
-        return new OutputRawProductDTO(this.getContentId(),
+        return new OutputRawProductDTO(this.getId(),
                 this.getSupplyChainPointId(),
                 this.getName(),
                 this.getDescription(),

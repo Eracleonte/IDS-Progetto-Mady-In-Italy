@@ -15,13 +15,9 @@ public class ProductPackageHandler {
 
     private ProductPackageRepository productPackageRepository;
 
-    private ValidationRequestHandler validationRequestHandler;
-
-    public ProductPackageHandler(ProductPackageRepository productPackageRepository,
-                                 ValidationRequestHandler validationRequestHandler) {
+    public ProductPackageHandler(ProductPackageRepository productPackageRepository) {
         this.productPackageBuilder = new ProductPackageBuilder();
         this.productPackageRepository = productPackageRepository;
-        this.validationRequestHandler = validationRequestHandler;
     }
 
     // CREATE
@@ -29,7 +25,6 @@ public class ProductPackageHandler {
     public int saveProductPackage(InputProductPackageDTO inputProductPackageDTO) {
         ProductPackage productPackage = this.productPackageRepository
                 .save(this.productPackageBuilder.buildProductPackageFromDTO(inputProductPackageDTO));
-        this.validationRequestHandler.saveValidationRequest(productPackage.getValidationRequest());
         return productPackage.getId();
     }
 

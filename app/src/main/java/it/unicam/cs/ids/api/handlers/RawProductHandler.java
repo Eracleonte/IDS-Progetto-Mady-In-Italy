@@ -15,13 +15,9 @@ public class RawProductHandler {
 
     private RawProductRepository rawProductRepository;
 
-    private ValidationRequestHandler validationRequestHandler;
-
-    public RawProductHandler(RawProductRepository rawProductRepository,
-                             ValidationRequestHandler validationRequestHandler) {
+    public RawProductHandler(RawProductRepository rawProductRepository) {
         this.rawProductBuilder = new RawProductBuilder();
         this.rawProductRepository = rawProductRepository;
-        this.validationRequestHandler = validationRequestHandler;
     }
 
     // CREATE
@@ -29,8 +25,7 @@ public class RawProductHandler {
     public int saveRawProduct(InputRawProductDTO inputRawProductDTO) {
         RawProduct rawProduct = this.rawProductRepository
                 .save(this.rawProductBuilder.buildRawProductFromDTO(inputRawProductDTO));
-        this.validationRequestHandler.saveValidationRequest(rawProduct.getValidationRequest());
-        return rawProduct.getContentId();
+        return rawProduct.getId();
     }
 
     // READ

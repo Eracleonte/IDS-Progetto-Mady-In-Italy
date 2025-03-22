@@ -3,10 +3,8 @@ package it.unicam.cs.ids.api.controllers;
 import it.unicam.cs.ids.api.dto.input.InputProductPackageDTO;
 import it.unicam.cs.ids.api.dto.input.InputProductPackageElementDTO;
 import it.unicam.cs.ids.api.handlers.ProductPackageHandler;
-import it.unicam.cs.ids.api.handlers.ValidationRequestHandler;
 import it.unicam.cs.ids.api.model.contents.ContentType;
 import it.unicam.cs.ids.api.repos.content.ProductPackageRepository;
-import it.unicam.cs.ids.api.repos.ValidationRequestRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,8 +16,6 @@ class ProductPackageControllerTest {
 
     private ProductPackageController productPackageController;
 
-    private ValidationRequestController validationRequestController;
-
     private InputProductPackageDTO dto;
 
     @BeforeEach
@@ -27,18 +23,12 @@ class ProductPackageControllerTest {
 
         // Setting up ProductPackageController
 
-        ValidationRequestRepository validationRequestRepository = new ValidationRequestRepository();
-        ValidationRequestHandler validationRequestHandler = new ValidationRequestHandler(validationRequestRepository);
 
         ProductPackageRepository productPackageRepository = ProductPackageRepository.getInstance();
-        ProductPackageHandler productPackageHandler = new ProductPackageHandler(productPackageRepository,
-                validationRequestHandler);
+        ProductPackageHandler productPackageHandler = new ProductPackageHandler(productPackageRepository);
 
         productPackageController = new ProductPackageController(productPackageHandler);
 
-        // Setting up ValidationRequestController
-
-        validationRequestController = new ValidationRequestController(validationRequestHandler);
 
         // InputProductPackageElementDTO setup
 
@@ -64,15 +54,12 @@ class ProductPackageControllerTest {
     void addNewProductPackage() {
         // Initial check of product packages status in the system and validation requests
         Assertions.assertEquals(0, productPackageController.getProductPackages().size());
-        Assertions.assertEquals(0, validationRequestController.getValidationRequests().size());
         // Insertion
         Assertions.assertDoesNotThrow(() -> productPackageController.addNewProductPackage(dto));
         // Checking if system has been updated with a new product package
         Assertions.assertEquals(1, productPackageController.getProductPackages().size());
-        Assertions.assertEquals(1, validationRequestController.getValidationRequests().size());
         // Printing get results
         System.out.println(productPackageController.getProductPackageById(1).toString());
-        System.out.println(validationRequestController.getValidationRequestById(1).toString());
     }
 
 }

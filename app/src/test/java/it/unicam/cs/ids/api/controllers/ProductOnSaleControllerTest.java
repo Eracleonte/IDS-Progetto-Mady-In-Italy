@@ -2,10 +2,8 @@ package it.unicam.cs.ids.api.controllers;
 
 import it.unicam.cs.ids.api.dto.input.InputProductOnSaleDTO;
 import it.unicam.cs.ids.api.handlers.ProductOnSaleHandler;
-import it.unicam.cs.ids.api.handlers.ValidationRequestHandler;
 import it.unicam.cs.ids.api.model.contents.ContentType;
 import it.unicam.cs.ids.api.repos.content.ProductOnSaleRepository;
-import it.unicam.cs.ids.api.repos.ValidationRequestRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

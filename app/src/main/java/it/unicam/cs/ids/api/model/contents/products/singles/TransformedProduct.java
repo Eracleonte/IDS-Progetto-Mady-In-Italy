@@ -20,7 +20,7 @@ public class TransformedProduct extends SingleProduct {
     }
 
     public OutputTransformedProductDTO getOutputTransformedProductDTO() {
-        return new OutputTransformedProductDTO(this.getContentId(),
+        return new OutputTransformedProductDTO(this.getId(),
                 this.getSupplyChainPointId(),
                 this.getName(),
                 this.getDescription(),
