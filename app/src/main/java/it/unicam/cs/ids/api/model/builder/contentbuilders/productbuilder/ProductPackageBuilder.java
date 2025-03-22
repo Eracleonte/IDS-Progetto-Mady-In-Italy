@@ -7,7 +7,6 @@ import it.unicam.cs.ids.api.model.contents.Content;
 import it.unicam.cs.ids.api.model.contents.products.productpackages.ProductPackage;
 import it.unicam.cs.ids.api.model.contents.products.productpackages.ProductPackageElement;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductPackageBuilder implements ContentBuilder {

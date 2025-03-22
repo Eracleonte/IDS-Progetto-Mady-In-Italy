@@ -15,13 +15,9 @@ public class TransformationProcessHandler {
 
     private TransformationProcessRepository transformationProcessRepository;
 
-    private ValidationRequestHandler validationRequestHandler;
-
-    public TransformationProcessHandler(TransformationProcessRepository transformationProcessRepository,
-                                        ValidationRequestHandler validationRequestHandler) {
+    public TransformationProcessHandler(TransformationProcessRepository transformationProcessRepository) {
         this.transformationProcessBuilder = new TransformationProcessBuilder();
         this.transformationProcessRepository = transformationProcessRepository;
-        this.validationRequestHandler = validationRequestHandler;
     }
 
     // CREATE
@@ -29,8 +25,7 @@ public class TransformationProcessHandler {
     public int saveTransformationProcess(InputTransformationProcessDTO inputTransformationProcessDTO) {
         TransformationProcess transformationProcess = this.transformationProcessRepository
                 .save(this.transformationProcessBuilder.buildTransformationProcessFromDTO(inputTransformationProcessDTO));
-        this.validationRequestHandler.saveValidationRequest(transformationProcess.getValidationRequest());
-        return transformationProcess.getContentId();
+        return transformationProcess.getId();
     }
 
     // READ

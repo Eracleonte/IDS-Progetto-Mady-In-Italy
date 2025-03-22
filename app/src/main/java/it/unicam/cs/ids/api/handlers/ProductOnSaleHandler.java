@@ -15,19 +15,14 @@ public class ProductOnSaleHandler {
 
     private ProductOnSaleRepository productOnSaleRepository;
 
-    private ValidationRequestHandler validationRequestHandler;
-
-    public ProductOnSaleHandler(ProductOnSaleRepository productOnSaleRepository,
-                                ValidationRequestHandler validationRequestHandler) {
+    public ProductOnSaleHandler(ProductOnSaleRepository productOnSaleRepository) {
         this.productOnSaleBuilder = new ProductOnSaleBuilder();
         this.productOnSaleRepository = productOnSaleRepository;
-        this.validationRequestHandler = validationRequestHandler;
     }
 
     public int saveProductOnSale(InputProductOnSaleDTO inputProductOnSaleDTO) {
         ProductOnSale productOnSale = this.productOnSaleRepository
                 .save(this.productOnSaleBuilder.buildProductOnSaleFromDTO(inputProductOnSaleDTO));
-        this.validationRequestHandler.saveValidationRequest(productOnSale.getValidationRequest());
         return productOnSale.getId();
     }
 

@@ -11,20 +11,10 @@ class TransformationProcessControllerTest {
 
     private TransformationProcessController transformationProcessController;
 
-    private ValidationRequestController validationRequestController;
-
     private InputTransformationProcessDTO dto;
 
     @BeforeEach
     void setUp() {
-
-        // Setting up TransformationProcessController
-
-        ValidationRequestRepository validationRequestRepository = new ValidationRequestRepository();
-
-        ValidationRequestHandler validationRequestHandler = new ValidationRequestHandler(validationRequestRepository);
-
-        validationRequestController = new ValidationRequestController(validationRequestHandler);
 
         TransformationProcessRepository transformationProcessRepository = TransformationProcessRepository.getInstance();
 
@@ -47,15 +37,12 @@ class TransformationProcessControllerTest {
     void addTransformationProcess() {
         // Initial check of trasformation process status in the system and validation requests
         Assertions.assertEquals(0, transformationProcessController.getTransformationProcesses().size());
-        Assertions.assertEquals(0, validationRequestController.getValidationRequests().size());
         // Insertion
         Assertions.assertDoesNotThrow(() -> transformationProcessController.addNewTransformationProcess(dto));
         // Checking if system has been updated with a new raw product
         Assertions.assertEquals(1, transformationProcessController.getTransformationProcesses().size());
-        Assertions.assertEquals(1, validationRequestController.getValidationRequests().size());
         // Printing get results
         System.out.println(transformationProcessController.getTransformationProcessById(1).toString());
-        System.out.println(validationRequestController.getValidationRequestById(1).toString());
     }
 
 }

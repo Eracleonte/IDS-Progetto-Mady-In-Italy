@@ -15,13 +15,9 @@ public class TransformedProductHandler {
 
     private TransformedProductRepository transformedProductRepository;
 
-    private ValidationRequestHandler validationRequestHandler;
-
-    public TransformedProductHandler(TransformedProductRepository transformedProductRepository,
-                                     ValidationRequestHandler validationRequestHandler) {
+    public TransformedProductHandler(TransformedProductRepository transformedProductRepository) {
         this.transformedProductBuilder = new TransformedProductBuilder();
         this.transformedProductRepository = transformedProductRepository;
-        this.validationRequestHandler = validationRequestHandler;
     }
 
     // CREATE
