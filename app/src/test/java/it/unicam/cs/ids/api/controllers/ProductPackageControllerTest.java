@@ -5,7 +5,7 @@ import it.unicam.cs.ids.api.dto.input.InputProductPackageElementDTO;
 import it.unicam.cs.ids.api.handlers.ProductPackageHandler;
 import it.unicam.cs.ids.api.handlers.ValidationRequestHandler;
 import it.unicam.cs.ids.api.model.contents.ContentType;
-import it.unicam.cs.ids.api.repos.ProductPackageRepository;
+import it.unicam.cs.ids.api.repos.content.ProductPackageRepository;
 import it.unicam.cs.ids.api.repos.ValidationRequestRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

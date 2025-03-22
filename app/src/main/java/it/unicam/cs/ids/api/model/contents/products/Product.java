@@ -28,8 +28,8 @@ public abstract class Product implements Content {
     }
 
     @Override
-    public int getContentId() {
-        return this.id;
+    public int getId() {
+        return id;
     }
 
     @Override
@@ -111,7 +111,7 @@ public abstract class Product implements Content {
     public ValidationRequest getValidationRequest() {
         ValidationRequest validationRequest = new ValidationRequest();
         validationRequest.setSupplyChainPointId(this.getSupplyChainPointId());
-        validationRequest.setContentId(this.getContentId());
+        validationRequest.setContentId(this.getId());
         validationRequest.setContentType(this.getContentType());
         return validationRequest;
     }

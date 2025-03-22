@@ -4,7 +4,7 @@ import it.unicam.cs.ids.api.dto.input.InputProductOnSaleDTO;
 import it.unicam.cs.ids.api.dto.output.OutputProductOnSaleDTO;
 import it.unicam.cs.ids.api.model.builder.contentbuilders.productonsalebuilder.ProductOnSaleBuilder;
 import it.unicam.cs.ids.api.model.contents.productsonsale.ProductOnSale;
-import it.unicam.cs.ids.api.repos.ProductOnSaleRepository;
+import it.unicam.cs.ids.api.repos.content.ProductOnSaleRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;

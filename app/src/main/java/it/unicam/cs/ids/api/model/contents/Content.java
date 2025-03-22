@@ -1,11 +1,11 @@
 package it.unicam.cs.ids.api.model.contents;
 
+import it.unicam.cs.ids.api.abstractions.Identifiable;
+
 /**
  * Represents a content in the system
  */
-public interface Content {
-
-    int getContentId();
+public interface Content extends Identifiable {
 
     int getSupplyChainPointId();
 

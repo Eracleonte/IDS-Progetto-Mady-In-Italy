@@ -1,11 +1,12 @@
 package it.unicam.cs.ids.api.model.supplychain;
 
+import it.unicam.cs.ids.api.abstractions.Identifiable;
 import it.unicam.cs.ids.api.dto.output.OutputSupplyChainPointDTO;
 
 /**
  * Represents a supply chain point
  */
-public class SupplyChainPoint {
+public class SupplyChainPoint implements Identifiable {
 
     private int id;
 

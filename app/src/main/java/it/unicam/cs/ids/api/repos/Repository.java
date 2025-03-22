@@ -1,16 +1,35 @@
 package it.unicam.cs.ids.api.repos;
 
-import java.util.List;
-import java.util.Optional;
+import it.unicam.cs.ids.api.abstractions.Identifiable;
 
-public interface Repository<T,I> {
+import java.util.*;
 
-    T save(T element);
+public abstract class Repository<E extends Identifiable> {
 
-    Optional<T> findById(I id);
+    private final Map<Integer,E> repository;
 
-    List<T> findAll();
+    private int nextId;
 
-    // boolean deleteById(int id);
+    public Repository() {
+        this.repository = new HashMap<>();
+        this.nextId = 0;
+    }
+
+    public E save(E element) {
+        this.repository.put(element.getId(), element);
+        return element;
+    }
+
+    public Optional<E> findById(int id) {
+        return Optional.ofNullable(repository.get(id));
+    }
+
+    public List<E> findAll() {
+        return new ArrayList<>(repository.values());
+    }
+
+    public int getNextId() {
+        return nextId++;
+    }
 
 }

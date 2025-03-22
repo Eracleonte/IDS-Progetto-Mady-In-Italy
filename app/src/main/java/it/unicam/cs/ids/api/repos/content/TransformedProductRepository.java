@@ -5,33 +5,17 @@ import it.unicam.cs.ids.api.repos.Repository;
 
 import java.util.*;
 
-public class TransformedProductRepository implements Repository<TransformedProduct,Integer> {
+public class TransformedProductRepository extends Repository<TransformedProduct> {
 
-    private Map<Integer, TransformedProduct> transformedProductMap;
+    private static TransformedProductRepository instance;
 
-    private int nextTransformedProductId;
-
-    public TransformedProductRepository() {
-        this.transformedProductMap = new HashMap<>();
-        this.nextTransformedProductId = 1;
+    private TransformedProductRepository() {
+        super();
     }
 
-    @Override
-    public TransformedProduct save(TransformedProduct element) {
-        element.setContentId(nextTransformedProductId);
-        this.transformedProductMap.put(element.getContentId(), element);
-        this.nextTransformedProductId++;
-        return element;
-    }
-
-    @Override
-    public Optional<TransformedProduct> findById(Integer id) {
-        return Optional.ofNullable(transformedProductMap.get(id));
-    }
-
-    @Override
-    public List<TransformedProduct> findAll() {
-        return new ArrayList<>(transformedProductMap.values());
+    public static TransformedProductRepository getInstance() {
+        if (instance == null) instance = new TransformedProductRepository();
+        return instance;
     }
 
 }

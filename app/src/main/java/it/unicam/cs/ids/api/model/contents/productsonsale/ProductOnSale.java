@@ -37,8 +37,8 @@ public class ProductOnSale implements Content {
     }
 
     @Override
-    public int getContentId() {
-        return this.id;
+    public int getId() {
+        return id;
     }
 
     @Override
@@ -167,7 +167,7 @@ public class ProductOnSale implements Content {
     public ValidationRequest getValidationRequest() {
         ValidationRequest validationRequest = new ValidationRequest();
         validationRequest.setSupplyChainPointId(this.getSupplyChainPointId());
-        validationRequest.setContentId(this.getContentId());
+        validationRequest.setContentId(this.getId());
         validationRequest.setContentType(this.getContentType());
         return validationRequest;
     }

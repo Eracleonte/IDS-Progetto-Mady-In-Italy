@@ -2,11 +2,9 @@ package it.unicam.cs.ids.api.handlers;
 
 import it.unicam.cs.ids.api.dto.input.InputProductPackageDTO;
 import it.unicam.cs.ids.api.dto.output.OutputProductPackageDTO;
-import it.unicam.cs.ids.api.dto.output.OutputRawProductDTO;
 import it.unicam.cs.ids.api.model.builder.contentbuilders.productbuilder.ProductPackageBuilder;
 import it.unicam.cs.ids.api.model.contents.products.productpackages.ProductPackage;
-import it.unicam.cs.ids.api.model.contents.products.singles.RawProduct;
-import it.unicam.cs.ids.api.repos.ProductPackageRepository;
+import it.unicam.cs.ids.api.repos.content.ProductPackageRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;

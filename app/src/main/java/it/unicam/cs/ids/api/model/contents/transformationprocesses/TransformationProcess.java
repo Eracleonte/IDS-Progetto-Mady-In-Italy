@@ -33,8 +33,8 @@ public class TransformationProcess implements Content {
     }
 
     @Override
-    public int getContentId() {
-        return this.id;
+    public int getId() {
+        return id;
     }
 
     @Override
@@ -134,7 +134,7 @@ public class TransformationProcess implements Content {
     }
 
     public OutputTransformationProcessDTO getOutputTransformationProcessDTO() {
-        return new OutputTransformationProcessDTO(this.getContentId(),
+        return new OutputTransformationProcessDTO(this.getId(),
                 this.getSupplyChainPointId(),
                 this.getName(),
                 this.getDescription(),
@@ -148,7 +148,7 @@ public class TransformationProcess implements Content {
     public ValidationRequest getValidationRequest() {
         ValidationRequest validationRequest = new ValidationRequest();
         validationRequest.setSupplyChainPointId(this.getSupplyChainPointId());
-        validationRequest.setContentId(this.getContentId());
+        validationRequest.setContentId(this.getId());
         validationRequest.setContentType(this.getContentType());
         return validationRequest;
     }
