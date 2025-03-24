@@ -143,13 +143,4 @@ public class TransformationProcess implements Content {
         );
     }
 
-    @Override
-    public ValidationRequest getValidationRequest() {
-        ValidationRequest validationRequest = new ValidationRequest();
-        validationRequest.setSupplyChainPointId(this.getSupplyChainPointId());
-        validationRequest.setContentId(this.getId());
-        validationRequest.setContentType(this.getContentType());
-        return validationRequest;
-    }
-
 }

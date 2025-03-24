@@ -34,7 +34,7 @@ public class ProductPackage extends Product {
                 .stream()
                 .map(ProductPackageElement::getOutputProductPackageElementDTO)
                 .toList();
-        return new OutputProductPackageDTO(this.getContentId(),
+        return new OutputProductPackageDTO(this.getId(),
                 this.getSupplyChainPointId(),
                 this.getName(),
                 this.getDescription(),

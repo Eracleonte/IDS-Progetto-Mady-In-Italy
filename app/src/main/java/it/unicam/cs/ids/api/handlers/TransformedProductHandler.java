@@ -25,8 +25,7 @@ public class TransformedProductHandler {
     public int saveTransformedProduct(InputTransformedProductDTO inputTransformedProductDTO) {
         TransformedProduct transformedProduct = this.transformedProductRepository
                 .save(this.transformedProductBuilder.buildTransformedProductFromDTO(inputTransformedProductDTO));
-        this.validationRequestHandler.saveValidationRequest(transformedProduct.getValidationRequest());
-        return transformedProduct.getContentId();
+        return transformedProduct.getId();
     }
 
     // READ

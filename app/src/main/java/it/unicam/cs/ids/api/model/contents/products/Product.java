@@ -12,7 +12,7 @@ public abstract class Product implements Content {
 
     private int supplyChainPointId;
 
-    private String CONTENT_TYPE;
+    private final String CONTENT_TYPE;
 
     private String name;
 
@@ -104,15 +104,6 @@ public abstract class Product implements Content {
     @Override
     public void unpublish() {
         this.published = false;
-    }
-
-    @Override
-    public ValidationRequest getValidationRequest() {
-        ValidationRequest validationRequest = new ValidationRequest();
-        validationRequest.setSupplyChainPointId(this.getSupplyChainPointId());
-        validationRequest.setContentId(this.getId());
-        validationRequest.setContentType(this.getContentType());
-        return validationRequest;
     }
 
 }

@@ -3,8 +3,6 @@ package it.unicam.cs.ids.api.repos.content;
 import it.unicam.cs.ids.api.model.contents.products.singles.TransformedProduct;
 import it.unicam.cs.ids.api.repos.Repository;
 
-import java.util.*;
-
 public class TransformedProductRepository extends Repository<TransformedProduct> {
 
     private static TransformedProductRepository instance;

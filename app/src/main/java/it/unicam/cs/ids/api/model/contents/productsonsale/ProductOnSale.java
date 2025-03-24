@@ -162,15 +162,6 @@ public class ProductOnSale implements Content {
         this.quantity = quantity;
     }
 
-    @Override
-    public ValidationRequest getValidationRequest() {
-        ValidationRequest validationRequest = new ValidationRequest();
-        validationRequest.setSupplyChainPointId(this.getSupplyChainPointId());
-        validationRequest.setContentId(this.getId());
-        validationRequest.setContentType(this.getContentType());
-        return validationRequest;
-    }
-
     public OutputProductOnSaleDTO getOutputProductOnSaleDTO() {
         return new OutputProductOnSaleDTO(this.id ,
                 this.supplyChainPointId ,

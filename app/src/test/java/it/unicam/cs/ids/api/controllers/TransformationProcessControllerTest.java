@@ -18,7 +18,7 @@ class TransformationProcessControllerTest {
 
         TransformationProcessRepository transformationProcessRepository = TransformationProcessRepository.getInstance();
 
-        TransformationProcessHandler transformationProcessHandler = new TransformationProcessHandler(transformationProcessRepository, validationRequestHandler);
+        TransformationProcessHandler transformationProcessHandler = new TransformationProcessHandler(transformationProcessRepository);
 
         transformationProcessController = new TransformationProcessController(transformationProcessHandler);
 
