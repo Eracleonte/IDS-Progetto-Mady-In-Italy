@@ -1,7 +1,9 @@
 package it.unicam.cs.ids.api.controllers;
 
 import it.unicam.cs.ids.api.dto.output.OutputSupplyChainPointDTO;
+import it.unicam.cs.ids.api.dto.output.OutputSupplyChainPointManagementDTO;
 import it.unicam.cs.ids.api.handlers.SupplyChainPointHandler;
+import it.unicam.cs.ids.api.handlers.SupplyChainPointManagementHandler;
 import it.unicam.cs.ids.api.model.supplychain.SupplyChainPoint;
 
 import java.util.List;
@@ -10,6 +12,8 @@ import java.util.function.Predicate;
 public class SupplyChainPointController {
 
     private SupplyChainPointHandler supplyChainPointHandler;
+
+    private SupplyChainPointManagementHandler supplyChainPointManagementHandler;
 
     public SupplyChainPointController(SupplyChainPointHandler supplyChainPointHandler) {
         this.supplyChainPointHandler = supplyChainPointHandler;
@@ -27,6 +31,18 @@ public class SupplyChainPointController {
 
     public List<OutputSupplyChainPointDTO> getSupplyChainPointsIf(Predicate<? super SupplyChainPoint> filter) {
         return this.supplyChainPointHandler.getSupplyChainPointsIf(filter);
+    }
+
+    public List<OutputSupplyChainPointManagementDTO> getSupplyChainPointManagementByUserId(int userId) {
+        return this.supplyChainPointManagementHandler.getSupplyChainPointManagementByUserId(userId);
+    }
+
+    public List<OutputSupplyChainPointManagementDTO> getSupplyChainPointManagementBySupplyChainPointId(int supplyChainPointId) {
+        return this.supplyChainPointManagementHandler.getSupplyChainPointManagementBySupplyChainPointId(supplyChainPointId);
+    }
+
+    public List<OutputSupplyChainPointManagementDTO> getAllSupplyChainPointManagement() {
+        return this.supplyChainPointManagementHandler.getAllSupplyChainPointManagement();
     }
 
 }

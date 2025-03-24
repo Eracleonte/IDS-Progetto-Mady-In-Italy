@@ -21,6 +21,7 @@ public class UserHandler {
     public int saveUser(InputUserDTO user,List<Role> roles) {
         User newUser = new User(user.username(), user.email(), user.password());
         newUser.addRoles(roles);
+        newUser.setId(this.userRepository.getNextId());
         return this.userRepository.save(new User(user.username(), user.email(), user.password())).getId();
     }
 
