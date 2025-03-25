@@ -38,4 +38,8 @@ public class UserHandler {
                 .collect(Collectors.toList());
     }
 
+    public int approveUser(int id, boolean approvalChoice) {
+        return this.userRepository.approve(id, approvalChoice).getId();
+    }
+
 }

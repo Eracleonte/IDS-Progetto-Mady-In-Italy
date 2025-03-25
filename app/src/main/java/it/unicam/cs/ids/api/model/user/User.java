@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.api.model.user;
 
+import it.unicam.cs.ids.api.abstractions.Approvable;
 import it.unicam.cs.ids.api.abstractions.Identifiable;
 import it.unicam.cs.ids.api.dto.output.OutputUserDTO;
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class User implements Identifiable {
+public class User implements Identifiable, Approvable {
 
    private int id;
 
@@ -45,6 +46,7 @@ public class User implements Identifiable {
         return email;
     }
 
+    @Override
     public boolean isApproved() {
         return approved;
     }
@@ -69,6 +71,7 @@ public class User implements Identifiable {
         this.email = email;
     }
 
+    @Override
     public void setApproved(boolean approved) {
         this.approved = approved;
     }

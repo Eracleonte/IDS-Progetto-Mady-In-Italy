@@ -16,9 +16,9 @@ public class SupplyChainPointManagementHandler {
     }
 
     public int saveSupplyChainPointManagement(int supplyChainPointId, int userId) {
-        int managementId = this.supplyChainPointManagementRepository.getNextId();
+        int id = this.supplyChainPointManagementRepository.getNextId();
         SupplyChainPointManagement supplyChainPointManagement =
-                new SupplyChainPointManagement(managementId, supplyChainPointId, userId);
+                new SupplyChainPointManagement(id, supplyChainPointId, userId);
         return this.supplyChainPointManagementRepository.save(supplyChainPointManagement).getId();
     }
 
@@ -43,6 +43,10 @@ public class SupplyChainPointManagementHandler {
                 .stream()
                 .map(SupplyChainPointManagement::toOutputSupplyChainPointManagementDTO)
                 .toList();
+    }
+
+    public int approveSupplyChainPointManagement(int id, boolean approvalChoice) {
+        return this.supplyChainPointManagementRepository.approve(id, approvalChoice).getId();
     }
 
 }

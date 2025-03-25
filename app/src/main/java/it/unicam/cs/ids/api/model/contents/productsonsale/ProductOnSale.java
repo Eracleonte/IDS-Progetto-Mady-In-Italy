@@ -25,7 +25,7 @@ public class ProductOnSale implements Content {
 
     private String author;
 
-    private boolean published;
+    private boolean approved;
 
     private float price;
 
@@ -71,11 +71,6 @@ public class ProductOnSale implements Content {
     @Override
     public String getAuthor() {
         return this.author;
-    }
-
-    @Override
-    public boolean isPublished() {
-        return this.published;
     }
 
     public float getPrice() {
@@ -141,13 +136,13 @@ public class ProductOnSale implements Content {
     }
 
     @Override
-    public void publish() {
-        this.published = true;
+    public boolean isApproved() {
+        return this.approved;
     }
 
     @Override
-    public void unpublish() {
-        this.published = false;
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 
     public void setPrice(float price) {

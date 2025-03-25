@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.api.handlers;
 
+import it.unicam.cs.ids.api.dto.input.InputSupplyChainPointDTO;
 import it.unicam.cs.ids.api.dto.output.OutputSupplyChainPointDTO;
 import it.unicam.cs.ids.api.model.supplychain.SupplyChainPoint;
 import it.unicam.cs.ids.api.repos.supplychain.SupplyChainPointRepository;
@@ -14,6 +15,12 @@ public class SupplyChainPointHandler {
 
     public SupplyChainPointHandler(SupplyChainPointRepository scpRepository) {
         this.scpRepository = scpRepository;
+    }
+
+    public int saveSupplyChainPoint(InputSupplyChainPointDTO dto) {
+        SupplyChainPoint toSave = SupplyChainPoint.getSupplyChainPointFromInputSupplyChainPointDTO(dto);
+        toSave.setId(scpRepository.getNextId());
+        return this.scpRepository.save(toSave).getId();
     }
 
     public OutputSupplyChainPointDTO findSupplyChainPointById(Integer id) {
@@ -35,6 +42,10 @@ public class SupplyChainPointHandler {
                 .filter(filter)
                 .map(SupplyChainPoint::getOutputSupplyChainPointDTO)
                 .toList();
+    }
+
+    public int approveSupplyChainPoint(int id, boolean approvalChoice) {
+        return this.scpRepository.approve(id, approvalChoice).getId();
     }
 
 }

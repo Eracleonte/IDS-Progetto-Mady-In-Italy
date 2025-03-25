@@ -21,7 +21,7 @@ public class TransformationProcess implements Content {
 
     private String author;
 
-    private boolean published;
+    private boolean approved;
 
     private String certification;
 
@@ -59,11 +59,6 @@ public class TransformationProcess implements Content {
     @Override
     public String getAuthor() {
         return this.author;
-    }
-
-    @Override
-    public boolean isPublished() {
-        return this.published;
     }
 
     public String getCertification() {
@@ -111,13 +106,13 @@ public class TransformationProcess implements Content {
     }
 
     @Override
-    public void publish() {
-        this.published = true;
+    public boolean isApproved() {
+        return this.approved;
     }
 
     @Override
-    public void unpublish() {
-        this.published = false;
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 
     public void setCertification(String certification) {

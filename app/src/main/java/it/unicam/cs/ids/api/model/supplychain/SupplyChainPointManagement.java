@@ -1,9 +1,10 @@
 package it.unicam.cs.ids.api.model.supplychain;
 
+import it.unicam.cs.ids.api.abstractions.Approvable;
 import it.unicam.cs.ids.api.abstractions.Identifiable;
 import it.unicam.cs.ids.api.dto.output.OutputSupplyChainPointManagementDTO;
 
-public class SupplyChainPointManagement implements Identifiable {
+public class SupplyChainPointManagement implements Identifiable, Approvable {
 
     private int id;
 
@@ -31,10 +32,12 @@ public class SupplyChainPointManagement implements Identifiable {
         return userId;
     }
 
+    @Override
     public boolean isApproved() {
         return approved;
     }
 
+    @Override
     public void setApproved(boolean approved) {
         this.approved = approved;
     }

@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.api.controllers;
 
+import it.unicam.cs.ids.api.dto.input.InputSupplyChainPointDTO;
 import it.unicam.cs.ids.api.dto.output.OutputSupplyChainPointDTO;
 import it.unicam.cs.ids.api.dto.output.OutputSupplyChainPointManagementDTO;
 import it.unicam.cs.ids.api.handlers.SupplyChainPointHandler;
@@ -15,11 +16,17 @@ public class SupplyChainPointController {
 
     private SupplyChainPointManagementHandler supplyChainPointManagementHandler;
 
-    public SupplyChainPointController(SupplyChainPointHandler supplyChainPointHandler) {
+    public SupplyChainPointController(SupplyChainPointHandler supplyChainPointHandler,
+                                      SupplyChainPointManagementHandler supplyChainPointManagementHandler) {
         this.supplyChainPointHandler = supplyChainPointHandler;
+        this.supplyChainPointManagementHandler = supplyChainPointManagementHandler;
     }
 
-    // READ
+    // Supply Chain Point operations
+
+    public int addSupplyChainPoint(InputSupplyChainPointDTO inputSupplyChainPointDTO) {
+        return this.supplyChainPointHandler.saveSupplyChainPoint(inputSupplyChainPointDTO);
+    }
 
     public OutputSupplyChainPointDTO getSupplyChainPointById(int id) {
         return this.supplyChainPointHandler.findSupplyChainPointById(id);
@@ -33,6 +40,16 @@ public class SupplyChainPointController {
         return this.supplyChainPointHandler.getSupplyChainPointsIf(filter);
     }
 
+    public int approveSupplyChainPoint(int id, boolean approvalChoice) {
+        return this.supplyChainPointHandler.approveSupplyChainPoint(id, approvalChoice);
+    }
+
+    // Supply Chain Point Management operations
+
+    public int addSupplyChainPointManagement(int supplyChainPointId, int userId) {
+        return this.supplyChainPointManagementHandler.saveSupplyChainPointManagement(supplyChainPointId, userId);
+    }
+
     public List<OutputSupplyChainPointManagementDTO> getSupplyChainPointManagementByUserId(int userId) {
         return this.supplyChainPointManagementHandler.getSupplyChainPointManagementByUserId(userId);
     }
@@ -43,6 +60,10 @@ public class SupplyChainPointController {
 
     public List<OutputSupplyChainPointManagementDTO> getAllSupplyChainPointManagement() {
         return this.supplyChainPointManagementHandler.getAllSupplyChainPointManagement();
+    }
+
+    public int approveSupplyChainPointManagement(int id, boolean approvalChoice) {
+        return this.supplyChainPointManagementHandler.approveSupplyChainPointManagement(id, approvalChoice);
     }
 
 }

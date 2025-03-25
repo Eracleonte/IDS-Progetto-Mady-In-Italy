@@ -27,4 +27,8 @@ public class UserController {
         return this.userHandler.getAllUsers();
     }
 
+    public int approveUser(int id, boolean approvalChoice) {
+        return this.userHandler.approveUser(id, approvalChoice);
+    }
+
 }

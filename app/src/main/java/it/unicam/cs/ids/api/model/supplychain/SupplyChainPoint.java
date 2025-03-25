@@ -1,12 +1,14 @@
 package it.unicam.cs.ids.api.model.supplychain;
 
+import it.unicam.cs.ids.api.abstractions.Approvable;
 import it.unicam.cs.ids.api.abstractions.Identifiable;
+import it.unicam.cs.ids.api.dto.input.InputSupplyChainPointDTO;
 import it.unicam.cs.ids.api.dto.output.OutputSupplyChainPointDTO;
 
 /**
  * Represents a supply chain point
  */
-public class SupplyChainPoint implements Identifiable {
+public class SupplyChainPoint implements Identifiable, Approvable {
 
     private int id;
 
@@ -24,7 +26,19 @@ public class SupplyChainPoint implements Identifiable {
 
     private boolean isResale;
 
-    public SupplyChainPoint() {}
+    private boolean approved;
+
+    public SupplyChainPoint(float latitude, float longitude, String name) {
+        if (latitude < -90.0f || latitude > 90.0f)
+            throw new IllegalArgumentException();
+        this.latitude = latitude;
+        if (longitude < -180.0f || longitude > 180.0f)
+            throw new IllegalArgumentException();
+        this.longitude = longitude;
+        if (name == null || name.isEmpty())
+            throw new IllegalArgumentException();
+        this.name = name;
+    }
 
     public int getId() {
         return id;
@@ -99,6 +113,16 @@ public class SupplyChainPoint implements Identifiable {
     }
 
     @Override
+    public boolean isApproved() {
+        return this.approved;
+    }
+
+    @Override
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
+
+    @Override
     public String toString() {
         return "SupplyChainPoint{" +
                 "id=" + id +
@@ -110,6 +134,15 @@ public class SupplyChainPoint implements Identifiable {
                 ", isDistribution=" + isDistribution +
                 ", isResale=" + isResale +
                 '}';
+    }
+
+    public static SupplyChainPoint getSupplyChainPointFromInputSupplyChainPointDTO(InputSupplyChainPointDTO dto) {
+        SupplyChainPoint s = new SupplyChainPoint(dto.latitude(), dto.longitude(), dto.name());
+        s.setProduction(dto.isProduction());
+        s.setTransformation(dto.isTransformation());
+        s.setDistribution(dto.isDistribution());
+        s.setResale(dto.isResale());
+        return s;
     }
 
     public OutputSupplyChainPointDTO getOutputSupplyChainPointDTO() {

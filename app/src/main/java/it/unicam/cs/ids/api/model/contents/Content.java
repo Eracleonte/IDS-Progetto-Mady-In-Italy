@@ -1,11 +1,12 @@
 package it.unicam.cs.ids.api.model.contents;
 
+import it.unicam.cs.ids.api.abstractions.Approvable;
 import it.unicam.cs.ids.api.abstractions.Identifiable;
 
 /**
  * Represents a content in the system
  */
-public interface Content extends Identifiable {
+public interface Content extends Identifiable, Approvable {
 
     int getSupplyChainPointId();
 
@@ -17,8 +18,6 @@ public interface Content extends Identifiable {
 
     String getAuthor();
 
-    boolean isPublished();
-
     void setContentId(int id);
 
     void setSupplyChainPointId(int id);
@@ -28,9 +27,5 @@ public interface Content extends Identifiable {
     void setDescription(String description);
 
     void setAuthor(String author);
-
-    void publish();
-
-    void unpublish();
 
 }
