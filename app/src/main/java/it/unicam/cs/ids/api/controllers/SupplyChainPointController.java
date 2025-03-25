@@ -40,7 +40,7 @@ public class SupplyChainPointController {
         return this.supplyChainPointHandler.getSupplyChainPointsIf(filter);
     }
 
-    public int approveSupplyChainPoint(int id, boolean approvalChoice) {
+    public String approveSupplyChainPoint(int id, boolean approvalChoice) {
         return this.supplyChainPointHandler.approveSupplyChainPoint(id, approvalChoice);
     }
 
@@ -62,7 +62,7 @@ public class SupplyChainPointController {
         return this.supplyChainPointManagementHandler.getAllSupplyChainPointManagement();
     }
 
-    public int approveSupplyChainPointManagement(int id, boolean approvalChoice) {
+    public String approveSupplyChainPointManagement(int id, boolean approvalChoice) {
         return this.supplyChainPointManagementHandler.approveSupplyChainPointManagement(id, approvalChoice);
     }
 

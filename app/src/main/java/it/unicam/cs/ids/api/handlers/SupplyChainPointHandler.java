@@ -44,8 +44,12 @@ public class SupplyChainPointHandler {
                 .toList();
     }
 
-    public int approveSupplyChainPoint(int id, boolean approvalChoice) {
-        return this.scpRepository.approve(id, approvalChoice).getId();
+    public String approveSupplyChainPoint(int id, boolean approvalChoice) {
+        boolean result = this.scpRepository.approve(id, approvalChoice);
+        if (!result)
+            return "Supply Chain Point with Id " + id + " has been rejected";
+        else
+            return "Supply Chain Point with Id " + id + " hase been approved";
     }
 
 }

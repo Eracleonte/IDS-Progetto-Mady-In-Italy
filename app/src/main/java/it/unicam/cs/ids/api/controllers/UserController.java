@@ -19,7 +19,7 @@ public class UserController {
         return this.userHandler.saveUser(user, roles);
     }
 
-    public OutputUserDTO getUser(int id) {
+    public OutputUserDTO getUserById(int id) {
         return this.userHandler.getUserById(id);
     }
 
@@ -27,7 +27,7 @@ public class UserController {
         return this.userHandler.getAllUsers();
     }
 
-    public int approveUser(int id, boolean approvalChoice) {
+    public String approveUser(int id, boolean approvalChoice) {
         return this.userHandler.approveUser(id, approvalChoice);
     }
 

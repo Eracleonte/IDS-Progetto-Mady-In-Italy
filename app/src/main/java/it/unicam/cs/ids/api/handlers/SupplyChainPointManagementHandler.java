@@ -45,8 +45,12 @@ public class SupplyChainPointManagementHandler {
                 .toList();
     }
 
-    public int approveSupplyChainPointManagement(int id, boolean approvalChoice) {
-        return this.supplyChainPointManagementRepository.approve(id, approvalChoice).getId();
+    public String approveSupplyChainPointManagement(int id, boolean approvalChoice) {
+        boolean result = this.supplyChainPointManagementRepository.approve(id, approvalChoice);
+        if (!result)
+            return "Supply Chain Point Management with Id " + id + " has been rejected";
+        else
+            return "Supply Chain Point Management with Id " + id + " hase been approved";
     }
 
 }

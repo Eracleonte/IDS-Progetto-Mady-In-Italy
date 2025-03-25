@@ -13,7 +13,7 @@ public abstract class Repository<E extends Identifiable & Approvable> {
 
     public Repository() {
         this.repository = new HashMap<>();
-        this.nextId = 0;
+        this.nextId = 1;
     }
 
     public E save(E element) {
@@ -29,14 +29,25 @@ public abstract class Repository<E extends Identifiable & Approvable> {
         return new ArrayList<>(repository.values());
     }
 
-    public E approve(int id, boolean approvalChoice) {
+    /**
+     * Approves an approvable content
+     *
+     * @param id the id of the content to approve
+     * @param approvalChoice the approval choice
+     * @throws NoSuchElementException if there is no content with the specified ìd
+     * @return true if the content has been approved,
+     *         otherwise false
+     */
+    public boolean approve(int id, boolean approvalChoice) {
         E element = repository.get(id);
         if (element != null) {
-            if (!approvalChoice)
+            if (!approvalChoice) {
                 this.repository.remove(id);
-            else
+                return false;
+            } else {
                 element.setApproved(true);
-            return element;
+                return true;
+            }
         }
         throw new NoSuchElementException("Element not found");
     }

@@ -22,7 +22,7 @@ public class UserHandler {
         User newUser = new User(user.username(), user.email(), user.password());
         newUser.addRoles(roles);
         newUser.setId(this.userRepository.getNextId());
-        return this.userRepository.save(new User(user.username(), user.email(), user.password())).getId();
+        return this.userRepository.save(newUser).getId();
     }
 
     public OutputUserDTO getUserById(int id) {
@@ -38,8 +38,12 @@ public class UserHandler {
                 .collect(Collectors.toList());
     }
 
-    public int approveUser(int id, boolean approvalChoice) {
-        return this.userRepository.approve(id, approvalChoice).getId();
+    public String approveUser(int id, boolean approvalChoice) {
+        boolean result = this.userRepository.approve(id, approvalChoice);
+        if (!result)
+            return "User with Id " + id + " has been rejected";
+        else
+            return "User with Id " + id + " has been approved";
     }
 
 }
