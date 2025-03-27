@@ -33,7 +33,7 @@ public abstract class Repository<E extends Identifiable & Approvable> {
      * Approves an approvable content
      *
      * @param id the id of the content to approve
-     * @param approvalChoice the approval choice
+     * @param approvalChoice the approval choice [true for approval, false for rejection]
      * @throws NoSuchElementException if there is no content with the specified ìd
      * @return true if the content has been approved,
      *         otherwise false

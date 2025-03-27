@@ -10,8 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class SupplyChainPointControllerTest {
 
     private SupplyChainPointController supplyChainPointController;
@@ -59,6 +57,7 @@ class SupplyChainPointControllerTest {
         Assertions.assertDoesNotThrow(() -> supplyChainPointController.addSupplyChainPointManagement(1, 1));
         Assertions.assertEquals(1, supplyChainPointController.getAllSupplyChainPointManagement().size());
         System.out.println(supplyChainPointController.getSupplyChainPointManagementByUserId(1));
+        System.out.println(supplyChainPointController.getSupplyChainPointManagementBySupplyChainPointId(1));
     }
 
     @Test

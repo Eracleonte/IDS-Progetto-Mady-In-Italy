@@ -1,11 +1,19 @@
 package it.unicam.cs.ids.api.dto.output;
 
-public record OutputTransformedProductDTO(int contentId,
+import it.unicam.cs.ids.api.abstractions.Identifiable;
+
+public record OutputTransformedProductDTO(int id,
                                           int supplyChainPointId,
                                           String name,
                                           String description,
                                           String author,
                                           String certification,
                                           String variety,
-                                          int transformationProcessId){
+                                          int transformationProcessId) implements Identifiable {
+
+    @Override
+    public int getId() {
+        return this.id;
+    }
+
 }

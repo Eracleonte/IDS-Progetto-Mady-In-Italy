@@ -4,7 +4,6 @@ import it.unicam.cs.ids.api.dto.input.InputTransformedProductDTO;
 import it.unicam.cs.ids.api.dto.output.OutputTransformedProductDTO;
 import it.unicam.cs.ids.api.handlers.TransformedProductHandler;
 
-
 import java.util.List;
 
 public class TransformedProductController {

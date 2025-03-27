@@ -1,6 +1,14 @@
 package it.unicam.cs.ids.api.dto.output;
 
-public record OutputSupplyChainPointManagementDTO(int managementId,
+import it.unicam.cs.ids.api.abstractions.Identifiable;
+
+public record OutputSupplyChainPointManagementDTO(int id,
                                                   int supplyChainPointId,
-                                                  int userId) {
+                                                  int userId) implements Identifiable {
+
+    @Override
+    public int getId() {
+        return this.id;
+    }
+
 }

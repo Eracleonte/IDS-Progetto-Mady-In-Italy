@@ -26,13 +26,13 @@ public class SupplyChainPointHandler {
     public OutputSupplyChainPointDTO findSupplyChainPointById(Integer id) {
         SupplyChainPoint scp = this.scpRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Cannot find supply chain point with id: " + id));
-        return scp.getOutputSupplyChainPointDTO();
+        return scp.getOutputDTO();
     }
 
     public List<OutputSupplyChainPointDTO> findAllSupplyChainPoints() {
         return this.scpRepository.findAll()
                 .stream()
-                .map(SupplyChainPoint::getOutputSupplyChainPointDTO)
+                .map(SupplyChainPoint::getOutputDTO)
                 .toList();
     }
 
@@ -40,7 +40,7 @@ public class SupplyChainPointHandler {
         return this.scpRepository.findAll()
                 .stream()
                 .filter(filter)
-                .map(SupplyChainPoint::getOutputSupplyChainPointDTO)
+                .map(SupplyChainPoint::getOutputDTO)
                 .toList();
     }
 

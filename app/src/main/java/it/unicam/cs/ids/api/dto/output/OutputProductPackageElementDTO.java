@@ -1,5 +1,13 @@
 package it.unicam.cs.ids.api.dto.output;
 
-public record OutputProductPackageElementDTO(int productId,
-                                             String productType) {
+import it.unicam.cs.ids.api.abstractions.Identifiable;
+
+public record OutputProductPackageElementDTO(int id,
+                                             String productType) implements Identifiable {
+
+    @Override
+    public int getId() {
+        return this.id;
+    }
+
 }

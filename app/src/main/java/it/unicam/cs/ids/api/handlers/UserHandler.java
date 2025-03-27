@@ -28,13 +28,13 @@ public class UserHandler {
     public OutputUserDTO getUserById(int id) {
         User user = this.userRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("User not found"));
-        return user.toOutputUserDTO();
+        return user.getOutputDTO();
     }
 
     public List<OutputUserDTO> getAllUsers() {
         return this.userRepository.findAll()
                 .stream()
-                .map(User::toOutputUserDTO)
+                .map(User::getOutputDTO)
                 .collect(Collectors.toList());
     }
 

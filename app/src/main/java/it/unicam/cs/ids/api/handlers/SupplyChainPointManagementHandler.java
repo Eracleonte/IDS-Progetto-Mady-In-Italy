@@ -26,7 +26,7 @@ public class SupplyChainPointManagementHandler {
         return this.supplyChainPointManagementRepository.findAll()
                 .stream()
                 .filter((m) -> m.getUserId() == userId)
-                .map(SupplyChainPointManagement::toOutputSupplyChainPointManagementDTO)
+                .map(SupplyChainPointManagement::getOutputDTO)
                 .toList();
     }
 
@@ -34,14 +34,14 @@ public class SupplyChainPointManagementHandler {
         return this.supplyChainPointManagementRepository.findAll()
                 .stream()
                 .filter((m) -> m.getSupplyChainPointId() == supplyChainPointId)
-                .map(SupplyChainPointManagement::toOutputSupplyChainPointManagementDTO)
+                .map(SupplyChainPointManagement::getOutputDTO)
                 .toList();
     }
 
     public List<OutputSupplyChainPointManagementDTO> getAllSupplyChainPointManagement() {
         return this.supplyChainPointManagementRepository.findAll()
                 .stream()
-                .map(SupplyChainPointManagement::toOutputSupplyChainPointManagementDTO)
+                .map(SupplyChainPointManagement::getOutputDTO)
                 .toList();
     }
 

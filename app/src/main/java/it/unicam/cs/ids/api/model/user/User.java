@@ -2,13 +2,14 @@ package it.unicam.cs.ids.api.model.user;
 
 import it.unicam.cs.ids.api.abstractions.Approvable;
 import it.unicam.cs.ids.api.abstractions.Identifiable;
+import it.unicam.cs.ids.api.abstractions.Visualizable;
 import it.unicam.cs.ids.api.dto.output.OutputUserDTO;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class User implements Identifiable, Approvable {
+public class User implements Visualizable, Approvable {
 
    private int id;
 
@@ -97,7 +98,8 @@ public class User implements Identifiable, Approvable {
             return this.roles.add(roleToCover);
     }
 
-    public OutputUserDTO toOutputUserDTO() {
+    @Override
+    public OutputUserDTO getOutputDTO() {
         return new OutputUserDTO(this.id,
                 this.username,
                 this.email,

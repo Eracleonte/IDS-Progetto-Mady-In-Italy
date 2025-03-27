@@ -2,13 +2,14 @@ package it.unicam.cs.ids.api.model.supplychain;
 
 import it.unicam.cs.ids.api.abstractions.Approvable;
 import it.unicam.cs.ids.api.abstractions.Identifiable;
+import it.unicam.cs.ids.api.abstractions.Visualizable;
 import it.unicam.cs.ids.api.dto.input.InputSupplyChainPointDTO;
 import it.unicam.cs.ids.api.dto.output.OutputSupplyChainPointDTO;
 
 /**
  * Represents a supply chain point
  */
-public class SupplyChainPoint implements Identifiable, Approvable {
+public class SupplyChainPoint implements Visualizable, Approvable {
 
     private int id;
 
@@ -40,6 +41,7 @@ public class SupplyChainPoint implements Identifiable, Approvable {
         this.name = name;
     }
 
+    @Override
     public int getId() {
         return id;
     }
@@ -145,7 +147,8 @@ public class SupplyChainPoint implements Identifiable, Approvable {
         return s;
     }
 
-    public OutputSupplyChainPointDTO getOutputSupplyChainPointDTO() {
+    @Override
+    public OutputSupplyChainPointDTO getOutputDTO() {
         return new OutputSupplyChainPointDTO(this.id,
                 this.latitude,
                 this.longitude,
