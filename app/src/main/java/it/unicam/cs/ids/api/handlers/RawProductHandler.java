@@ -33,14 +33,22 @@ public class RawProductHandler {
     public OutputRawProductDTO findRawProductById(Integer id) {
         RawProduct rawProduct = this.rawProductRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Cannot find raw product with id: " + id));
-        return rawProduct.getOutputRawProductDTO();
+        return rawProduct.getOutputDTO();
     }
 
     public List<OutputRawProductDTO> findAllRawProducts() {
         return this.rawProductRepository.findAll()
                 .stream()
-                .map(RawProduct::getOutputRawProductDTO)
+                .map(RawProduct::getOutputDTO)
                 .toList();
+    }
+
+    public String approveRawProduct(int id, boolean approvalChoice) {
+        boolean result = this.rawProductRepository.approve(id, approvalChoice);
+        if (!result)
+            return "Raw Product with Id " + id + " has been rejected";
+        else
+            return "Raw Product with Id " + id + " has been approved";
     }
 
 }

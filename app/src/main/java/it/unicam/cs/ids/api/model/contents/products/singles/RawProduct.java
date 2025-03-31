@@ -21,7 +21,7 @@ public class RawProduct extends SingleProduct {
         this.productionMethod = productionMethod;
     }
 
-    public OutputRawProductDTO getOutputRawProductDTO() {
+    public OutputRawProductDTO getOutputDTO() {
         return new OutputRawProductDTO(this.getId(),
                 this.getSupplyChainPointId(),
                 this.getName(),
@@ -29,7 +29,7 @@ public class RawProduct extends SingleProduct {
                 this.getAuthor(),
                 this.getCertification(),
                 this.getVariety(),
-                this.productionMethod
+                this.getProductionMethod()
         );
     }
 

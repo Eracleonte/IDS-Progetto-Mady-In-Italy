@@ -33,14 +33,22 @@ public class TransformationProcessHandler {
     public OutputTransformationProcessDTO findTransformationProcessById(Integer id) {
         TransformationProcess transformationProcess = this.transformationProcessRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Cannot find raw product with id: " + id));
-        return transformationProcess.getOutputTransformationProcessDTO();
+        return transformationProcess.getOutputDTO();
     }
 
     public List<OutputTransformationProcessDTO> findAllTransformationProcess() {
         return this.transformationProcessRepository.findAll()
                 .stream()
-                .map(TransformationProcess::getOutputTransformationProcessDTO)
+                .map(TransformationProcess::getOutputDTO)
                 .toList();
+    }
+
+    public String approveTransformationProcess(int id, boolean approvalChoice) {
+            boolean result = this.transformationProcessRepository.approve(id, approvalChoice);
+            if (!result)
+                return "Transformation Process with Id " + id + " has been rejected";
+            else
+                return "Transformation Process with Id " + id + " has been approved";
     }
 
 }

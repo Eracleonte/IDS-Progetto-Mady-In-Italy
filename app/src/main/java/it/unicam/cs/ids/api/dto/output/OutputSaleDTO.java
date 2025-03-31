@@ -1,0 +1,20 @@
+package it.unicam.cs.ids.api.dto.output;
+
+import it.unicam.cs.ids.api.abstractions.Identifiable;
+
+public record OutputSaleDTO(int id,
+                            int supplyChainPointId,
+                            int productId,
+                            String productType,
+                            String name,
+                            String description,
+                            String author,
+                            float price,
+                            int quantity) implements Identifiable {
+
+    @Override
+    public int getId() {
+        return this.id;
+    }
+
+}

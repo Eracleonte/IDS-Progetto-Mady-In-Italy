@@ -1,12 +1,12 @@
 package it.unicam.cs.ids.api.model.contents;
 
 import it.unicam.cs.ids.api.abstractions.Approvable;
-import it.unicam.cs.ids.api.abstractions.Identifiable;
+import it.unicam.cs.ids.api.abstractions.Visualizable;
 
 /**
  * Represents a content in the system
  */
-public interface Content extends Identifiable, Approvable {
+public interface Content extends Visualizable, Approvable {
 
     int getSupplyChainPointId();
 

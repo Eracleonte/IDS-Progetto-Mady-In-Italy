@@ -33,14 +33,22 @@ public class TransformedProductHandler {
     public OutputTransformedProductDTO findTransformedProductById(Integer id) {
         TransformedProduct transformedProduct = this.transformedProductRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Cannot find raw product with id: " + id));
-        return transformedProduct.getOutputTransformedProductDTO();
+        return transformedProduct.getOutputDTO();
     }
 
     public List<OutputTransformedProductDTO> findAllTransformedProducts() {
         return this.transformedProductRepository.findAll()
                 .stream()
-                .map(TransformedProduct::getOutputTransformedProductDTO)
+                .map(TransformedProduct::getOutputDTO)
                 .toList();
+    }
+
+    public String approveTransformedProduct(int id, boolean approvalChoice) {
+        boolean result = this.transformedProductRepository.approve(id, approvalChoice);
+        if (!result)
+            return "Transformed Product with Id " + id + " has been rejected";
+        else
+            return "Transformed Product with Id " + id + " has been approved";
     }
 
 }

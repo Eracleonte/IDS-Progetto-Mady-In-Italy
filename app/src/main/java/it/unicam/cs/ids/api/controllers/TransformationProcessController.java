@@ -30,4 +30,8 @@ public class TransformationProcessController {
         return this.transformationProcessHandler.findAllTransformationProcess();
     }
 
+    public String approveTransformationProcess(int id, boolean approvalChoice) {
+        return this.transformationProcessHandler.approveTransformationProcess(id, approvalChoice);
+    }
+
 }

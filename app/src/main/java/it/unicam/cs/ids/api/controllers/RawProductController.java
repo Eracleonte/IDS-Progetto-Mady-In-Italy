@@ -30,4 +30,8 @@ public class RawProductController {
         return this.rawProductHandler.findAllRawProducts();
     }
 
+    public String approveRawProduct(int id, boolean approvalChoice) {
+        return this.rawProductHandler.approveRawProduct(id, approvalChoice);
+    }
+
 }

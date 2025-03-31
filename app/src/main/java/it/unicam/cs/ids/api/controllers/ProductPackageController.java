@@ -30,4 +30,8 @@ public class ProductPackageController {
         return this.productPackageHandler.findAllProductPackages();
     }
 
+    public String approveProductPackage(int id, boolean approvalChoice) {
+        return this.productPackageHandler.approveProductPackage(id, approvalChoice);
+    }
+
 }

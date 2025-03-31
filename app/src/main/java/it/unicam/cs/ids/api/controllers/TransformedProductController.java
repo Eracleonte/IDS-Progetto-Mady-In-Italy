@@ -31,4 +31,8 @@ public class TransformedProductController {
         return this.transformedProductHandler.findAllTransformedProducts();
     }
 
+    public String approveTransformedProduct(int id, boolean approvalChoice) {
+        return this.transformedProductHandler.approveTransformedProduct(id, approvalChoice);
+    }
+
 }

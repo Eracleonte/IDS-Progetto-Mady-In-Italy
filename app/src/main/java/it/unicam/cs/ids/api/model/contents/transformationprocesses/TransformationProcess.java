@@ -127,7 +127,8 @@ public class TransformationProcess implements Content {
         this.transformationPhases = transformationPhases;
     }
 
-    public OutputTransformationProcessDTO getOutputTransformationProcessDTO() {
+    @Override
+    public OutputTransformationProcessDTO getOutputDTO() {
         return new OutputTransformationProcessDTO(this.getId(),
                 this.getSupplyChainPointId(),
                 this.getName(),

@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.api.dto.output;
 
 import it.unicam.cs.ids.api.abstractions.Identifiable;
-import it.unicam.cs.ids.api.dto.input.InputProductPackageElementDTO;
 
 import java.util.List;
 
@@ -10,7 +9,9 @@ public record OutputProductPackageDTO(int id,
                                       String name,
                                       String description,
                                       String author,
-                                      List<OutputProductPackageElementDTO> packageElements) implements Identifiable {
+                                      List<OutputRawProductDTO> rawProductDTOS,
+                                      List<OutputTransformedProductDTO> transformedProductDTOS) implements Identifiable {
+
     @Override
     public int getId() {
         return this.id;

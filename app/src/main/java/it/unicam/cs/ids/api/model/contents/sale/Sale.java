@@ -1,13 +1,13 @@
-package it.unicam.cs.ids.api.model.contents.productsonsale;
+package it.unicam.cs.ids.api.model.contents.sale;
 
-import it.unicam.cs.ids.api.dto.output.OutputProductOnSaleDTO;
+import it.unicam.cs.ids.api.dto.output.OutputSaleDTO;
 import it.unicam.cs.ids.api.model.contents.Content;
 import it.unicam.cs.ids.api.model.contents.ContentType;
 
 /**
  * Represents a Product set on sale
  */
-public class ProductOnSale implements Content {
+public class Sale implements Content {
 
     private int id;
 
@@ -31,8 +31,8 @@ public class ProductOnSale implements Content {
 
     private int quantity;
 
-    public ProductOnSale() {
-        this.CONTENT_TYPE = ContentType.PRODUCT_ON_SALE.getValue();
+    public Sale() {
+        this.CONTENT_TYPE = ContentType.SALE.getValue();
     }
 
     @Override
@@ -157,8 +157,9 @@ public class ProductOnSale implements Content {
         this.quantity = quantity;
     }
 
-    public OutputProductOnSaleDTO getOutputProductOnSaleDTO() {
-        return new OutputProductOnSaleDTO(this.id ,
+    @Override
+    public OutputSaleDTO getOutputDTO() {
+        return new OutputSaleDTO(this.id ,
                 this.supplyChainPointId ,
                 this.productId ,
                 this.productType ,

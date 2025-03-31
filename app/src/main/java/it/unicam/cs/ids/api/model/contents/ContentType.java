@@ -2,7 +2,7 @@ package it.unicam.cs.ids.api.model.contents;
 
 public enum ContentType {
 
-    PRODUCT_ON_SALE("PRODUCT_ON_SALE"),
+    SALE("SALE"),
 
     RAW_PRODUCT("RAW_PRODUCT"),
 

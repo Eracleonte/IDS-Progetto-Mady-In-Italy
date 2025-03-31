@@ -33,14 +33,22 @@ public class ProductPackageHandler {
     public OutputProductPackageDTO findProductPackageById(Integer id) {
         ProductPackage productPackage = this.productPackageRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Cannot find product package with id: " + id));
-        return productPackage.getOutputProductPackageDTO();
+        return productPackage.getOutputDTO();
     }
 
     public List<OutputProductPackageDTO> findAllProductPackages() {
         return this.productPackageRepository.findAll()
                 .stream()
-                .map(ProductPackage::getOutputProductPackageDTO)
+                .map(ProductPackage::getOutputDTO)
                 .toList();
+    }
+
+    public String approveProductPackage(int id, boolean approvalChoice) {
+        boolean result = this.productPackageRepository.approve(id, approvalChoice);
+        if (!result)
+            return "Product Package with Id " + id + " has been rejected";
+        else
+            return "Product Package with Id " + id + " has been approved";
     }
 
 }

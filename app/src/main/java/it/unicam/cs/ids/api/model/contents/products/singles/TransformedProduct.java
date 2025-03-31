@@ -19,7 +19,7 @@ public class TransformedProduct extends SingleProduct {
         this.transformationProcessId = transformationProcessId;
     }
 
-    public OutputTransformedProductDTO getOutputTransformedProductDTO() {
+    public OutputTransformedProductDTO getOutputDTO() {
         return new OutputTransformedProductDTO(this.getId(),
                 this.getSupplyChainPointId(),
                 this.getName(),
