@@ -23,9 +23,9 @@ public class RawProductHandler {
     // CREATE
 
     public int saveRawProduct(InputRawProductDTO inputRawProductDTO) {
-        RawProduct rawProduct = this.rawProductRepository
-                .save(this.rawProductBuilder.buildRawProductFromDTO(inputRawProductDTO));
-        return rawProduct.getId();
+        RawProduct rawProduct = this.rawProductBuilder.buildRawProductFromDTO(inputRawProductDTO);
+        rawProduct.setContentId(this.rawProductRepository.getNextId());
+        return this.rawProductRepository.save(rawProduct).getId();
     }
 
     // READ

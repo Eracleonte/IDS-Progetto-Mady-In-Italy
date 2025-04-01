@@ -23,9 +23,10 @@ public class TransformedProductHandler {
     // CREATE
 
     public int saveTransformedProduct(InputTransformedProductDTO inputTransformedProductDTO) {
-        TransformedProduct transformedProduct = this.transformedProductRepository
-                .save(this.transformedProductBuilder.buildTransformedProductFromDTO(inputTransformedProductDTO));
-        return transformedProduct.getId();
+        TransformedProduct transformedProduct = this.transformedProductBuilder
+                .buildTransformedProductFromDTO(inputTransformedProductDTO);
+        transformedProduct.setContentId(this.transformedProductRepository.getNextId());
+        return this.transformedProductRepository.save(transformedProduct).getId();
     }
 
     // READ

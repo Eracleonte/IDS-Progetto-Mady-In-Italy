@@ -4,7 +4,7 @@ import it.unicam.cs.ids.api.dto.input.InputTransformationProcessDTO;
 import it.unicam.cs.ids.api.model.builder.contentbuilders.ContentBuilder;
 import it.unicam.cs.ids.api.model.contents.transformationprocesses.TransformationProcess;
 
-public class TransformationProcessBuilder implements ContentBuilder {
+public class TransformationProcessBuilder implements ContentBuilder<TransformationProcess> {
 
     private TransformationProcess transformationProcess;
 

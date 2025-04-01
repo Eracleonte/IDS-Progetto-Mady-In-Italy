@@ -23,9 +23,10 @@ public class TransformationProcessHandler {
     // CREATE
 
     public int saveTransformationProcess(InputTransformationProcessDTO inputTransformationProcessDTO) {
-        TransformationProcess transformationProcess = this.transformationProcessRepository
-                .save(this.transformationProcessBuilder.buildTransformationProcessFromDTO(inputTransformationProcessDTO));
-        return transformationProcess.getId();
+        TransformationProcess transformationProcess = this.transformationProcessBuilder
+                .buildTransformationProcessFromDTO(inputTransformationProcessDTO);
+        transformationProcess.setContentId(this.transformationProcessRepository.getNextId());
+        return this.transformationProcessRepository.save(transformationProcess).getId();
     }
 
     // READ

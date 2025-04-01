@@ -5,7 +5,7 @@ import it.unicam.cs.ids.api.model.builder.contentbuilders.ContentBuilder;
 import it.unicam.cs.ids.api.model.contents.Content;
 import it.unicam.cs.ids.api.model.contents.sale.Sale;
 
-public class SaleBuilder implements ContentBuilder {
+public class SaleBuilder implements ContentBuilder<Sale> {
 
     private Sale sale;
 
@@ -68,7 +68,7 @@ public class SaleBuilder implements ContentBuilder {
     }
 
     @Override
-    public Content getResult() {
+    public Sale getResult() {
         return sale;
     }
 

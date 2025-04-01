@@ -2,7 +2,7 @@ package it.unicam.cs.ids.api.model.builder.contentbuilders;
 
 import it.unicam.cs.ids.api.model.contents.Content;
 
-public interface ContentBuilder {
+public interface ContentBuilder<C extends Content> {
 
     void setContentID(int contentID);
 
@@ -14,7 +14,7 @@ public interface ContentBuilder {
 
     void setAuthor(String author);
 
-    Content getResult();
+    C getResult();
 
     void reset();
 

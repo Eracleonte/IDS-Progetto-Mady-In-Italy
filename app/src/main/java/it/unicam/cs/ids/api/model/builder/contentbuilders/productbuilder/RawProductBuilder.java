@@ -1,9 +1,10 @@
 package it.unicam.cs.ids.api.model.builder.contentbuilders.productbuilder;
 
 import it.unicam.cs.ids.api.dto.input.InputRawProductDTO;
+import it.unicam.cs.ids.api.model.builder.contentbuilders.ContentBuilder;
 import it.unicam.cs.ids.api.model.contents.products.singles.RawProduct;
 
-public class RawProductBuilder implements SingleProductBuilder {
+public class RawProductBuilder implements ContentBuilder<RawProduct> {
 
     private RawProduct rawProduct;
 
@@ -53,12 +54,10 @@ public class RawProductBuilder implements SingleProductBuilder {
         this.rawProduct.setAuthor(author);
     }
 
-    @Override
     public void setCertification(String certification) {
         this.rawProduct.setCertification(certification);
     }
 
-    @Override
     public void setVariety(String variety) {
         this.rawProduct.setVariety(variety);
     }

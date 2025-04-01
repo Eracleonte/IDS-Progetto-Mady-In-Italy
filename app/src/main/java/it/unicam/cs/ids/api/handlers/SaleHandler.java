@@ -21,9 +21,9 @@ public class SaleHandler {
     }
 
     public int saveProductOnSale(InputSaleDTO inputSaleDTO) {
-        Sale sale = this.saleRepository
-                .save(this.saleBuilder.buildProductOnSaleFromDTO(inputSaleDTO));
-        return sale.getId();
+        Sale sale = this.saleBuilder.buildProductOnSaleFromDTO(inputSaleDTO);
+        sale.setContentId(this.saleRepository.getNextId());
+        return this.saleRepository.save(sale).getId();
     }
 
     //READ

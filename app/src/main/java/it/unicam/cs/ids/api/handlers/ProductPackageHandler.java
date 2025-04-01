@@ -23,9 +23,9 @@ public class ProductPackageHandler {
     // CREATE
 
     public int saveProductPackage(InputProductPackageDTO inputProductPackageDTO) {
-        ProductPackage productPackage = this.productPackageRepository
-                .save(this.productPackageBuilder.buildProductPackageFromDTO(inputProductPackageDTO));
-        return productPackage.getId();
+        ProductPackage productPackage = this.productPackageBuilder.buildProductPackageFromDTO(inputProductPackageDTO);
+        productPackage.setContentId(this.productPackageRepository.getNextId());
+        return this.productPackageRepository.save(productPackage).getId();
     }
 
     // READ
