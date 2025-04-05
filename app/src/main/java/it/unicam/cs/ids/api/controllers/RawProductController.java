@@ -14,6 +14,8 @@ public class RawProductController {
         this.rawProductHandler = rawProductHandler;
     }
 
+    /**
+
     // CREATION
 
     public int addNewRawProduct(InputRawProductDTO inputRawProductDTO) {
@@ -33,5 +35,7 @@ public class RawProductController {
     public String approveRawProduct(int id, boolean approvalChoice) {
         return this.rawProductHandler.approveRawProduct(id, approvalChoice);
     }
+
+     */
 
 }

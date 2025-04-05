@@ -3,6 +3,7 @@ package it.unicam.cs.ids.api.model.builder.contentbuilders.salebuilder;
 import it.unicam.cs.ids.api.dto.input.InputSaleDTO;
 import it.unicam.cs.ids.api.model.builder.contentbuilders.ContentBuilder;
 import it.unicam.cs.ids.api.model.contents.Content;
+import it.unicam.cs.ids.api.model.contents.ContentType;
 import it.unicam.cs.ids.api.model.contents.sale.Sale;
 
 public class SaleBuilder implements ContentBuilder<Sale> {
@@ -24,11 +25,6 @@ public class SaleBuilder implements ContentBuilder<Sale> {
         this.setPrice(inputSaleDTO.price());
         this.setQuantity(inputSaleDTO.quantity());
         return sale;
-    }
-
-    @Override
-    public void setContentID(int contentID) {
-        this.sale.setContentId(contentID);
     }
 
     @Override
@@ -75,6 +71,11 @@ public class SaleBuilder implements ContentBuilder<Sale> {
     @Override
     public void reset() {
         this.sale = new Sale();
+    }
+
+    @Override
+    public ContentType supports() {
+        return ContentType.SALE;
     }
 
 }

@@ -1,54 +1,51 @@
 package it.unicam.cs.ids.api.handlers;
 
-import it.unicam.cs.ids.api.dto.input.InputRawProductDTO;
-import it.unicam.cs.ids.api.dto.output.OutputRawProductDTO;
-import it.unicam.cs.ids.api.model.builder.contentbuilders.productbuilder.RawProductBuilder;
+import it.unicam.cs.ids.api.model.contents.ContentType;
 import it.unicam.cs.ids.api.model.contents.products.singles.RawProduct;
 import it.unicam.cs.ids.api.repos.content.RawProductRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class RawProductHandler {
-
-    private RawProductBuilder rawProductBuilder;
+public class RawProductHandler implements ContentHandler<RawProduct> {
 
     private RawProductRepository rawProductRepository;
 
     public RawProductHandler(RawProductRepository rawProductRepository) {
-        this.rawProductBuilder = new RawProductBuilder();
+        if (rawProductRepository == null)
+            throw new NullPointerException("RawProductRepository is null");
         this.rawProductRepository = rawProductRepository;
     }
 
-    // CREATE
-
-    public int saveRawProduct(InputRawProductDTO inputRawProductDTO) {
-        RawProduct rawProduct = this.rawProductBuilder.buildRawProductFromDTO(inputRawProductDTO);
+    @Override
+    public int saveContent(RawProduct rawProduct) {
         rawProduct.setContentId(this.rawProductRepository.getNextId());
         return this.rawProductRepository.save(rawProduct).getId();
     }
 
-    // READ
-
-    public OutputRawProductDTO findRawProductById(Integer id) {
-        RawProduct rawProduct = this.rawProductRepository.findById(id)
+    @Override
+    public RawProduct findContentById(int id) {
+        return this.rawProductRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Cannot find raw product with id: " + id));
-        return rawProduct.getOutputDTO();
     }
 
-    public List<OutputRawProductDTO> findAllRawProducts() {
-        return this.rawProductRepository.findAll()
-                .stream()
-                .map(RawProduct::getOutputDTO)
-                .toList();
+    @Override
+    public List<RawProduct> findAllContents() {
+        return this.rawProductRepository.findAll();
     }
 
-    public String approveRawProduct(int id, boolean approvalChoice) {
+    @Override
+    public String approveContent(int id, boolean approvalChoice) {
         boolean result = this.rawProductRepository.approve(id, approvalChoice);
         if (!result)
             return "Raw Product with Id " + id + " has been rejected";
         else
             return "Raw Product with Id " + id + " has been approved";
+    }
+
+    @Override
+    public ContentType supports() {
+        return ContentType.RAW_PRODUCT;
     }
 
 }

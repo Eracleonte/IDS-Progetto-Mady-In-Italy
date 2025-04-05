@@ -2,6 +2,7 @@ package it.unicam.cs.ids.api.model.builder.contentbuilders.productbuilder;
 
 import it.unicam.cs.ids.api.dto.input.InputRawProductDTO;
 import it.unicam.cs.ids.api.model.builder.contentbuilders.ContentBuilder;
+import it.unicam.cs.ids.api.model.contents.ContentType;
 import it.unicam.cs.ids.api.model.contents.products.singles.RawProduct;
 
 public class RawProductBuilder implements ContentBuilder<RawProduct> {
@@ -27,11 +28,6 @@ public class RawProductBuilder implements ContentBuilder<RawProduct> {
         this.setVariety(inputRawProductDTO.variety());
         this.setProductionMethod(inputRawProductDTO.productionMethod());
         return this.getResult();
-    }
-
-    @Override
-    public void setContentID(int contentID) {
-        this.rawProduct.setContentId(contentID);
     }
 
     @Override
@@ -74,6 +70,11 @@ public class RawProductBuilder implements ContentBuilder<RawProduct> {
     @Override
     public void reset() {
         this.rawProduct = new RawProduct();
+    }
+
+    @Override
+    public ContentType supports() {
+        return ContentType.RAW_PRODUCT;
     }
 
 }

@@ -14,6 +14,8 @@ public class SaleController {
         this.saleHandler = saleHandler;
     }
 
+    /**
+
     // CREATOR
 
     public int addNewProductOnSale(InputSaleDTO inputSaleDTO) {
@@ -33,5 +35,6 @@ public class SaleController {
     public String approveSale(int id, boolean approvalChoice) {
         return this.saleHandler.approveSale(id, approvalChoice);
     }
+     */
 
 }

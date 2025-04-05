@@ -2,6 +2,7 @@ package it.unicam.cs.ids.api.model.builder.contentbuilders.transformationprocess
 
 import it.unicam.cs.ids.api.dto.input.InputTransformationProcessDTO;
 import it.unicam.cs.ids.api.model.builder.contentbuilders.ContentBuilder;
+import it.unicam.cs.ids.api.model.contents.ContentType;
 import it.unicam.cs.ids.api.model.contents.transformationprocesses.TransformationProcess;
 
 public class TransformationProcessBuilder implements ContentBuilder<TransformationProcess> {
@@ -10,11 +11,6 @@ public class TransformationProcessBuilder implements ContentBuilder<Transformati
 
     public TransformationProcessBuilder() {
         this.transformationProcess =  new TransformationProcess();
-    }
-
-    @Override
-    public void setContentID(int contentID) {
-        this.transformationProcess.setContentId(contentID);
     }
 
     @Override
@@ -64,6 +60,11 @@ public class TransformationProcessBuilder implements ContentBuilder<Transformati
     @Override
     public void reset() {
         this.transformationProcess = new TransformationProcess();
+    }
+
+    @Override
+    public ContentType supports() {
+        return ContentType.TRANSFORMATION_PROCESS;
     }
 
 }

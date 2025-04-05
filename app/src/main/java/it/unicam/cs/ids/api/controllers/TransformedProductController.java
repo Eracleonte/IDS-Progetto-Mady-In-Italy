@@ -15,6 +15,8 @@ public class TransformedProductController {
         this.transformedProductHandler = transformedProductHandler;
     }
 
+    /**
+
     // CREATION
 
     public int addNewTransformedProduct(InputTransformedProductDTO inputTransformedProductDTO) {
@@ -34,5 +36,7 @@ public class TransformedProductController {
     public String approveTransformedProduct(int id, boolean approvalChoice) {
         return this.transformedProductHandler.approveTransformedProduct(id, approvalChoice);
     }
+
+     */
 
 }

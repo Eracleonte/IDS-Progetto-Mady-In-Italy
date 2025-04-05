@@ -36,6 +36,8 @@ class RawProductControllerTest {
 
     }
 
+    /**
+
     @Test
     void testAddNewRawProduct() {
         // Initial check of raw products status in the system.
@@ -47,5 +49,7 @@ class RawProductControllerTest {
         // Printing get results
         System.out.println(rawProductController.getRawProductById(1).toString());
     }
+
+    */
 
 }

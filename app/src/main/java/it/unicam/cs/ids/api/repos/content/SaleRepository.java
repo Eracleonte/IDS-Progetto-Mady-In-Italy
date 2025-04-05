@@ -11,6 +11,16 @@ public class SaleRepository extends Repository<Sale> {
         super();
     }
 
+    public int buyFromSale(int saleId, int quantity) {
+        this.repository.get(saleId).reduceSaleQuantity(quantity);
+        return saleId;
+    }
+
+    public int updateSaleQuantity(int saleId, int quantity) {
+        this.repository.get(saleId).updateSaleQuantity(quantity);
+        return saleId;
+    }
+
     public static SaleRepository getInstance() {
         if (instance == null) instance = new SaleRepository();
         return instance;

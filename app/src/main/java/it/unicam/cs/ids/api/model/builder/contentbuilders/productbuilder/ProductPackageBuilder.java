@@ -3,6 +3,7 @@ package it.unicam.cs.ids.api.model.builder.contentbuilders.productbuilder;
 import it.unicam.cs.ids.api.dto.input.InputProductPackageDTO;
 import it.unicam.cs.ids.api.model.builder.contentbuilders.ContentBuilder;
 import it.unicam.cs.ids.api.model.contents.Content;
+import it.unicam.cs.ids.api.model.contents.ContentType;
 import it.unicam.cs.ids.api.model.contents.products.productpackages.ProductPackage;
 
 public class ProductPackageBuilder implements ContentBuilder<ProductPackage> {
@@ -20,11 +21,6 @@ public class ProductPackageBuilder implements ContentBuilder<ProductPackage> {
         this.setDescription(inputProductPackageDTO.description());
         this.setAuthor(inputProductPackageDTO.author());
         return this.productPackage;
-    }
-
-    @Override
-    public void setContentID(int contentID) {
-        this.productPackage.setContentId(contentID);
     }
 
     @Override
@@ -55,6 +51,11 @@ public class ProductPackageBuilder implements ContentBuilder<ProductPackage> {
     @Override
     public void reset() {
         this.productPackage = new ProductPackage();
+    }
+
+    @Override
+    public ContentType supports() {
+        return ContentType.PRODUCT_PACKAGE;
     }
 
 }

@@ -14,6 +14,8 @@ public class SupplyChainPointHandler {
     private SupplyChainPointRepository scpRepository;
 
     public SupplyChainPointHandler(SupplyChainPointRepository scpRepository) {
+        if (scpRepository == null)
+            throw new NullPointerException("scpRepository is null");
         this.scpRepository = scpRepository;
     }
 

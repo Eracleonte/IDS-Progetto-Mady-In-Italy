@@ -33,6 +33,7 @@ class TransformationProcessControllerTest {
 
     }
 
+    /**
     @Test
     void addTransformationProcess() {
         // Initial check of trasformation process status in the system and validation requests
@@ -44,5 +45,6 @@ class TransformationProcessControllerTest {
         // Printing get results
         System.out.println(transformationProcessController.getTransformationProcessById(1).toString());
     }
+    */
 
 }

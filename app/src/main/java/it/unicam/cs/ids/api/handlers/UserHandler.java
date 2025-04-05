@@ -14,7 +14,9 @@ public class UserHandler {
 
     private UserRepository userRepository;
 
-    public UserHandler(UserRepository userRepository){
+    public UserHandler(UserRepository userRepository) {
+        if (userRepository == null)
+            throw new NullPointerException("UserRepository is null");
         this.userRepository = userRepository;
     }
 

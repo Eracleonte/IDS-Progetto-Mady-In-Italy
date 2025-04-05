@@ -2,6 +2,7 @@ package it.unicam.cs.ids.api.model.builder.contentbuilders.productbuilder;
 
 import it.unicam.cs.ids.api.dto.input.InputTransformedProductDTO;
 import it.unicam.cs.ids.api.model.builder.contentbuilders.ContentBuilder;
+import it.unicam.cs.ids.api.model.contents.ContentType;
 import it.unicam.cs.ids.api.model.contents.products.singles.TransformedProduct;
 
 public class TransformedProductBuilder implements ContentBuilder<TransformedProduct> {
@@ -10,11 +11,6 @@ public class TransformedProductBuilder implements ContentBuilder<TransformedProd
 
     public TransformedProductBuilder() {
         this.transformedProduct = new TransformedProduct();
-    }
-
-    @Override
-    public void setContentID(int contentID) {
-        this.transformedProduct.setContentId(contentID);
     }
 
     @Override
@@ -69,6 +65,11 @@ public class TransformedProductBuilder implements ContentBuilder<TransformedProd
     @Override
     public void reset() {
         this.transformedProduct = new TransformedProduct();
+    }
+
+    @Override
+    public ContentType supports() {
+        return ContentType.TRANSFORMED_PRODUCT;
     }
 
 }

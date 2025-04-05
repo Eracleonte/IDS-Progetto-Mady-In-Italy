@@ -24,6 +24,14 @@ public class ProductPackage extends Product {
         this.transformedProducts = new ArrayList<>();
     }
 
+    public boolean addRawProduct(RawProduct rawProduct) {
+        return this.rawProducts.add(rawProduct);
+    }
+
+    public boolean addTransformedProduct(TransformedProduct transformedProduct) {
+        return this.transformedProducts.add(transformedProduct);
+    }
+
     public boolean addRawProducts(List<RawProduct> rawProducts) {
         return this.rawProducts.addAll(rawProducts);
     }

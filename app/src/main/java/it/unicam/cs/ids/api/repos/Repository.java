@@ -7,7 +7,7 @@ import java.util.*;
 
 public abstract class Repository<E extends Identifiable & Approvable> {
 
-    private final Map<Integer,E> repository;
+    protected final Map<Integer,E> repository;
 
     private int nextId;
 
@@ -28,6 +28,8 @@ public abstract class Repository<E extends Identifiable & Approvable> {
     public List<E> findAll() {
         return new ArrayList<>(repository.values());
     }
+
+    // TODO approvazione del contenuto presenta molti controlli, potrebbero essere trasferiti altrove?
 
     /**
      * Approves an approvable content

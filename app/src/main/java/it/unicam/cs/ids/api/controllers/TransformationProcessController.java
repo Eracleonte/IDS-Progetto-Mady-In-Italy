@@ -14,6 +14,8 @@ public class TransformationProcessController {
         this.transformationProcessHandler = transformationProcessHandler;
     }
 
+    /**
+
     // CREATION
 
     public int addNewTransformationProcess(InputTransformationProcessDTO inputTransformationProcessDTO) {
@@ -33,5 +35,7 @@ public class TransformationProcessController {
     public String approveTransformationProcess(int id, boolean approvalChoice) {
         return this.transformationProcessHandler.approveTransformationProcess(id, approvalChoice);
     }
+
+     */
 
 }

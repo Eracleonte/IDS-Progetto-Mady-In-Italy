@@ -157,6 +157,18 @@ public class Sale implements Content {
         this.quantity = quantity;
     }
 
+    public void reduceSaleQuantity(int quantity) {
+        if (quantity < 0 || quantity > this.quantity)
+            throw new IllegalArgumentException("Quantity must be greater than zero and lesser than the current quantity");
+        this.quantity -= quantity;
+    }
+
+    public void updateSaleQuantity(int quantity) {
+        if (quantity < 0)
+            throw new IllegalArgumentException("Quantity must be greater than zero");
+        this.quantity += quantity;
+    }
+
     @Override
     public OutputSaleDTO getOutputDTO() {
         return new OutputSaleDTO(this.id ,

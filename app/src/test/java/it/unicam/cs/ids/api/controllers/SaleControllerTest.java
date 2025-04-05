@@ -39,6 +39,8 @@ class SaleControllerTest {
 
     }
 
+    /**
+
     @Test
     public void addNewProductOnSale(){
         // Initial check of products on sale status in the system and validation requests
@@ -50,5 +52,7 @@ class SaleControllerTest {
         // Printing get results
         System.out.println(saleController.getProductOnSaleById(1).toString());
     }
+
+    */
 
 }

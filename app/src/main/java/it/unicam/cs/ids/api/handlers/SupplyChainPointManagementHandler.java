@@ -12,6 +12,8 @@ public class SupplyChainPointManagementHandler {
 
     public SupplyChainPointManagementHandler(SupplyChainPointManagementRepository
                                                      supplyChainPointManagementRepository) {
+        if (supplyChainPointManagementRepository == null)
+            throw new NullPointerException("supplyChainPointManagementRepository is null");
         this.supplyChainPointManagementRepository = supplyChainPointManagementRepository;
     }
 

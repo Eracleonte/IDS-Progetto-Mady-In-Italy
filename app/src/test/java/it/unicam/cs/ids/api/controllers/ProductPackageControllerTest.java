@@ -49,6 +49,8 @@ class ProductPackageControllerTest {
 
     }
 
+    /**
+
     @Test
     void addNewProductPackage() {
         // Initial check of product packages status in the system and validation requests
@@ -60,5 +62,7 @@ class ProductPackageControllerTest {
         // Printing get results
         System.out.println(productPackageController.getProductPackageById(1).toString());
     }
+
+    */
 
 }

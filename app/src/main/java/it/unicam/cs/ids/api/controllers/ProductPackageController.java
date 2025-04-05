@@ -14,6 +14,8 @@ public class ProductPackageController {
         this.productPackageHandler = productPackageHandler;
     }
 
+    /**
+
     // CREATION
 
     public int addNewProductPackage(InputProductPackageDTO inputProductPackageDTO) {
@@ -33,5 +35,7 @@ public class ProductPackageController {
     public String approveProductPackage(int id, boolean approvalChoice) {
         return this.productPackageHandler.approveProductPackage(id, approvalChoice);
     }
+
+     */
 
 }
