@@ -10,7 +10,7 @@ public enum Authorization {
     BUYER("BUYER"),
     ADMINISTRATOR("ADMINISTRATOR");
 
-    private String value;
+    private final String value;
 
     Authorization(String value) {
         this.value = value;

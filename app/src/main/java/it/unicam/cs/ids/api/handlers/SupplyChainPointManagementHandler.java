@@ -8,7 +8,7 @@ import java.util.List;
 
 public class SupplyChainPointManagementHandler {
 
-    private SupplyChainPointManagementRepository supplyChainPointManagementRepository;
+    private final SupplyChainPointManagementRepository supplyChainPointManagementRepository;
 
     public SupplyChainPointManagementHandler(SupplyChainPointManagementRepository
                                                      supplyChainPointManagementRepository) {

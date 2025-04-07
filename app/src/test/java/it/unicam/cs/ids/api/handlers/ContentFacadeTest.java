@@ -87,9 +87,9 @@ class ContentFacadeTest {
 
         List<InputProductPackageElementDTO> inputProductPackageElementDTOS = new ArrayList<>();
         inputProductPackageElementDTOS.add
-                (new InputProductPackageElementDTO(1, ContentType.RAW_PRODUCT.getValue()));
+                (new InputProductPackageElementDTO(1, ContentType.RAW_PRODUCT));
         inputProductPackageElementDTOS.add
-                (new InputProductPackageElementDTO(1, ContentType.TRANSFORMED_PRODUCT.getValue()));
+                (new InputProductPackageElementDTO(1, ContentType.TRANSFORMED_PRODUCT));
 
         inputProductPackageDTO = new InputProductPackageDTO(
                 1,
@@ -101,10 +101,9 @@ class ContentFacadeTest {
 
         // Input Sale DTO Setup
 
-        inputSaleDTO = new InputSaleDTO(
+        inputSaleDTO = InputSaleDTO.getRawProductInputSaleDto(
                 1,
                 1,
-                ContentType.RAW_PRODUCT.getValue(),
                 "test_name",
                 "test_description",
                 "test_author",
@@ -291,6 +290,27 @@ class ContentFacadeTest {
         System.out.println(facade.findContentByIdAndType(1,ContentType.PRODUCT_PACKAGE).toString());
         System.out.println(facade.findContentByIdAndType(1,ContentType.SALE).toString());
         System.out.println(facade.findContentByIdAndType(1,ContentType.TRANSFORMATION_PROCESS).toString());
+    }
+
+    @Disabled
+    @Test
+    void findAllContentsFiltered() {
+        ContentSearchFilterDTO filterDTO =
+                ContentSearchFilterDTO.getRawProductsContentSearchFilterDTO(0,null,"Joe");
+        InputRawProductDTO input1 = new InputRawProductDTO(10,"Apple","Tasty",
+                "Joe","IGP","Red","This apple is caught when...");
+        InputRawProductDTO input2 = new InputRawProductDTO(11,"Milk","Fresh",
+                "Bill","IGP","Cow-Milk","To produce this milk we...");
+        InputRawProductDTO input3 = new InputRawProductDTO(10,"Orange","Juicy",
+                "Joe","IGP","Sicilian","At the start of the summer...");
+        InputSaleDTO input4 = InputSaleDTO.getRawProductInputSaleDto(10,1,
+                "Melinda Apple","Excelsior","John Melinda",2.09f,10);
+        facade.saveRawProduct(input1);
+        facade.saveRawProduct(input2);
+        facade.saveRawProduct(input3);
+        facade.saveSale(input4);
+        // Asserting if the operation results in the return of a list containing 2 raw products (produced by "Joe")
+        Assertions.assertEquals(2, facade.findAllContentsFiltered(filterDTO).size());
     }
 
     @Disabled

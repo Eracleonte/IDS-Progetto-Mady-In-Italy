@@ -14,9 +14,9 @@ import java.util.stream.Collectors;
 
 public class ProductPackage extends Product {
 
-    private List<RawProduct> rawProducts;
+    private final List<RawProduct> rawProducts;
 
-    private List<TransformedProduct> transformedProducts;
+    private final List<TransformedProduct> transformedProducts;
 
     public ProductPackage() {
         super(ContentType.PRODUCT_PACKAGE);
@@ -24,26 +24,30 @@ public class ProductPackage extends Product {
         this.transformedProducts = new ArrayList<>();
     }
 
-    public boolean addRawProduct(RawProduct rawProduct) {
-        return this.rawProducts.add(rawProduct);
+    public void addRawProduct(RawProduct rawProduct) {
+        this.rawProducts.add(rawProduct);
     }
 
-    public boolean addTransformedProduct(TransformedProduct transformedProduct) {
-        return this.transformedProducts.add(transformedProduct);
+    public void addTransformedProduct(TransformedProduct transformedProduct) {
+        this.transformedProducts.add(transformedProduct);
     }
 
+    // TODO marked for removal
     public boolean addRawProducts(List<RawProduct> rawProducts) {
         return this.rawProducts.addAll(rawProducts);
     }
 
+    // TODO marked for removal
     public boolean addTransformedProducts(List<TransformedProduct> transformedProducts) {
         return this.transformedProducts.addAll(transformedProducts);
     }
 
+    // TODO marked for removal
     public List<RawProduct> getRawProducts() {
         return this.rawProducts;
     }
 
+    // TODO marked for removal
     public List<TransformedProduct> getTransformedProducts() {
         return this.transformedProducts;
     }

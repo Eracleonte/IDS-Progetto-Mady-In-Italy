@@ -18,6 +18,12 @@ public class TransformationProcessBuilder implements ContentBuilder<Transformati
        this.transformationProcess.setSupplyChainPointId(supplyChainPointID);
     }
 
+    /**
+     * Builds a Transformation Process from a InputTransformationProcessDTO.
+     *
+     * @param inputTransformationProcessDTO the dto used to build a TransformationProcess.
+     * @return a new TransformationProcess instance.
+     */
     public TransformationProcess buildTransformationProcessFromDTO(InputTransformationProcessDTO inputTransformationProcessDTO) {
         this.reset();
         this.setSupplyChainPointID(inputTransformationProcessDTO.supplyChainPointId());

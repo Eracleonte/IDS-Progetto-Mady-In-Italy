@@ -13,7 +13,7 @@ public class Sale implements Content {
 
     private int supplyChainPointId;
 
-    private String CONTENT_TYPE;
+    private final String CONTENT_TYPE;
 
     private int productId;
 

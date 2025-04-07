@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 
 public class SaleHandler implements ContentHandler<Sale> {
 
-    private SaleRepository saleRepository;
+    private final SaleRepository saleRepository;
 
     public SaleHandler(SaleRepository saleRepository) {
         if (saleRepository == null)

@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 
 public class SupplyChainPointHandler {
 
-    private SupplyChainPointRepository scpRepository;
+    private final SupplyChainPointRepository scpRepository;
 
     public SupplyChainPointHandler(SupplyChainPointRepository scpRepository) {
         if (scpRepository == null)

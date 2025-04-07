@@ -20,7 +20,7 @@ public class User implements Visualizable, Approvable {
 
    private boolean approved;
 
-   private List<Role> roles;
+   private final List<Role> roles;
 
     public User(String username, String password, String email) {
         this.username = username;
@@ -76,8 +76,8 @@ public class User implements Visualizable, Approvable {
         this.approved = approved;
     }
 
-    public boolean addRoles(List<Role> rolesToCover) {
-        return this.roles.addAll(rolesToCover);
+    public void addRoles(List<Role> rolesToCover) {
+        this.roles.addAll(rolesToCover);
     }
 
     /**

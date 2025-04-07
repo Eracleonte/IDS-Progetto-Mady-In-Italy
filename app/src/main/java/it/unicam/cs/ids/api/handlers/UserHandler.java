@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class UserHandler {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public UserHandler(UserRepository userRepository) {
         if (userRepository == null)

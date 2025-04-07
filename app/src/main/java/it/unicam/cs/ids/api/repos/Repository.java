@@ -29,8 +29,6 @@ public abstract class Repository<E extends Identifiable & Approvable> {
         return new ArrayList<>(repository.values());
     }
 
-    // TODO approvazione del contenuto presenta molti controlli, potrebbero essere trasferiti altrove?
-
     /**
      * Approves an approvable content
      *

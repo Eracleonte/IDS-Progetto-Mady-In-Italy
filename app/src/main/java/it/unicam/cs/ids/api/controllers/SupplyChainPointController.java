@@ -12,9 +12,9 @@ import java.util.function.Predicate;
 
 public class SupplyChainPointController {
 
-    private SupplyChainPointHandler supplyChainPointHandler;
+    private final SupplyChainPointHandler supplyChainPointHandler;
 
-    private SupplyChainPointManagementHandler supplyChainPointManagementHandler;
+    private final SupplyChainPointManagementHandler supplyChainPointManagementHandler;
 
     public SupplyChainPointController(SupplyChainPointHandler supplyChainPointHandler,
                                       SupplyChainPointManagementHandler supplyChainPointManagementHandler) {

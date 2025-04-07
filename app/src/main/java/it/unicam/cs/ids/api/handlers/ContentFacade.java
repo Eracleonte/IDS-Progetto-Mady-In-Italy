@@ -24,7 +24,6 @@ public class ContentFacade {
 
     private final ContentBuilderDirector director;
 
-    // TODO add check to avoid creation of Facade where handlers and builder are not linked in a one to one relation (Ex. RawProductHandler - RawProductBuilder)
     public ContentFacade(List<ContentHandler<? extends Content>> handlers,
                          ContentBuilderDirector director) {
         if (handlers == null)
@@ -34,15 +33,11 @@ public class ContentFacade {
         if (director == null)
             throw new NullPointerException("director is null");
         List<ContentHandler<? extends Content>> validHandlers = List.copyOf(handlers.stream().filter(Objects::nonNull).toList());
-
-        // TODO added at 05/04/2025 15:12
         for (ContentHandler<? extends Content> handler : validHandlers) {
             if (! director.supportedContentTypes().contains(handler.supports()))
                 throw new IllegalStateException("Attempt at creating a [ContentFacade] where a [ContentHandler] " +
                         "does not have a corresponding [ContentBuilder] for save operations");
         }
-        // TODO end
-
         this.handlers = Map.copyOf(validHandlers.stream().collect(Collectors.toMap(ContentHandler::supports, h -> h)));
         this.director = director;
     }
@@ -107,9 +102,9 @@ public class ContentFacade {
         if (rpHandler == null || tpHandler == null)
             throw new IllegalStateException("Rejected attempt at adding products to a product package due to missing product handlers");
         for (InputProductPackageElementDTO dto : productPackageElements) {
-            if (dto.productType().equals(ContentType.RAW_PRODUCT.getValue()))
+            if (dto.productType().equals(ContentType.RAW_PRODUCT))
                 productPackage.addRawProduct(rpHandler.findContentById(dto.productId()));
-            else if (dto.productType().equals(ContentType.TRANSFORMED_PRODUCT.getValue()))
+            else if (dto.productType().equals(ContentType.TRANSFORMED_PRODUCT))
                 productPackage.addTransformedProduct(tpHandler.findContentById(dto.productId()));
             else
                 throw new IllegalArgumentException("Unsupported product type: " + dto.productType());
@@ -178,7 +173,6 @@ public class ContentFacade {
                     " when the [ContentHandler] for said [ContentType] is not available for this [ContentFacade] instance");
     }
 
-    // TODO review
     /**
      * Returns a list of contents filtered via a content search filter.
      *
@@ -190,10 +184,12 @@ public class ContentFacade {
         if (contentHandler != null) {
             try {
                 List<? extends Content> contents = contentHandler.findAllContents();
+                if (filter.supplyChainPointId() != 0)
+                    contents = contents.stream().filter((c) -> c.getSupplyChainPointId() == filter.supplyChainPointId()).toList();
                 if (filter.contentName() != null)
                     contents = contents.stream().filter((c) -> c.getName().equals(filter.contentName())).toList();
                 if (filter.authorName() != null)
-                    contents = contents.stream().filter((c) -> c.getName().equals(filter.authorName())).toList();
+                    contents = contents.stream().filter((c) -> c.getAuthor().equals(filter.authorName())).toList();
                 return contents.stream().map(Content::getOutputDTO).toList();
             } catch (Exception e) {
                 throw new RuntimeException(e);

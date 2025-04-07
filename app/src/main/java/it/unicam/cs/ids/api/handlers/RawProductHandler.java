@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 
 public class RawProductHandler implements ContentHandler<RawProduct> {
 
-    private RawProductRepository rawProductRepository;
+    private final RawProductRepository rawProductRepository;
 
     public RawProductHandler(RawProductRepository rawProductRepository) {
         if (rawProductRepository == null)

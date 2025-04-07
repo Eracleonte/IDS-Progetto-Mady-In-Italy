@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 
 public class TransformedProductHandler implements ContentHandler<TransformedProduct> {
 
-    private TransformedProductRepository transformedProductRepository;
+    private final TransformedProductRepository transformedProductRepository;
 
     public TransformedProductHandler(TransformedProductRepository transformedProductRepository) {
         if (transformedProductRepository == null)

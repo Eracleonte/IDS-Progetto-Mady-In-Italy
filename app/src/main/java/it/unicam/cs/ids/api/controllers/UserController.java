@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UserController {
 
-    private UserHandler userHandler;
+    private final UserHandler userHandler;
 
     public UserController(UserHandler userHandler){
         this.userHandler = userHandler;

@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 
 public class TransformationProcessHandler implements ContentHandler<TransformationProcess> {
 
-    private TransformationProcessRepository transformationProcessRepository;
+    private final TransformationProcessRepository transformationProcessRepository;
 
     public TransformationProcessHandler(TransformationProcessRepository transformationProcessRepository) {
         if (transformationProcessRepository == null)

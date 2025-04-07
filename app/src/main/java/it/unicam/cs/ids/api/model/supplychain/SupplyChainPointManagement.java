@@ -6,11 +6,11 @@ import it.unicam.cs.ids.api.dto.output.OutputSupplyChainPointManagementDTO;
 
 public class SupplyChainPointManagement implements Visualizable, Approvable {
 
-    private int id;
+    private final int id;
 
-    private int supplyChainPointId;
+    private final int supplyChainPointId;
 
-    private int userId;
+    private final int userId;
 
     private boolean approved;
 

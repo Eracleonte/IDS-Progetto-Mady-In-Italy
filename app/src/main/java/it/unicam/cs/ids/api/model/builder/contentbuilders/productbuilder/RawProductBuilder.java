@@ -14,9 +14,10 @@ public class RawProductBuilder implements ContentBuilder<RawProduct> {
     }
 
     /**
-     * Builds a Raw Product from a InputRawProductDTO
-     * @param inputRawProductDTO
-     * @return
+     * Builds a Raw Product from a InputRawProductDTO.
+     *
+     * @param inputRawProductDTO the dto used to build a RawProduct.
+     * @return a new RawProduct instance.
      */
     public RawProduct buildRawProductFromDTO(InputRawProductDTO inputRawProductDTO) {
         this.reset();

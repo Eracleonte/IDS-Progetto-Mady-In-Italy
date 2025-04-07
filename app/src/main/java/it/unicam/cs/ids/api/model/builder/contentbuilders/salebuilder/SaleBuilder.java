@@ -14,11 +14,18 @@ public class SaleBuilder implements ContentBuilder<Sale> {
         this.sale = new Sale();
     }
 
+
+    /**
+     * Builds a Sale from a InputSaleDTO.
+     *
+     * @param inputSaleDTO the dto used to build a Sale.
+     * @return a new Sale instance.
+     */
     public Sale buildProductOnSaleFromDTO(InputSaleDTO inputSaleDTO) {
         this.reset();
         this.setSupplyChainPointID(inputSaleDTO.supplyChainPointId());
         this.setProductId(inputSaleDTO.productId());
-        this.setProductType(inputSaleDTO.productType());
+        this.setProductType(inputSaleDTO.productType().getValue());
         this.setName(inputSaleDTO.name());
         this.setDescription(inputSaleDTO.description());
         this.setAuthor(inputSaleDTO.author());

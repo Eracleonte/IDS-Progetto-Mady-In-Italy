@@ -18,6 +18,12 @@ public class TransformedProductBuilder implements ContentBuilder<TransformedProd
         this.transformedProduct.setSupplyChainPointId(supplyChainPointID);
     }
 
+    /**
+     * Builds a Transformed Product from a inputTransformedProductDTO.
+     *
+     * @param inputTransformedProductDTO the dto used to build a TransformedProduct.
+     * @return a new TransformedProduct instance.
+     */
     public TransformedProduct buildTransformedProductFromDTO(InputTransformedProductDTO inputTransformedProductDTO) {
         this.reset();
         this.setSupplyChainPointID(inputTransformedProductDTO.supplyChainPointId());
