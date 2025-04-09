@@ -20,8 +20,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 // IMPORTANT NOTE: tests work if run singularly due to issues with id handling.
 
 class ContentControllerTest {

@@ -3,7 +3,6 @@ package it.unicam.cs.ids.api.model.contents.products.productpackages;
 import it.unicam.cs.ids.api.dto.output.OutputProductPackageDTO;
 import it.unicam.cs.ids.api.dto.output.OutputRawProductDTO;
 import it.unicam.cs.ids.api.dto.output.OutputTransformedProductDTO;
-import it.unicam.cs.ids.api.model.contents.ContentType;
 import it.unicam.cs.ids.api.model.contents.products.Product;
 import it.unicam.cs.ids.api.model.contents.products.singles.RawProduct;
 import it.unicam.cs.ids.api.model.contents.products.singles.TransformedProduct;
@@ -19,7 +18,6 @@ public class ProductPackage extends Product {
     private final List<TransformedProduct> transformedProducts;
 
     public ProductPackage() {
-        super(ContentType.PRODUCT_PACKAGE);
         this.rawProducts = new ArrayList<>();
         this.transformedProducts = new ArrayList<>();
     }
@@ -30,26 +28,6 @@ public class ProductPackage extends Product {
 
     public void addTransformedProduct(TransformedProduct transformedProduct) {
         this.transformedProducts.add(transformedProduct);
-    }
-
-    // TODO possibly marked for removal
-    public boolean addRawProducts(List<RawProduct> rawProducts) {
-        return this.rawProducts.addAll(rawProducts);
-    }
-
-    // TODO possibly marked for removal
-    public boolean addTransformedProducts(List<TransformedProduct> transformedProducts) {
-        return this.transformedProducts.addAll(transformedProducts);
-    }
-
-    // TODO possibly marked for removal
-    public List<RawProduct> getRawProducts() {
-        return this.rawProducts;
-    }
-
-    // TODO possibly marked for removal
-    public List<TransformedProduct> getTransformedProducts() {
-        return this.transformedProducts;
     }
 
     @Override

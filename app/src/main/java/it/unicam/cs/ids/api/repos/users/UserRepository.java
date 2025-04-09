@@ -1,7 +1,7 @@
 package it.unicam.cs.ids.api.repos.users;
 
-import it.unicam.cs.ids.api.repos.Repository;
 import it.unicam.cs.ids.api.model.user.User;
+import it.unicam.cs.ids.api.repos.Repository;
 
 public class UserRepository extends Repository<User> {
 

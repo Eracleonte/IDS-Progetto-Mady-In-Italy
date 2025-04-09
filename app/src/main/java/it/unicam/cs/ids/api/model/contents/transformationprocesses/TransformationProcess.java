@@ -2,7 +2,6 @@ package it.unicam.cs.ids.api.model.contents.transformationprocesses;
 
 import it.unicam.cs.ids.api.dto.output.OutputTransformationProcessDTO;
 import it.unicam.cs.ids.api.model.contents.Content;
-import it.unicam.cs.ids.api.model.contents.ContentType;
 
 /**
  * Represents a Transformation Process
@@ -12,8 +11,6 @@ public class TransformationProcess implements Content {
     private int id;
 
     private int supplyChainPointId;
-
-    private final String CONTENT_TYPE;
 
     private String name;
 
@@ -28,7 +25,6 @@ public class TransformationProcess implements Content {
     private String transformationPhases;
 
     public TransformationProcess() {
-        this.CONTENT_TYPE = ContentType.TRANSFORMATION_PROCESS.getValue();
     }
 
     @Override
@@ -39,11 +35,6 @@ public class TransformationProcess implements Content {
     @Override
     public int getSupplyChainPointId() {
         return this.supplyChainPointId;
-    }
-
-    @Override
-    public String getContentType() {
-        return this.CONTENT_TYPE;
     }
 
     @Override

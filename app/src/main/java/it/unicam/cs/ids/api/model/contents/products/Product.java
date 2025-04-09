@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.api.model.contents.products;
 
 import it.unicam.cs.ids.api.model.contents.Content;
-import it.unicam.cs.ids.api.model.contents.ContentType;
 
 /**
  * Represents a Product
@@ -12,8 +11,6 @@ public abstract class Product implements Content {
 
     private int supplyChainPointId;
 
-    private final String CONTENT_TYPE;
-
     private String name;
 
     private String description;
@@ -22,8 +19,7 @@ public abstract class Product implements Content {
 
     private boolean approved;
 
-    public Product(ContentType contentType) {
-        CONTENT_TYPE = contentType.getValue();
+    public Product() {
     }
 
     @Override
@@ -34,11 +30,6 @@ public abstract class Product implements Content {
     @Override
     public int getSupplyChainPointId() {
         return this.supplyChainPointId;
-    }
-
-    @Override
-    public String getContentType() {
-        return this.CONTENT_TYPE;
     }
 
     @Override

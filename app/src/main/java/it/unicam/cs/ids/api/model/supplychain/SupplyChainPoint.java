@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.api.model.supplychain;
 
 import it.unicam.cs.ids.api.abstractions.Approvable;
-import it.unicam.cs.ids.api.abstractions.Identifiable;
 import it.unicam.cs.ids.api.abstractions.Visualizable;
 import it.unicam.cs.ids.api.dto.input.InputSupplyChainPointDTO;
 import it.unicam.cs.ids.api.dto.output.OutputSupplyChainPointDTO;

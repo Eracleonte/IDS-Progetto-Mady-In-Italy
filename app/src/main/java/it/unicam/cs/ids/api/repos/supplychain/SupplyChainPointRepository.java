@@ -1,7 +1,7 @@
 package it.unicam.cs.ids.api.repos.supplychain;
 
-import it.unicam.cs.ids.api.repos.Repository;
 import it.unicam.cs.ids.api.model.supplychain.SupplyChainPoint;
+import it.unicam.cs.ids.api.repos.Repository;
 
 public class SupplyChainPointRepository extends Repository<SupplyChainPoint> {
 

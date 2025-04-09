@@ -11,7 +11,9 @@ import it.unicam.cs.ids.api.model.contents.products.singles.TransformedProduct;
 import it.unicam.cs.ids.api.model.contents.sale.Sale;
 import it.unicam.cs.ids.api.model.contents.transformationprocesses.TransformationProcess;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**

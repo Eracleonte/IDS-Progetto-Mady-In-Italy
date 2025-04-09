@@ -2,7 +2,6 @@ package it.unicam.cs.ids.api.model.contents.sale;
 
 import it.unicam.cs.ids.api.dto.output.OutputSaleDTO;
 import it.unicam.cs.ids.api.model.contents.Content;
-import it.unicam.cs.ids.api.model.contents.ContentType;
 
 /**
  * Represents a Product set on sale
@@ -12,8 +11,6 @@ public class Sale implements Content {
     private int id;
 
     private int supplyChainPointId;
-
-    private final String CONTENT_TYPE;
 
     private int productId;
 
@@ -32,7 +29,7 @@ public class Sale implements Content {
     private int quantity;
 
     public Sale() {
-        this.CONTENT_TYPE = ContentType.SALE.getValue();
+
     }
 
     @Override
@@ -43,11 +40,6 @@ public class Sale implements Content {
     @Override
     public int getSupplyChainPointId() {
         return this.supplyChainPointId;
-    }
-
-    @Override
-    public String getContentType() {
-        return this.CONTENT_TYPE;
     }
 
     public int getProductId() {

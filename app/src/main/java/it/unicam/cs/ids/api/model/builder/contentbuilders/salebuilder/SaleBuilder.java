@@ -2,7 +2,6 @@ package it.unicam.cs.ids.api.model.builder.contentbuilders.salebuilder;
 
 import it.unicam.cs.ids.api.dto.input.InputSaleDTO;
 import it.unicam.cs.ids.api.model.builder.contentbuilders.ContentBuilder;
-import it.unicam.cs.ids.api.model.contents.Content;
 import it.unicam.cs.ids.api.model.contents.ContentType;
 import it.unicam.cs.ids.api.model.contents.sale.Sale;
 
