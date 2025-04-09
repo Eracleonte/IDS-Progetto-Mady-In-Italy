@@ -33,9 +33,10 @@ public class UserHandler {
         return user.getOutputDTO();
     }
 
-    public List<OutputUserDTO> getAllUsers() {
+    public List<OutputUserDTO> getAllUsers(boolean approved) {
         return this.userRepository.findAll()
                 .stream()
+                .filter(u -> u.isApproved() == approved)
                 .map(User::getOutputDTO)
                 .collect(Collectors.toList());
     }

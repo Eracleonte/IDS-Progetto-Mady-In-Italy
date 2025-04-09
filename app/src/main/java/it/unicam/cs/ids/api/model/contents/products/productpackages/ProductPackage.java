@@ -32,22 +32,22 @@ public class ProductPackage extends Product {
         this.transformedProducts.add(transformedProduct);
     }
 
-    // TODO marked for removal
+    // TODO possibly marked for removal
     public boolean addRawProducts(List<RawProduct> rawProducts) {
         return this.rawProducts.addAll(rawProducts);
     }
 
-    // TODO marked for removal
+    // TODO possibly marked for removal
     public boolean addTransformedProducts(List<TransformedProduct> transformedProducts) {
         return this.transformedProducts.addAll(transformedProducts);
     }
 
-    // TODO marked for removal
+    // TODO possibly marked for removal
     public List<RawProduct> getRawProducts() {
         return this.rawProducts;
     }
 
-    // TODO marked for removal
+    // TODO possibly marked for removal
     public List<TransformedProduct> getTransformedProducts() {
         return this.transformedProducts;
     }

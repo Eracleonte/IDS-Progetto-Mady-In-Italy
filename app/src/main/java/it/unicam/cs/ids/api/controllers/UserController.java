@@ -23,8 +23,8 @@ public class UserController {
         return this.userHandler.getUserById(id);
     }
 
-    public List<OutputUserDTO> getAllUsers() {
-        return this.userHandler.getAllUsers();
+    public List<OutputUserDTO> getAllUsers(boolean approved) {
+        return this.userHandler.getAllUsers(approved);
     }
 
     public String approveUser(int id, boolean approvalChoice) {

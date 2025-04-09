@@ -14,7 +14,6 @@ public class SaleBuilder implements ContentBuilder<Sale> {
         this.sale = new Sale();
     }
 
-
     /**
      * Builds a Sale from a InputSaleDTO.
      *

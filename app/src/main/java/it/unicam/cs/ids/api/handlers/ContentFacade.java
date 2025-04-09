@@ -10,7 +10,6 @@ import it.unicam.cs.ids.api.model.contents.products.singles.RawProduct;
 import it.unicam.cs.ids.api.model.contents.products.singles.TransformedProduct;
 import it.unicam.cs.ids.api.model.contents.sale.Sale;
 import it.unicam.cs.ids.api.model.contents.transformationprocesses.TransformationProcess;
-import it.unicam.cs.ids.api.repos.content.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -143,7 +142,7 @@ public class ContentFacade {
 
     // Read
 
-    public Identifiable findContentByIdAndType(int id, ContentType contentType) {
+    public Identifiable findContentByIdAndContentType(int id, ContentType contentType) {
         ContentHandler<? extends Content> contentHandler = this.handlers.get(contentType);
         if (contentHandler != null) {
             try {
@@ -157,11 +156,20 @@ public class ContentFacade {
                     " when the [ContentHandler] for said [ContentType] is not available for this [ContentFacade] instance");
     }
 
-    public List<Identifiable> findAllContentsOfContentType(ContentType contentType) {
+    /**
+     * Gets all contents of a certain type based on the approval status.
+     *
+     * @param contentType the type of contents researched.
+     * @param approved is set to true if only approved contents are subject of the retrieval operation,
+     *                 is set to false if only contents yet to be approved are subject of the retrieval operation.
+     * @return a List of Identifiable.
+     */
+    public List<Identifiable> findAllContentsOfContentType(ContentType contentType, boolean approved) {
         ContentHandler<? extends Content> contentHandler = this.handlers.get(contentType);
         if (contentHandler != null) {
             try {
                 return contentHandler.findAllContents().stream()
+                        .filter((c) -> c.isApproved() == approved)
                         .map(Content::getOutputDTO)
                         .toList();
             } catch (Exception e) {

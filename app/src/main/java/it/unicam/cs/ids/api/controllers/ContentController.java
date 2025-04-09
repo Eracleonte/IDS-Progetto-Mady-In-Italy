@@ -54,13 +54,21 @@ public class ContentController {
     public Identifiable getContentsByIdAndContentType(int id, ContentType contentType) {
         if (contentType == null)
             throw new NullPointerException("Cannot get contents by id due to contentType being null");
-        return this.facade.findContentByIdAndType(id,contentType);
+        return this.facade.findContentByIdAndContentType(id,contentType);
     }
 
-    public List<Identifiable> getAllContentsOfContentType(ContentType contentType) {
+    /**
+     * Gets all contents of a certain type based on the approval status.
+     *
+     * @param contentType the type of contents researched.
+     * @param approved is set to true if only approved contents are subject of the retrieval operation,
+     *                 is set to false if only contents yet to be approved are subject of the retrieval operation.
+     * @return a List of Identifiable.
+     */
+    public List<Identifiable> getAllContentsOfContentType(ContentType contentType, boolean approved) {
         if (contentType == null)
             throw new NullPointerException("Cannot get contents by id due to contentType being null");
-        return this.facade.findAllContentsOfContentType(contentType);
+        return this.facade.findAllContentsOfContentType(contentType, approved);
     }
 
     public List<Identifiable> getAllContentsOfContentTypeFiltered(ContentSearchFilterDTO contentSearchFilterDTO) {

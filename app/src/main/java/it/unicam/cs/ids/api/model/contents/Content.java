@@ -10,7 +10,7 @@ public interface Content extends Visualizable, Approvable {
 
     int getSupplyChainPointId();
 
-    String getContentType(); // TODO marked for removal
+    String getContentType(); // TODO possibly marked for removal
 
     String getName();
 

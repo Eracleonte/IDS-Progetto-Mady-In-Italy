@@ -13,6 +13,12 @@ public class ProductPackageBuilder implements ContentBuilder<ProductPackage> {
         this.productPackage = new ProductPackage();
     }
 
+    /**
+     * Builds a Product Package from a InputProductPackageDTO
+     *
+     * @param inputProductPackageDTO the dto used to build a ProductPackage.
+     * @return a new ProductPackage instance.
+     */
     public ProductPackage buildProductPackageFromDTO(InputProductPackageDTO inputProductPackageDTO) {
         this.reset();
         this.setSupplyChainPointID(inputProductPackageDTO.supplyChainPointId());

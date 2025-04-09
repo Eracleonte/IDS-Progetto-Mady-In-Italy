@@ -124,20 +124,6 @@ public class SupplyChainPoint implements Visualizable, Approvable {
         this.approved = approved;
     }
 
-    @Override
-    public String toString() {
-        return "SupplyChainPoint{" +
-                "id=" + id +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", name='" + name + '\'' +
-                ", isProduction=" + isProduction +
-                ", isTransformation=" + isTransformation +
-                ", isDistribution=" + isDistribution +
-                ", isResale=" + isResale +
-                '}';
-    }
-
     public static SupplyChainPoint getSupplyChainPointFromInputSupplyChainPointDTO(InputSupplyChainPointDTO dto) {
         SupplyChainPoint s = new SupplyChainPoint(dto.latitude(), dto.longitude(), dto.name());
         s.setProduction(dto.isProduction());
