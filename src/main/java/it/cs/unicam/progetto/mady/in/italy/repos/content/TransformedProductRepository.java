@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 public interface TransformedProductRepository extends JpaRepository<TransformedProduct, Integer> {
 
     /**
-     *
      * Approves the TransformedProduct with the specified id
      *
      * @param id the id of the TransformedProduct
@@ -23,7 +22,6 @@ public interface TransformedProductRepository extends JpaRepository<TransformedP
     void approve(@Param("id") Integer id);
 
     /**
-     *
      * Deletes the TransformedProduct with the specified id due to it being rejected
      *
      * @param id the id of the TransformedProduct

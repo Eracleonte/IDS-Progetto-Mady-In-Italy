@@ -23,7 +23,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * Represents a director of content builders
+ * Represents a Director of ContentBuilders
  */
 @Component
 public class ContentBuilderDirector {

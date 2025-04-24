@@ -15,6 +15,9 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * A Handler for Users
+ */
 @Service
 public class UserHandler {
 
@@ -33,6 +36,14 @@ public class UserHandler {
         this.roleRepository = roleRepository;
     }
 
+    /**
+     * Saves a new User from the given parameters.
+     * The new User will count as not approved.
+     *
+     * @param user the dto bearing all information necessary for the creation of the new User.
+     * @param authorizations the authorizations the new User will have.
+     * @return an int value representing the id of the new user if the operation was successful.
+     */
     public int saveUser(InputUserDTO user, List<Authorization> authorizations) {
         checkIfUserCanBeCreated(user.username(),user.email());
         User newUser = new User(user.username(), user.email(), user.password());
@@ -41,7 +52,6 @@ public class UserHandler {
     }
 
     /**
-     *
      * Checks if a new user can be created with the given info.
      *
      * @param username name of the new user.
@@ -56,12 +66,26 @@ public class UserHandler {
             throw new IllegalStateException("User cannot be created: username or email already in use");
     }
 
+    /**
+     * Retrieves a User by its ID.
+     *
+     * @param id the ID of the User wished to be retrieved.
+     * @throws NoSuchElementException if there isn't a User with the given id.
+     * @return the desired User if existent.
+     */
     public OutputUserDTO getUserById(int id) {
         User user = this.userRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("User not found"));
         return user.getOutputDTO();
     }
 
+    /**
+     * Retrieves all Users based on the approval status.
+     *
+     * @param approved is set to true if only approved Users are subject of the retrieval operation,
+     *                 is set to false if only Users yet to be approved are subject of the retrieval operation.
+     * @return all Users based on the approval status.
+     */
     public List<OutputUserDTO> getAllUsers(boolean approved) {
         return this.userRepository.findAll()
                 .stream()
@@ -70,6 +94,15 @@ public class UserHandler {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Approves or Rejects a User.
+     *
+     * @param userId the ID of the User to approve or reject.
+     * @param administratorId the ID of the Administrator that is performing this operation.
+     * @param approvalChoice true if the User needs to be approved,
+     *                       false if the User needs to be rejected.
+     * @return a message in String format that will communicate the operation's result.
+     */
     public String approveUser(int userId,
                               int administratorId,
                               boolean approvalChoice) {
@@ -92,7 +125,6 @@ public class UserHandler {
     // UTILITIES
 
     /**
-     *
      * Checks if user has the required authorization.
      *
      * @param user the user subject to the check.
@@ -106,7 +138,6 @@ public class UserHandler {
     }
 
     /**
-     *
      * Checks if there's a user for the given id and returns it.
      *
      * @param id the supposed user id.
@@ -125,7 +156,6 @@ public class UserHandler {
     }
 
     /**
-     *
      * Checks if there's a user for the given id and returns it.
      *
      * @param id the supposed user id.

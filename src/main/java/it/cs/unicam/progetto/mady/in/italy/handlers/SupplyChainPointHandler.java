@@ -18,6 +18,9 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+/**
+ * A Handler for Supply Chain Points
+ */
 @Service
 public class SupplyChainPointHandler {
 
@@ -38,7 +41,6 @@ public class SupplyChainPointHandler {
     }
 
     /**
-     *
      * Saves a new SupplyChainPoint in the system and generates the initial SupplyChainPointManagement.
      * Initially the new SupplyChainPoint will result as "to be managed" by the User having the userId.
      *
@@ -55,12 +57,26 @@ public class SupplyChainPointHandler {
         return scpId;
     }
 
+    /**
+     * Finds a SupplyChainPoint by its ID.
+     *
+     * @param id the ID of the SupplyChainPoint wished to be found.
+     * @throws NoSuchElementException if the SupplyChainPoint with the given ID doesn't exist.
+     * @return the desired SupplyChainPoint if existent.
+     */
     public OutputSupplyChainPointDTO findSupplyChainPointById(Integer id) {
         SupplyChainPoint scp = this.scpRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Cannot find supply chain point with id: " + id));
         return scp.getOutputDTO();
     }
 
+    /**
+     * Finds all SupplyChainPoints based on the approval status.
+     *
+     * @param approved is set to true if only approved SupplyChainPoints are subject of the find operation,
+     *                 is set to false if only SupplyChainPoints yet to be approved are subject of the find operation.
+     * @return all SupplyChainPoints based on the approval status.
+     */
     public List<OutputSupplyChainPointDTO> findAllSupplyChainPoints(boolean approved) {
         return this.scpRepository.findAll()
                 .stream()
@@ -69,6 +85,13 @@ public class SupplyChainPointHandler {
                 .toList();
     }
 
+    /**
+     * Finds all SupplyChainPoints that match the given SupplyChainPointSearchFilter.
+     *
+     * @param filter the SupplyChainPointSearchFilter to apply for this find operation.
+     * @param approved equals true if only approved SupplyChainPoints are supposed to be found.
+     * @return all SupplyChainPoints that match the SupplyChainPointSearchFilter if present.
+     */
     public List<OutputSupplyChainPointDTO> findAllSupplyChainPointsFiltered(SupplyChainPointSearchFilterDTO filter,
                                                                             boolean approved) {
         List<OutputSupplyChainPointDTO> scps = this.scpRepository.findAll().stream()
@@ -87,7 +110,7 @@ public class SupplyChainPointHandler {
     }
 
     /**
-     *
+     * [Support method for findAllSupplyChainPointsFiltered operation]
      * Retrieves, from a List of OutputSupplyChainPointDTOS, only the OutputSupplyChainPointDTOS
      * that respect the given business specializations.
      *
@@ -112,7 +135,7 @@ public class SupplyChainPointHandler {
     }
 
     /**
-     *
+     * [Support method for findAllSupplyChainPointsFiltered operation]
      * Retrieves, from a List of OutputSupplyChainPointDTOS, only the OutputSupplyChainPointDTOS
      * that are managed by the required user.
      *
@@ -132,6 +155,15 @@ public class SupplyChainPointHandler {
         return scps.stream().filter((scp) -> scpms.contains(scp.getId())).toList();
     }
 
+    /**
+     * Approves or Rejects a SupplyChainPoint.
+     *
+     * @param id the ID of the SupplyChainPoint to approve or reject.
+     * @param curatorId the ID of the Curator that is performing this operation.
+     * @param approvalChoice true if the SupplyChainPoint needs to be approved,
+     *                       false if the SupplyChainPoint needs to be rejected.
+     * @return a message in String format that will communicate the operation's result.
+     */
     public String approveSupplyChainPoint(int id,
                                           int curatorId,
                                           boolean approvalChoice) {
@@ -153,7 +185,6 @@ public class SupplyChainPointHandler {
     }
 
     /**
-     *
      * Saves a new SupplyChainPointManagement in the system.
      *
      * @param supplyChainPointId the id of the SupplyChainPoint the user wishes to manage.
@@ -173,6 +204,14 @@ public class SupplyChainPointHandler {
         return this.scpmRepository.save(supplyChainPointManagement).getId();
     }
 
+    /**
+     * Finds all SupplyChainPointManagement of a certain User based on the approval status.
+     *
+     * @param userId the ID of the User managing the SupplyChainPoints.
+     * @param approved is set to true if only approved SupplyChainPointManagement are subject of the find operation,
+     *                 is set to false if only SupplyChainPointManagement yet to be approved are subject of the find operation.
+     * @return all SupplyChainPointManagement of a certain User based on the approval status.
+     */
     public List<OutputSupplyChainPointManagementDTO> findAllSupplyChainPointManagementByUserId(int userId, boolean approved) {
         User user = checkIfUserExists(userId);
         checkIfUserHasAtLeastOneOfTheAuthorizations(user,List.of(Role.getProducer(),Role.getTransformer(),Role.getDistributor()));
@@ -184,6 +223,12 @@ public class SupplyChainPointHandler {
                 .toList();
     }
 
+    /**
+     * Finds all SupplyChainPointManagement of a certain SupplyChainPoint.
+     *
+     * @param supplyChainPointId the ID of the SupplyChainPoint being managed.
+     * @return all SupplyChainPointManagement of a certain SupplyChainPoint.
+     */
     public List<OutputSupplyChainPointManagementDTO> findAllSupplyChainPointManagementBySupplyChainPointId(int supplyChainPointId) {
         checkIfSupplyChainPointExists(supplyChainPointId);
         return this.scpmRepository.findAll()
@@ -193,6 +238,13 @@ public class SupplyChainPointHandler {
                 .toList();
     }
 
+    /**
+     * Finds all SupplyChainPointManagement based on the approval status.
+     *
+     * @param approved is set to true if only approved SupplyChainPointManagement are subject of the find operation,
+     *                 is set to false if only SupplyChainPointManagement yet to be approved are subject of the find operation.
+     * @return all SupplyChainPointManagement based on the approval status.
+     */
     public List<OutputSupplyChainPointManagementDTO> findAllSupplyChainPointManagement(boolean approved) {
         return this.scpmRepository.findAll()
                 .stream()
@@ -201,6 +253,15 @@ public class SupplyChainPointHandler {
                 .toList();
     }
 
+    /**
+     * Approves or Rejects a SupplyChainPointManagement.
+     *
+     * @param id the ID of the SupplyChainPointManagement to approve or reject.
+     * @param curatorId the ID of the Curator that is performing this operation.
+     * @param approvalChoice true if the SupplyChainPointManagement needs to be approved,
+     *                       false if the SupplyChainPointManagement needs to be rejected.
+     * @return a message in String format that will communicate the operation's result.
+     */
     public String approveSupplyChainPointManagement(int id,
                                                     int curatorId,
                                                     boolean approvalChoice) {
@@ -222,12 +283,11 @@ public class SupplyChainPointHandler {
     // UTILITIES
 
     /**
+     * Checks if User has the required authorization.
      *
-     * Checks if user has the required authorization.
-     *
-     * @param user the user subject to the check.
-     * @param role the role bearing the authorization
-     *              that the user subject to the check is required to have.
+     * @param user the User subject to the check.
+     * @param role the Role bearing the Authorization
+     *              that the User subject to the check is required to have.
      */
     private void checkIfUserHasRequiredAuthorization(User user, Role role) {
         Optional.ofNullable(role)
@@ -236,11 +296,10 @@ public class SupplyChainPointHandler {
     }
 
     /**
+     * Checks if User has at least one of the required Authorizations.
      *
-     * Checks if user has at least one of the required authorizations.
-     *
-     * @param user the user subject to the check.
-     * @param roles the roles bearing the authorizations.
+     * @param user the User subject to the check.
+     * @param roles the Roles bearing the Authorizations.
      */
     private void checkIfUserHasAtLeastOneOfTheAuthorizations(User user, List<Role> roles) {
         boolean hasAtLeastOne = roles.stream()
@@ -250,13 +309,12 @@ public class SupplyChainPointHandler {
     }
 
     /**
+     * Checks if there's a User for the given id and returns it.
      *
-     * Checks if there's a user for the given id and returns it.
-     *
-     * @param id the supposed user id.
-     * @throws IllegalStateException if there is not a user for the given id
-     *                               or the recovered user is not approved.
-     * @return the user with the given id if it exists.
+     * @param id the supposed User id.
+     * @throws IllegalStateException if there is not a User for the given id
+     *                               or the recovered User is not approved.
+     * @return the User with the given id if it exists.
      */
     private User checkIfUserExists(int id) {
         User toReturn = userRepository.findById(id).orElse(null);
@@ -269,12 +327,11 @@ public class SupplyChainPointHandler {
     }
 
     /**
+     * Checks if there's a SupplyChainPoint for the given id and returns it.
      *
-     * Checks if there's a supply chain point for the given id and returns it for content creation.
-     *
-     * @param id the supposed supply chain point id.
-     * @throws IllegalStateException if there is not a supply chain point for the given id.
-     * @return the supply chain point with the given id if it exists.
+     * @param id the supposed SupplyChainPoint id.
+     * @throws IllegalStateException if there is not a SupplyChainPoint for the given id.
+     * @return the SupplyChainPoint with the given id if it exists.
      */
     private SupplyChainPoint checkIfSupplyChainPointExists(int id) {
         SupplyChainPoint toReturn = this.scpRepository.findById(id).orElse(null);
@@ -285,12 +342,11 @@ public class SupplyChainPointHandler {
     }
 
     /**
+     * Checks if there's a SupplyChainPointManagement for the given id.
      *
-     * Checks if there's a supply chain point management for the given id and returns it for content creation.
-     *
-     * @param id the supposed supply chain point management id.
-     * @throws IllegalStateException if there is not a supply chain point management for the given id.
-     * @return the supply chain point management with the given id if it exists.
+     * @param id the supposed SupplyChainPointManagement id.
+     * @throws IllegalStateException if there is not a SupplyChainPointManagement for the given id.
+     * @return the SupplyChainPointManagement with the given id if it exists.
      */
     private SupplyChainPointManagement checkIfSupplyChainPointManagementExists(int id) {
         SupplyChainPointManagement toReturn = this.scpmRepository.findById(id).orElse(null);

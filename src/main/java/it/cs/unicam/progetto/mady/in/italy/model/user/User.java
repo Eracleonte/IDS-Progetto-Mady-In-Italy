@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Represents a User
+ */
 @Entity
 @Table(name = "app_users")
 public class User implements Visualizable, Approvable {

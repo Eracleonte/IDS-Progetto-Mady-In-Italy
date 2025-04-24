@@ -9,8 +9,6 @@ import it.cs.unicam.progetto.mady.in.italy.model.supplychain.SupplyChainPoint;
  */
 public interface Content extends Visualizable, Approvable {
 
-    //int getSupplyChainPointId();
-
     SupplyChainPoint getSupplyChainPoint();
 
     String getName();
@@ -18,10 +16,6 @@ public interface Content extends Visualizable, Approvable {
     String getDescription();
 
     String getAuthor();
-
-    void setContentId(int id);
-
-    //void setSupplyChainPointId(int id);
 
     void setSupplyChainPoint(SupplyChainPoint supplyChainPoint);
 

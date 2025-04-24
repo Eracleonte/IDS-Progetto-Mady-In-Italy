@@ -1,7 +1,6 @@
 package it.cs.unicam.progetto.mady.in.italy.handlers;
 
 import it.cs.unicam.progetto.mady.in.italy.model.contents.ContentType;
-import it.cs.unicam.progetto.mady.in.italy.model.contents.sale.Sale;
 import it.cs.unicam.progetto.mady.in.italy.model.contents.transformationprocesses.TransformationProcess;
 import it.cs.unicam.progetto.mady.in.italy.repos.content.TransformationProcessRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * A Handler for Transformation Processes
+ */
 @Service
 public class TransformationProcessHandler implements ContentHandler<TransformationProcess> {
 
@@ -58,6 +60,13 @@ public class TransformationProcessHandler implements ContentHandler<Transformati
 
     // UTILITY
 
+    /**
+     * Checks if a Transformation Process with the given ID exists.
+     *
+     * @param id the supposed ID of a Transformation Process.
+     * @throws NoSuchElementException if there's not a Transformation Process for the given ID.
+     * @return the Transformation Process.
+     */
     private TransformationProcess checkIfTransformationProcessExists(int id) {
         TransformationProcess transformationProcess = this.findContentById(id);
         if (transformationProcess == null)

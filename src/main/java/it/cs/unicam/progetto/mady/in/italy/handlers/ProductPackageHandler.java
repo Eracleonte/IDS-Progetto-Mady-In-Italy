@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * A Handler for ProductPackages
+ */
 @Service
 public class ProductPackageHandler implements ContentHandler<ProductPackage> {
 
@@ -57,6 +60,13 @@ public class ProductPackageHandler implements ContentHandler<ProductPackage> {
 
     // UTILITY
 
+    /**
+     * Checks if a Product Package with the given ID exists.
+     *
+     * @param id the supposed ID of a Product Package.
+     * @throws NoSuchElementException if there's not a Product Package for the given ID.
+     * @return the Product Package.
+     */
     private ProductPackage checkIfProductPackageExists(int id) {
         ProductPackage productPackage = this.findContentById(id);
         if (productPackage == null)

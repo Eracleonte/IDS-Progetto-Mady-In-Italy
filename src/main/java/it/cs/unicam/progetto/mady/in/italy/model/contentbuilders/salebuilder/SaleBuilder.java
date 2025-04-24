@@ -7,6 +7,9 @@ import it.cs.unicam.progetto.mady.in.italy.model.contents.sale.Sale;
 import it.cs.unicam.progetto.mady.in.italy.model.supplychain.SupplyChainPoint;
 import org.springframework.stereotype.Component;
 
+/**
+ * A ContentBuilder for Sales
+ */
 @Component
 public class SaleBuilder implements ContentBuilder<Sale> {
 
@@ -25,7 +28,6 @@ public class SaleBuilder implements ContentBuilder<Sale> {
     public Sale buildProductOnSaleFromDTO(InputSaleDTO inputSaleDTO,
                                           SupplyChainPoint supplyChainPoint) {
         this.reset();
-        //this.setSupplyChainPointID(inputSaleDTO.supplyChainPointId());
         this.setSupplyChainPoint(supplyChainPoint);
         this.setProductId(inputSaleDTO.productId());
         this.setProductType(inputSaleDTO.productType().getValue());
@@ -36,12 +38,6 @@ public class SaleBuilder implements ContentBuilder<Sale> {
         this.setQuantity(inputSaleDTO.quantity());
         return sale;
     }
-
-//    @Override
-//    public void setSupplyChainPointID(int supplyChainPointID) {
-//        this.sale.setSupplyChainPointId(supplyChainPointID);
-//    }
-
 
     @Override
     public void setSupplyChainPoint(SupplyChainPoint supplyChainPoint) {

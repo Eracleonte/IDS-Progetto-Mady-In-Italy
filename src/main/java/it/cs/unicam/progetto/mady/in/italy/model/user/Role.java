@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 
+/**
+ * Represents a Role
+ */
 @Entity
 @NoArgsConstructor(force = true)
 @Table(name = "roles")

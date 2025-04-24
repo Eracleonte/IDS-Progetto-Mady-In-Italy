@@ -68,8 +68,14 @@ public class ContentFacade {
     }
 
     // Create
-    // TODO check if to be created contents are identical to already persisted ones
 
+    /**
+     * Saves a Raw Product in the system if the given information passes the checks.
+     *
+     * @param inputRawProductDTO the dto bearing the information needed for the creation of the Raw Product to save.
+     * @param userId the ID of the User that is creating the new Raw Product.
+     * @return the ID of the new Raw Product if the operation resulted in a success.
+     */
     public int saveRawProduct(InputRawProductDTO inputRawProductDTO, int userId) {
         RawProductHandler handler = (RawProductHandler) this.contentHandlers.get(ContentType.RAW_PRODUCT);
         if (handler != null) {
@@ -89,6 +95,13 @@ public class ContentFacade {
                 " when a [RawProductHandler] is not available for this [ContentFacade] instance");
     }
 
+    /**
+     * Saves a Transformed Product in the system if the given information passes the checks.
+     *
+     * @param inputTransformedProductDTO the dto bearing the information needed for the creation of the Transformed Product to save.
+     * @param userId the ID of the User that is creating the new Transformed Product.
+     * @return the ID of the new Transformed Product if the operation resulted in a success.
+     */
     public int saveTransformedProduct(InputTransformedProductDTO inputTransformedProductDTO, int userId) {
         TransformedProductHandler handler = (TransformedProductHandler) this.contentHandlers.get(ContentType.TRANSFORMED_PRODUCT);
         if (handler != null) {
@@ -111,12 +124,12 @@ public class ContentFacade {
     }
 
     /**
-     *
      * Checks if the transformation process exists.
      *
      * @param transformationProcessId the id of the transformation process.
      * @param supplyChainPointId the id of the supply chain point.
      * @param user the user.
+     * @throws IllegalStateException if the process does not exist or is not associated to the SupplyChainPoint/User.
      */
     private void checkIfTransformationProcessExists(int transformationProcessId, int supplyChainPointId, User user) {
         TransformationProcess transformationProcess =
@@ -129,6 +142,13 @@ public class ContentFacade {
             throw new IllegalStateException("Transformation process is not associated with user");
     }
 
+    /**
+     * Saves a Product Package in the system if the given information passes the checks.
+     *
+     * @param inputProductPackageDTO the dto bearing the information needed for the creation of the Product Package to save.
+     * @param userId the ID of the User that is creating the new Product Package.
+     * @return the ID of the new Product Package if the operation resulted in a success.
+     */
     public int saveProductPackage(InputProductPackageDTO inputProductPackageDTO, int userId) {
         ProductPackageHandler handler = (ProductPackageHandler) this.contentHandlers.get(ContentType.PRODUCT_PACKAGE);
         if (handler != null) {
@@ -151,11 +171,11 @@ public class ContentFacade {
     }
 
     /**
-     * Support method used to add products to a product package.
+     * Support method used to add products to a Product Package.
      *
-     * @param productPackage the product package that will contain the products.
-     * @param productPackageElements the minimal product information that are required in order to add
-     *                               products to the product package.
+     * @param productPackage the Product Package that will contain the products.
+     * @param productPackageElements the minimal Product information that are required in order to add
+     *                               Products to the Product Package.
      */
     private void addProductsToPackage(ProductPackage productPackage,
                                       List<InputProductPackageElementDTO> productPackageElements) {
@@ -173,6 +193,13 @@ public class ContentFacade {
         }
     }
 
+    /**
+     * Saves a Sale in the system if the given information passes the checks.
+     *
+     * @param inputSaleDTO the dto bearing the information needed for the creation of the Sale to save.
+     * @param userId the ID of the User that is creating the new Sale.
+     * @return the ID of the new Sale if the operation resulted in a success.
+     */
     public int saveSale(InputSaleDTO inputSaleDTO, int userId) {
         SaleHandler handler = (SaleHandler) this.contentHandlers.get(ContentType.SALE);
         if (handler != null) {
@@ -193,6 +220,15 @@ public class ContentFacade {
                     " when a [SaleHandler] is not available for this [ContentFacade] instance");
     }
 
+    /**
+     * Checks if a Product exists with the given parameters.
+     *
+     * @param productId the ID of the Product to look for.
+     * @param contentType the ContentType of the Product to look for.
+     * @param author the supposed author of the Product.
+     * @throws IllegalStateException either if the Product does not exist
+     *                               or if the Product is not created by the given author.
+     */
     private void checkProductExistenceAndAuthor(int productId,
                                                 ContentType contentType,
                                                 String author) {
@@ -203,6 +239,14 @@ public class ContentFacade {
             throw new IllegalStateException("Product is not associated with required author");
     }
 
+    /**
+     * Saves a Transformation Process in the system if the given information passes the checks.
+     *
+     * @param inputTransformationProcessDTO the dto bearing the information needed for the creation
+     *                                      of the Transformation Process to save.
+     * @param userId the ID of the User that is creating the new Transformation Process.
+     * @return the ID of the new Transformation Process if the operation resulted in a success.
+     */
     public int saveTransformationProcess(InputTransformationProcessDTO inputTransformationProcessDTO, int userId) {
         TransformationProcessHandler handler = (TransformationProcessHandler) this.contentHandlers.get(ContentType.TRANSFORMATION_PROCESS);
         if (handler != null) {
@@ -225,6 +269,13 @@ public class ContentFacade {
 
     // Read
 
+    /**
+     * Finds a Content from the given parameters.
+     *
+     * @param id the ID of the Content to look for.
+     * @param contentType the ContentType of the Content to look for.
+     * @return the Content if it exists.
+     */
     public Identifiable findContentByIdAndContentType(int id, ContentType contentType) {
         ContentHandler<? extends Content> contentHandler = this.contentHandlers.get(contentType);
         if (contentHandler != null) {
@@ -240,12 +291,12 @@ public class ContentFacade {
     }
 
     /**
-     * Gets all contents of a certain type based on the approval status.
+     * Finds all Contents of a certain ContentType based on the approval status.
      *
-     * @param contentType the type of contents researched.
-     * @param approved is set to true if only approved contents are subject of the retrieval operation,
-     *                 is set to false if only contents yet to be approved are subject of the retrieval operation.
-     * @return a List of Identifiable.
+     * @param contentType the ContentType of Contents researched.
+     * @param approved is set to true if only approved Contents are subject of the retrieval operation,
+     *                 is set to false if only Contents yet to be approved are subject of the retrieval operation.
+     * @return a List of Contents that match the requirements.
      */
     public List<Identifiable> findAllContentsOfContentType(ContentType contentType, boolean approved) {
         ContentHandler<? extends Content> contentHandler = this.contentHandlers.get(contentType);
@@ -265,10 +316,10 @@ public class ContentFacade {
     }
 
     /**
-     * Returns a list of contents filtered via a content search filter.
+     * Finds all Contents that match the requirements of the ContentSearchFilter.
      *
      * @param filter the filter to apply.
-     * @return a list of contents filtered via a content search filter.
+     * @return a list of Contents filtered via a ContentSearchFilter.
      */
     public List<Identifiable> findAllContentsFiltered(ContentSearchFilterDTO filter) {
         ContentHandler<? extends Content> contentHandler = this.contentHandlers.get(filter.contentType());
@@ -294,6 +345,16 @@ public class ContentFacade {
 
     // Update
 
+    /**
+     * Approves or Rejects a Content.
+     *
+     * @param id the ID of the Content to approve or reject.
+     * @param contentType the ContentType of the Content to approve or reject.
+     * @param approvalChoice true if the Content needs to be approved,
+     *                       false if the Content needs to be rejected.
+     * @param curatorId the ID of the Curator that is performing this operation.
+     * @return a message in String format that will communicate the operation's result.
+     */
     public String approveContent(int id, ContentType contentType, boolean approvalChoice, int curatorId) {
         ContentHandler<? extends Content> contentHandler = this.contentHandlers.get(contentType);
         if (contentHandler != null) {
@@ -310,6 +371,14 @@ public class ContentFacade {
                     " when the [ContentHandler] for said [ContentType] is not available for this [ContentFacade] instance");
     }
 
+    /**
+     * Buys from an approved Sale.
+     *
+     * @param saleId the ID of the Sale where to buy from.
+     * @param quantity the quantity of desired items to buy.
+     * @param buyerId the ID of the Buyer.
+     * @return a message in String format that will communicate the operation's result.
+     */
     public String buyFromSale(int saleId, int quantity, int buyerId) {
         SaleHandler saleHandler = (SaleHandler) this.contentHandlers.get(ContentType.SALE);
         if (saleHandler != null) {
@@ -326,6 +395,15 @@ public class ContentFacade {
                     " when the [SaleHandler] is not available for this [ContentFacade] instance");
     }
 
+    /**
+     * Updates the quantity of the Sale with the specified ID.
+     * The update of the Sale quantity should be interpreted as a resupply of the Sale with the specified ID.
+     *
+     * @param saleId the ID of the Sale to resupply.
+     * @param quantity the quantity used to resupply the specified Sale.
+     * @param sellerId the ID of the seller.
+     * @return a message in String format that will communicate the operation's result.
+     */
     public String updateSaleQuantity(int saleId, int quantity, int sellerId) {
         SaleHandler saleHandler = (SaleHandler) this.contentHandlers.get(ContentType.SALE);
         if (saleHandler != null) {
@@ -347,12 +425,11 @@ public class ContentFacade {
     // All utilities
 
     /**
+     * Checks if User has the required Authorization.
      *
-     * Checks if user has the required authorization.
-     *
-     * @param user the user subject to the check.
-     * @param role the role bearing the authorization
-     *              that the user subject to the check is required to have.
+     * @param user the User subject to the check.
+     * @param role the Role bearing the Authorization
+     *              that the User subject to the check is required to have.
      */
     private void checkIfUserHasRequiredAuthorization(User user, Role role) {
         Optional.ofNullable(role)
@@ -361,11 +438,10 @@ public class ContentFacade {
     }
 
     /**
+     * Checks if User has at least one of the required Authorizations.
      *
-     * Checks if user has at least one of the required authorizations.
-     *
-     * @param user the user subject to the check.
-     * @param roles the roles bearing the authorizations.
+     * @param user the User subject to the check.
+     * @param roles the Roles bearing the Authorizations.
      */
     private void checkIfUserHasAtLeastOneOfTheAuthorizations(User user, List<Role> roles) {
         boolean hasAtLeastOne = roles.stream()
@@ -375,13 +451,12 @@ public class ContentFacade {
     }
 
     /**
+     * Checks if there's a User for the given ID and returns it.
      *
-     * Checks if there's a user for the given id and returns it.
-     *
-     * @param id the supposed user id.
-     * @throws IllegalStateException if there is not a user for the given id
-     *                               or the recovered user is not approved.
-     * @return the user with the given id if it exists.
+     * @param id the supposed User ID.
+     * @throws IllegalStateException if there is not a User for the given ID
+     *                               or the recovered User is not approved.
+     * @return the User with the given ID if it exists.
      */
     private User checkIfUserExists(int id) {
         User toReturn = userRepository.findById(id).orElse(null);
@@ -394,12 +469,11 @@ public class ContentFacade {
     }
 
     /**
+     * [Support method for Raw Product save operation]
+     * Checks if the given SupplyChainPoint is specialized in Production.
      *
-     * Support method for raw product creation.
-     * Checks if the given supply chain point is specialized in production.
-     *
-     * @param supplyChainPoint the supply chain point to check.
-     * @throws IllegalStateException if the supply chain point is not specialized in production.
+     * @param supplyChainPoint the SupplyChainPoint to check.
+     * @throws IllegalStateException if the SupplyChainPoint is not specialized in Production.
      */
     private void checkIfRecoveredSupplyChainPointIsSpecializedInProduction(SupplyChainPoint supplyChainPoint) {
         if (!supplyChainPoint.isProduction())
@@ -408,12 +482,11 @@ public class ContentFacade {
     }
 
     /**
+     * [Support method for TransformedProduct and TransformationProcess save operation]
+     * Checks if the given SupplyChainPoint is specialized in Transformation.
      *
-     * Support method for transformed product and transformation processes creation.
-     * Checks if the given supply chain point is specialized in transformation.
-     *
-     * @param supplyChainPoint the supply chain point to check.
-     * @throws IllegalStateException if the supply chain point is not specialized in transformation.
+     * @param supplyChainPoint the SupplyChainPoint to check.
+     * @throws IllegalStateException if the SupplyChainPoint is not specialized in Transformation.
      */
     private void checkIfRecoveredSupplyChainPointIsSpecializedInTransformation(SupplyChainPoint supplyChainPoint) {
         if (!supplyChainPoint.isTransformation())
@@ -422,12 +495,11 @@ public class ContentFacade {
     }
 
     /**
+     * [Support method for ProductPackage save operation]
+     * Checks if the given SupplyChainPoint is specialized in Distribution.
      *
-     * Support method for product package creation.
-     * Checks if the given supply chain point is specialized in distribution.
-     *
-     * @param supplyChainPoint the supply chain point to check.
-     * @throws IllegalStateException if the supply chain point is not specialized in distribution.
+     * @param supplyChainPoint the SupplyChainPoint to check.
+     * @throws IllegalStateException if the SupplyChainPoint is not specialized in Distribution.
      */
     private void checkIfRecoveredSupplyChainPointIsSpecializedInDistribution(SupplyChainPoint supplyChainPoint) {
         if (!supplyChainPoint.isDistribution())
@@ -436,12 +508,11 @@ public class ContentFacade {
     }
 
     /**
+     * [Support method for Sale save operation]
+     * Checks if the given SupplyChainPoint is specialized in Resale.
      *
-     * Support method for sale creation.
-     * Checks if the given supply chain point is specialized in resale.
-     *
-     * @param supplyChainPoint the supply chain point to check.
-     * @throws IllegalStateException if the supply chain point is not specialized in resale.
+     * @param supplyChainPoint the SupplyChainPoint to check.
+     * @throws IllegalStateException if the SupplyChainPoint is not specialized in Resale.
      */
     private void checkIfRecoveredSupplyChainPointIsSpecializedInResale(SupplyChainPoint supplyChainPoint) {
         if (!supplyChainPoint.isResale())
@@ -450,13 +521,12 @@ public class ContentFacade {
     }
 
     /**
+     * Checks if there's a SupplyChainPoint for the given ID and returns it for Content saving operations.
      *
-     * Checks if there's a supply chain point for the given id and returns it for content creation.
-     *
-     * @param id the supposed supply chain point id.
-     * @throws IllegalStateException if there is not a supply chain point for the given id
-     *                               or the recovered supply chain point is not approved.
-     * @return the supply chain point with the given id if it exists.
+     * @param id the supposed SupplyChainPoint ID.
+     * @throws IllegalStateException if there is not a SupplyChainPoint for the given ID
+     *                               or the recovered SupplyChainPoint is not approved.
+     * @return the SupplyChainPoint if it exists.
      */
     private SupplyChainPoint checkIfSupplyChainPointExists(int id) {
         SupplyChainPoint toReturn = this.supplyChainPointRepository.findById(id).orElse(null);
@@ -469,12 +539,11 @@ public class ContentFacade {
     }
 
     /**
+     * Checks if the SupplyChainPoint is managed by the User for Content saving operations.
      *
-     * Checks if the supplyChainPoint is managed by the user.
-     *
-     * @param supplyChainPoint the supply chain point.
-     * @param user the user.
-     * @throws IllegalStateException if no management is found.
+     * @param supplyChainPoint the SupplyChainPoint.
+     * @param user the User.
+     * @throws IllegalStateException if no SupplyChainPointManagement matching the requirements is found.
      */
     private void checkIfRecoveredSupplyChainPointIsManagedByTheUser(SupplyChainPoint supplyChainPoint, User user) {
         if (supplyChainPointManagementRepository

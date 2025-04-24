@@ -6,6 +6,9 @@ import it.cs.unicam.progetto.mady.in.italy.dto.output.OutputSupplyChainPointMana
 import it.cs.unicam.progetto.mady.in.italy.model.user.User;
 import jakarta.persistence.*;
 
+/**
+ * Represents a Supply Chain Point Management
+ */
 @Entity
 public class SupplyChainPointManagement implements Visualizable, Approvable {
 
@@ -13,25 +16,15 @@ public class SupplyChainPointManagement implements Visualizable, Approvable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    //private int supplyChainPointId;
-
     @ManyToOne
     @JoinColumn(name = "supplyChainPointId", referencedColumnName = "id", nullable = false)
     private SupplyChainPoint supplyChainPoint;
-
-    //private int userId;
 
     @ManyToOne
     @JoinColumn(name = "userId", referencedColumnName = "id", nullable = false)
     private User user;
 
     private boolean approved;
-
-//    public SupplyChainPointManagement(int supplyChainPointId, int userId) {
-//        this.supplyChainPointId = supplyChainPointId;
-//        this.userId = userId;
-//    }
-
 
     public SupplyChainPointManagement(SupplyChainPoint supplyChainPoint, User user) {
         if (supplyChainPoint == null)
@@ -51,17 +44,10 @@ public class SupplyChainPointManagement implements Visualizable, Approvable {
         return id;
     }
 
-//    public int getSupplyChainPointId() {
-//        return supplyChainPointId;
-//    }
 
     public SupplyChainPoint getSupplyChainPoint() {
         return supplyChainPoint;
     }
-
-//    public int getUserId() {
-//        return userId;
-//    }
 
     public User getUser() {
         return user;

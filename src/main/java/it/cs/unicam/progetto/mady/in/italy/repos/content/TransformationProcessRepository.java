@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 public interface TransformationProcessRepository extends JpaRepository<TransformationProcess, Integer> {
 
     /**
-     *
      * Approves the TransformationProcess with the specified id
      *
      * @param id the id of the TransformationProcess
@@ -23,7 +22,6 @@ public interface TransformationProcessRepository extends JpaRepository<Transform
     void approve(@Param("id") Integer id);
 
     /**
-     *
      * Deletes the TransformationProcess with the specified id due to it being rejected
      *
      * @param id the id of the TransformationProcess

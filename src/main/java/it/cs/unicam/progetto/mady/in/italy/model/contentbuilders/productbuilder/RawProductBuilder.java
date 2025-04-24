@@ -7,6 +7,9 @@ import it.cs.unicam.progetto.mady.in.italy.model.contents.products.singles.RawPr
 import it.cs.unicam.progetto.mady.in.italy.model.supplychain.SupplyChainPoint;
 import org.springframework.stereotype.Component;
 
+/**
+ * A ContentBuilder for RawProducts
+ */
 @Component
 public class RawProductBuilder implements ContentBuilder<RawProduct> {
 
@@ -25,7 +28,6 @@ public class RawProductBuilder implements ContentBuilder<RawProduct> {
     public RawProduct buildRawProductFromDTO(InputRawProductDTO inputRawProductDTO,
                                              SupplyChainPoint supplyChainPoint) {
         this.reset();
-        //this.setSupplyChainPointID(inputRawProductDTO.supplyChainPointId());
         this.rawProduct.setSupplyChainPoint(supplyChainPoint);
         this.setName(inputRawProductDTO.name());
         this.setDescription(inputRawProductDTO.description());
@@ -35,12 +37,6 @@ public class RawProductBuilder implements ContentBuilder<RawProduct> {
         this.setProductionMethod(inputRawProductDTO.productionMethod());
         return this.getResult();
     }
-
-    //@Override
-    //public void setSupplyChainPointID(int supplyChainPointID) {
-    //    this.rawProduct.setSupplyChainPointId(supplyChainPointID);
-    //}
-
 
     @Override
     public void setSupplyChainPoint(SupplyChainPoint supplyChainPoint) {

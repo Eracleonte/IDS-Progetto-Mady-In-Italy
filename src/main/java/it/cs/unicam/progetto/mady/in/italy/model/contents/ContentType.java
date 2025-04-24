@@ -1,5 +1,8 @@
 package it.cs.unicam.progetto.mady.in.italy.model.contents;
 
+/**
+ * Represents the ContentType of a Content
+ */
 public enum ContentType {
 
     SALE("SALE"),

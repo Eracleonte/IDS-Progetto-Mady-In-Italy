@@ -1,5 +1,8 @@
 package it.cs.unicam.progetto.mady.in.italy.model.user;
 
+/**
+ * Represent an Authorization a Role may have
+ */
 public enum Authorization {
 
     PRODUCER("PRODUCER"),

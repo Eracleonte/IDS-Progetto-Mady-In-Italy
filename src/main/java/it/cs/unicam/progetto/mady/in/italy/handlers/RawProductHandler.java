@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * A Handler for RawProducts
+ */
 @Service
 public class RawProductHandler implements ContentHandler<RawProduct> {
 
@@ -58,6 +61,13 @@ public class RawProductHandler implements ContentHandler<RawProduct> {
 
     // UTILITY
 
+    /**
+     * Checks if a Raw Product with the given ID exists.
+     *
+     * @param id the supposed ID of a Raw Product.
+     * @throws NoSuchElementException if there's not a Raw Product for the given ID.
+     * @return the Raw Product.
+     */
     private RawProduct checkIfRawProductExists(int id) {
         RawProduct rawProduct = this.findContentById(id);
         if (rawProduct == null)

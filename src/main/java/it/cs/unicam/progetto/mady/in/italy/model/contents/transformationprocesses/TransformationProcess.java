@@ -15,8 +15,6 @@ public class TransformationProcess implements Content {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    //private int supplyChainPointId;
-
     @ManyToOne
     @JoinColumn(name = "supplyChainPointId", referencedColumnName = "id", nullable = false)
     private SupplyChainPoint supplyChainPoint;
@@ -40,12 +38,6 @@ public class TransformationProcess implements Content {
     public int getId() {
         return id;
     }
-
-    //@Override
-    //public int getSupplyChainPointId() {
-    //    return this.supplyChainPointId;
-    //}
-
 
     @Override
     public SupplyChainPoint getSupplyChainPoint() {
@@ -79,21 +71,6 @@ public class TransformationProcess implements Content {
     public String getTransformationPhases() {
         return transformationPhases;
     }
-
-    @Override
-    public void setContentId(int id) {
-        if (id < 0)
-            throw new IllegalArgumentException("Content id must be a positive integer");
-        this.id = id;
-    }
-
-    //@Override
-    //public void setSupplyChainPointId(int id) {
-    //    if (id < 0)
-    //        throw new IllegalArgumentException("SupplyChainPointId id must be a positive integer");
-    //    this.supplyChainPointId = id;
-    //}
-
 
     @Override
     public void setSupplyChainPoint(SupplyChainPoint supplyChainPoint) {
@@ -143,13 +120,13 @@ public class TransformationProcess implements Content {
     @Transient
     @Override
     public OutputTransformationProcessDTO getOutputDTO() {
-        return new OutputTransformationProcessDTO(this.getId(),
-                this.getSupplyChainPoint().getId(),
-                this.getName(),
-                this.getDescription(),
-                this.getAuthor(),
-                this.getCertification(),
-                this.getTransformationPhases()
+        return new OutputTransformationProcessDTO(this.id,
+                this.supplyChainPoint.getId(),
+                this.name,
+                this.description,
+                this.author,
+                this.certification,
+                this.transformationPhases
         );
     }
 

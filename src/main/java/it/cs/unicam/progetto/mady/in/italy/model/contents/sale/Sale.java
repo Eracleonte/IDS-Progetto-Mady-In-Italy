@@ -16,8 +16,6 @@ public class Sale implements Content {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    //private int supplyChainPointId;
-
     @ManyToOne
     @JoinColumn(name = "supplyChainPointId", referencedColumnName = "id", nullable = false)
     private SupplyChainPoint supplyChainPoint;
@@ -47,12 +45,6 @@ public class Sale implements Content {
         return id;
     }
 
-    //@Override
-    //public int getSupplyChainPointId() {
-    //    return this.supplyChainPointId;
-    //}
-
-
     @Override
     public SupplyChainPoint getSupplyChainPoint() {
         return supplyChainPoint;
@@ -80,21 +72,6 @@ public class Sale implements Content {
     public int getQuantity() {
         return quantity;
     }
-
-    @Override
-    public void setContentId(int id) {
-        if (id < 0)
-            throw new IllegalArgumentException("Content id must be a positive integer");
-        this.id = id;
-    }
-
-    //@Override
-    //public void setSupplyChainPointId(int id) {
-    //    if (id < 0)
-    //        throw new IllegalArgumentException("SupplyChainPointId id must be a positive integer");
-    //    this.supplyChainPointId = id;
-    //}
-
 
     @Override
     public void setSupplyChainPoint(SupplyChainPoint supplyChainPoint) {
@@ -165,29 +142,17 @@ public class Sale implements Content {
         this.quantity = quantity;
     }
 
-    public void reduceSaleQuantity(int quantity) {
-        if (quantity < 0 || quantity > this.quantity)
-            throw new IllegalArgumentException("Quantity must be greater than zero and lesser than the current quantity");
-        this.quantity -= quantity;
-    }
-
-    public void updateSaleQuantity(int quantity) {
-        if (quantity < 0)
-            throw new IllegalArgumentException("Quantity must be greater than zero");
-        this.quantity += quantity;
-    }
-
     @Transient
     @Override
     public OutputSaleDTO getOutputDTO() {
-        return new OutputSaleDTO(this.id ,
-                this.supplyChainPoint.getId() ,
-                this.productId ,
-                this.productType ,
-                this.name ,
-                this.description ,
-                this.author ,
-                this.price ,
+        return new OutputSaleDTO(this.id,
+                this.supplyChainPoint.getId(),
+                this.productId,
+                this.productType,
+                this.name,
+                this.description,
+                this.author,
+                this.price,
                 this.quantity);
     }
 

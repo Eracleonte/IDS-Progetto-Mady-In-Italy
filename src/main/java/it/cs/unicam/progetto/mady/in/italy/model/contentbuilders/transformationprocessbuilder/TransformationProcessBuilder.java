@@ -7,6 +7,9 @@ import it.cs.unicam.progetto.mady.in.italy.model.contents.transformationprocesse
 import it.cs.unicam.progetto.mady.in.italy.model.supplychain.SupplyChainPoint;
 import org.springframework.stereotype.Component;
 
+/**
+ * A ContentBuilder for TransformationProcesses
+ */
 @Component
 public class TransformationProcessBuilder implements ContentBuilder<TransformationProcess> {
 
@@ -25,7 +28,6 @@ public class TransformationProcessBuilder implements ContentBuilder<Transformati
     public TransformationProcess buildTransformationProcessFromDTO(InputTransformationProcessDTO inputTransformationProcessDTO,
                                                                    SupplyChainPoint supplyChainPoint) {
         this.reset();
-        //this.setSupplyChainPointID(inputTransformationProcessDTO.supplyChainPointId());
         this.transformationProcess.setSupplyChainPoint(supplyChainPoint);
         this.setName(inputTransformationProcessDTO.name());
         this.setDescription(inputTransformationProcessDTO.description());
@@ -34,12 +36,6 @@ public class TransformationProcessBuilder implements ContentBuilder<Transformati
         this.setTransformationPhases(inputTransformationProcessDTO.transformationPhases());
         return this.getResult();
     }
-
-//    @Override
-//    public void setSupplyChainPointID(int supplyChainPointID) {
-//        this.transformationProcess.setSupplyChainPointId(supplyChainPointID);
-//    }
-
 
     @Override
     public void setSupplyChainPoint(SupplyChainPoint supplyChainPoint) {

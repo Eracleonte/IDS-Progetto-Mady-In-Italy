@@ -7,6 +7,9 @@ import it.cs.unicam.progetto.mady.in.italy.model.contents.products.singles.Trans
 import it.cs.unicam.progetto.mady.in.italy.model.supplychain.SupplyChainPoint;
 import org.springframework.stereotype.Component;
 
+/**
+ * A ContentBuilder for TransformedProducts
+ */
 @Component
 public class TransformedProductBuilder implements ContentBuilder<TransformedProduct> {
 
@@ -25,7 +28,6 @@ public class TransformedProductBuilder implements ContentBuilder<TransformedProd
     public TransformedProduct buildTransformedProductFromDTO(InputTransformedProductDTO inputTransformedProductDTO,
                                                              SupplyChainPoint supplyChainPoint) {
         this.reset();
-        //this.setSupplyChainPointID(inputTransformedProductDTO.supplyChainPointId());
         this.setSupplyChainPoint(supplyChainPoint);
         this.setName(inputTransformedProductDTO.name());
         this.setDescription(inputTransformedProductDTO.description());
@@ -35,12 +37,6 @@ public class TransformedProductBuilder implements ContentBuilder<TransformedProd
         this.setTransformationProcessId(inputTransformedProductDTO.transformationProcessId());
         return this.getResult();
     }
-
-    //@Override
-    //public void setSupplyChainPointID(int supplyChainPointID) {
-    //    this.transformedProduct.setSupplyChainPointId(supplyChainPointID);
-    //}
-
 
     @Override
     public void setSupplyChainPoint(SupplyChainPoint supplyChainPoint) {

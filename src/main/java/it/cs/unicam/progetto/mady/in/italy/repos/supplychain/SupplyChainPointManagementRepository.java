@@ -14,7 +14,6 @@ import java.util.Optional;
 public interface SupplyChainPointManagementRepository extends JpaRepository<SupplyChainPointManagement,Integer> {
 
     /**
-     *
      * Approves the SupplyChainPointManagement with the specified id
      *
      * @param id the id of the SupplyChainPointManagement
@@ -25,7 +24,6 @@ public interface SupplyChainPointManagementRepository extends JpaRepository<Supp
     void approve(@Param("id") Integer id);
 
     /**
-     *
      * Utility used when approving a supply chain point.
      * Approves all supply chain point management with the specified supply chain point id.
      *
@@ -37,7 +35,6 @@ public interface SupplyChainPointManagementRepository extends JpaRepository<Supp
     void approveSupplyChainPointManagementBySupplyChainPointId(@Param("id") Integer id);
 
     /**
-     *
      * Deletes the SupplyChainPointManagement with the specified id due to it being rejected
      *
      * @param id the id of the SupplyChainPointManagement
@@ -50,7 +47,6 @@ public interface SupplyChainPointManagementRepository extends JpaRepository<Supp
     // UTILITIES
 
     /**
-     *
      * Utility used when deleting a supply chain point.
      * Deletes all supply chain point management with the specified supply chain point id.
      *

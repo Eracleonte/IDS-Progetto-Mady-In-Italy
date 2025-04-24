@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 public interface SupplyChainPointRepository extends JpaRepository<SupplyChainPoint,Integer> {
 
     /**
-     *
      * Approves the SupplyChainPoint with the specified id
      *
      * @param id the id of the SupplyChainPoint
@@ -23,7 +22,6 @@ public interface SupplyChainPointRepository extends JpaRepository<SupplyChainPoi
     void approve(@Param("id") Integer id);
 
     /**
-     *
      * Deletes the SupplyChainPoint with the specified id due to it being rejected
      *
      * @param id the id of the SupplyChainPoint

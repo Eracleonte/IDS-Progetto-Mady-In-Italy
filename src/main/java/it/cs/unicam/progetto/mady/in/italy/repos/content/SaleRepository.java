@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 public interface SaleRepository extends JpaRepository<Sale, Integer> {
 
     /**
-     *
      * Buys a certain quantity of products of a sale that has the specified id
      *
      * @param saleId the id of the sale from where to buy products
@@ -25,7 +24,6 @@ public interface SaleRepository extends JpaRepository<Sale, Integer> {
     int buyFromSale(@Param("saleId") int saleId, @Param("quantity") int quantity);
 
     /**
-     *
      * Updates the quantity of the products of a sale that has the specified id
      *
      * @param saleId the id of the sale
@@ -38,7 +36,6 @@ public interface SaleRepository extends JpaRepository<Sale, Integer> {
     int updateSaleQuantity(@Param("saleId") int saleId, @Param("quantity") int quantity);
 
     /**
-     *
      * Approves the Sale with the specified id
      *
      * @param id the id of the Sale
@@ -49,7 +46,6 @@ public interface SaleRepository extends JpaRepository<Sale, Integer> {
     void approve(@Param("id") Integer id);
 
     /**
-     *
      * Deletes the Sale with the specified id due to it being rejected
      *
      * @param id the id of the Sale

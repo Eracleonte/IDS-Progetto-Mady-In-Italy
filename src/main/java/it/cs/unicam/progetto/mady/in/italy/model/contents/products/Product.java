@@ -15,8 +15,6 @@ public abstract class Product implements Content {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
-    //private int supplyChainPointId;
-
     @ManyToOne
     @JoinColumn(name = "supplyChainPointId", referencedColumnName = "id", nullable = false)
     private SupplyChainPoint supplyChainPoint;
@@ -37,11 +35,6 @@ public abstract class Product implements Content {
         return id;
     }
 
-    //@Override
-    //public int getSupplyChainPointId() {
-    //    return this.supplyChainPointId;
-    //}
-
     @Override
     public SupplyChainPoint getSupplyChainPoint() {
         return supplyChainPoint;
@@ -61,21 +54,6 @@ public abstract class Product implements Content {
     public String getAuthor() {
         return this.author;
     }
-
-    @Override
-    public void setContentId(int id) {
-        if (id < 0)
-            throw new IllegalArgumentException("Content id must be a positive integer");
-        this.id = id;
-    }
-
-    //@Override
-    //public void setSupplyChainPointId(int id) {
-    //    if (id < 0)
-    //        throw new IllegalArgumentException("SupplyChainPointId id must be a positive integer");
-    //    this.supplyChainPointId = id;
-    //}
-
 
     @Override
     public void setSupplyChainPoint(SupplyChainPoint supplyChainPoint) {

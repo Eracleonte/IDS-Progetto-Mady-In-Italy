@@ -11,7 +11,7 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 
 /**
- * Represents a supply chain point
+ * Represents a Supply Chain Point
  */
 @Entity
 public class SupplyChainPoint implements Visualizable, Approvable {

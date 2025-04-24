@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * A Handler for Sales
+ */
 @Service
 public class SaleHandler implements ContentHandler<Sale> {
 
@@ -56,6 +59,13 @@ public class SaleHandler implements ContentHandler<Sale> {
         return ContentType.SALE;
     }
 
+    /**
+     * Buys from an approved Sale.
+     *
+     * @param saleId the ID of the Sale where to buy from.
+     * @param quantity the quantity of desired items to buy.
+     * @return a message in String format that will communicate the operation's result.
+     */
     public String buyFromSale(int saleId, int quantity) {
         Sale toBuyFrom = checkIfSaleExists(saleId);
         if (toBuyFrom.isApproved()) {
@@ -69,6 +79,14 @@ public class SaleHandler implements ContentHandler<Sale> {
             return "Could not buy from sale as it has not been approved yet";
     }
 
+    /**
+     * Updates the quantity of the Sale with the specified ID.
+     * The update of the Sale quantity should be interpreted as a resupply of the Sale with the specified ID.
+     *
+     * @param saleId the ID of the Sale to resupply.
+     * @param quantity the quantity used to resupply the specified Sale.
+     * @return a message in String format that will communicate the operation's result.
+     */
     public String updateSaleQuantity(int saleId, int quantity) {
         Sale toUpdate = checkIfSaleExists(saleId);
         if (toUpdate.isApproved()) {
@@ -84,6 +102,13 @@ public class SaleHandler implements ContentHandler<Sale> {
 
     // UTILITY
 
+    /**
+     * Checks if a Sale with the given ID exists.
+     *
+     * @param id the supposed ID of a Sale.
+     * @throws NoSuchElementException if there's not a Sale for the given ID.
+     * @return the Sale.
+     */
     private Sale checkIfSaleExists(int id) {
         Sale sale = this.findContentById(id);
         if (sale == null)

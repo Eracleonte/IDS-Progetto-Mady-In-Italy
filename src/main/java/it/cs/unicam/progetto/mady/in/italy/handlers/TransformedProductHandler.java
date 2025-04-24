@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * A Handler for Transformed Products
+ */
 @Service
 public class TransformedProductHandler implements ContentHandler<TransformedProduct> {
 
@@ -58,6 +61,13 @@ public class TransformedProductHandler implements ContentHandler<TransformedProd
 
     // UTILITY
 
+    /**
+     * Checks if a Transformed Product with the given ID exists.
+     *
+     * @param id the supposed ID of a Transformed Product.
+     * @throws NoSuchElementException if there's not a Transformed Product for the given ID.
+     * @return the Transformed Product.
+     */
     private TransformedProduct checkIfTransformedProductExists(int id) {
         TransformedProduct transformedProduct = this.findContentById(id);
         if (transformedProduct == null)

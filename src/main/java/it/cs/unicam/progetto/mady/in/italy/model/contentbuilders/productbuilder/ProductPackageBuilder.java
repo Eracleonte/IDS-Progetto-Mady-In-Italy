@@ -7,6 +7,9 @@ import it.cs.unicam.progetto.mady.in.italy.model.contents.products.productpackag
 import it.cs.unicam.progetto.mady.in.italy.model.supplychain.SupplyChainPoint;
 import org.springframework.stereotype.Component;
 
+/**
+ * A ContentBuilder for ProductPackages
+ */
 @Component
 public class ProductPackageBuilder implements ContentBuilder<ProductPackage> {
 
@@ -25,19 +28,12 @@ public class ProductPackageBuilder implements ContentBuilder<ProductPackage> {
     public ProductPackage buildProductPackageFromDTO(InputProductPackageDTO inputProductPackageDTO,
                                                      SupplyChainPoint supplyChainPoint) {
         this.reset();
-        //this.setSupplyChainPointID(inputProductPackageDTO.supplyChainPointId());
         this.setSupplyChainPoint(supplyChainPoint);
         this.setName(inputProductPackageDTO.name());
         this.setDescription(inputProductPackageDTO.description());
         this.setAuthor(inputProductPackageDTO.author());
         return this.productPackage;
     }
-
-    //@Override
-    //public void setSupplyChainPointID(int supplyChainPointID) {
-    //    this.productPackage.setSupplyChainPointId(supplyChainPointID);
-    //}
-
 
     @Override
     public void setSupplyChainPoint(SupplyChainPoint supplyChainPoint) {

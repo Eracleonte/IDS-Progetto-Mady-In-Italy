@@ -10,7 +10,6 @@ import org.springframework.data.repository.query.Param;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
     /**
-     *
      * Approves the User with the specified id
      *
      * @param id the id of the User
@@ -21,7 +20,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     void approve(@Param("id") Integer id);
 
     /**
-     *
      * Deletes the User with the specified id due to it being rejected
      *
      * @param id the id of the User

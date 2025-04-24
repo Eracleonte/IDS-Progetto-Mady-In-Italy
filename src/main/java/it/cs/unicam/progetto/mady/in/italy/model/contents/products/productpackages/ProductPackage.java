@@ -17,17 +17,6 @@ import java.util.stream.Collectors;
 @Entity
 public class ProductPackage extends Product {
 
-//    @OneToMany(fetch = FetchType.EAGER)
-//    private List<RawProduct> rawProducts;
-//
-//    @OneToMany(fetch = FetchType.EAGER)
-//    private List<TransformedProduct> transformedProducts;
-//
-//    public ProductPackage() {
-//        this.rawProducts = new ArrayList<>();
-//        this.transformedProducts = new ArrayList<>();
-//    }
-
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<RawProduct> rawProducts;
 
