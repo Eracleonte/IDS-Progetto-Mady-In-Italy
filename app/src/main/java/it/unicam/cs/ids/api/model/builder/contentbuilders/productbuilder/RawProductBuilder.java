@@ -1,9 +1,11 @@
 package it.unicam.cs.ids.api.model.builder.contentbuilders.productbuilder;
 
 import it.unicam.cs.ids.api.dto.input.InputRawProductDTO;
+import it.unicam.cs.ids.api.model.builder.contentbuilders.ContentBuilder;
+import it.unicam.cs.ids.api.model.contents.ContentType;
 import it.unicam.cs.ids.api.model.contents.products.singles.RawProduct;
 
-public class RawProductBuilder implements SingleProductBuilder {
+public class RawProductBuilder implements ContentBuilder<RawProduct> {
 
     private RawProduct rawProduct;
 
@@ -12,9 +14,10 @@ public class RawProductBuilder implements SingleProductBuilder {
     }
 
     /**
-     * Builds a Raw Product from a InputRawProductDTO
-     * @param inputRawProductDTO
-     * @return
+     * Builds a Raw Product from a InputRawProductDTO.
+     *
+     * @param inputRawProductDTO the dto used to build a RawProduct.
+     * @return a new RawProduct instance.
      */
     public RawProduct buildRawProductFromDTO(InputRawProductDTO inputRawProductDTO) {
         this.reset();
@@ -26,11 +29,6 @@ public class RawProductBuilder implements SingleProductBuilder {
         this.setVariety(inputRawProductDTO.variety());
         this.setProductionMethod(inputRawProductDTO.productionMethod());
         return this.getResult();
-    }
-
-    @Override
-    public void setContentID(int contentID) {
-        this.rawProduct.setContentId(contentID);
     }
 
     @Override
@@ -53,12 +51,10 @@ public class RawProductBuilder implements SingleProductBuilder {
         this.rawProduct.setAuthor(author);
     }
 
-    @Override
     public void setCertification(String certification) {
         this.rawProduct.setCertification(certification);
     }
 
-    @Override
     public void setVariety(String variety) {
         this.rawProduct.setVariety(variety);
     }
@@ -75,6 +71,11 @@ public class RawProductBuilder implements SingleProductBuilder {
     @Override
     public void reset() {
         this.rawProduct = new RawProduct();
+    }
+
+    @Override
+    public ContentType supports() {
+        return ContentType.RAW_PRODUCT;
     }
 
 }

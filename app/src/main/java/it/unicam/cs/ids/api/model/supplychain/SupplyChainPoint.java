@@ -1,11 +1,14 @@
 package it.unicam.cs.ids.api.model.supplychain;
 
+import it.unicam.cs.ids.api.abstractions.Approvable;
+import it.unicam.cs.ids.api.abstractions.Visualizable;
+import it.unicam.cs.ids.api.dto.input.InputSupplyChainPointDTO;
 import it.unicam.cs.ids.api.dto.output.OutputSupplyChainPointDTO;
 
 /**
  * Represents a supply chain point
  */
-public class SupplyChainPoint {
+public class SupplyChainPoint implements Visualizable, Approvable {
 
     private int id;
 
@@ -23,8 +26,21 @@ public class SupplyChainPoint {
 
     private boolean isResale;
 
-    public SupplyChainPoint() {}
+    private boolean approved;
 
+    public SupplyChainPoint(float latitude, float longitude, String name) {
+        if (latitude < -90.0f || latitude > 90.0f)
+            throw new IllegalArgumentException();
+        this.latitude = latitude;
+        if (longitude < -180.0f || longitude > 180.0f)
+            throw new IllegalArgumentException();
+        this.longitude = longitude;
+        if (name == null || name.isEmpty())
+            throw new IllegalArgumentException();
+        this.name = name;
+    }
+
+    @Override
     public int getId() {
         return id;
     }
@@ -98,20 +114,26 @@ public class SupplyChainPoint {
     }
 
     @Override
-    public String toString() {
-        return "SupplyChainPoint{" +
-                "id=" + id +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", name='" + name + '\'' +
-                ", isProduction=" + isProduction +
-                ", isTransformation=" + isTransformation +
-                ", isDistribution=" + isDistribution +
-                ", isResale=" + isResale +
-                '}';
+    public boolean isApproved() {
+        return this.approved;
     }
 
-    public OutputSupplyChainPointDTO getOutputSupplyChainPointDTO() {
+    @Override
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
+
+    public static SupplyChainPoint getSupplyChainPointFromInputSupplyChainPointDTO(InputSupplyChainPointDTO dto) {
+        SupplyChainPoint s = new SupplyChainPoint(dto.latitude(), dto.longitude(), dto.name());
+        s.setProduction(dto.isProduction());
+        s.setTransformation(dto.isTransformation());
+        s.setDistribution(dto.isDistribution());
+        s.setResale(dto.isResale());
+        return s;
+    }
+
+    @Override
+    public OutputSupplyChainPointDTO getOutputDTO() {
         return new OutputSupplyChainPointDTO(this.id,
                 this.latitude,
                 this.longitude,

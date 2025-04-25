@@ -1,9 +1,11 @@
 package it.unicam.cs.ids.api.model.builder.contentbuilders.productbuilder;
 
 import it.unicam.cs.ids.api.dto.input.InputTransformedProductDTO;
+import it.unicam.cs.ids.api.model.builder.contentbuilders.ContentBuilder;
+import it.unicam.cs.ids.api.model.contents.ContentType;
 import it.unicam.cs.ids.api.model.contents.products.singles.TransformedProduct;
 
-public class TransformedProductBuilder implements SingleProductBuilder {
+public class TransformedProductBuilder implements ContentBuilder<TransformedProduct> {
 
     private TransformedProduct transformedProduct;
 
@@ -12,15 +14,16 @@ public class TransformedProductBuilder implements SingleProductBuilder {
     }
 
     @Override
-    public void setContentID(int contentID) {
-        this.transformedProduct.setContentId(contentID);
-    }
-
-    @Override
     public void setSupplyChainPointID(int supplyChainPointID) {
         this.transformedProduct.setSupplyChainPointId(supplyChainPointID);
     }
 
+    /**
+     * Builds a Transformed Product from a inputTransformedProductDTO.
+     *
+     * @param inputTransformedProductDTO the dto used to build a TransformedProduct.
+     * @return a new TransformedProduct instance.
+     */
     public TransformedProduct buildTransformedProductFromDTO(InputTransformedProductDTO inputTransformedProductDTO) {
         this.reset();
         this.setSupplyChainPointID(inputTransformedProductDTO.supplyChainPointId());
@@ -48,12 +51,10 @@ public class TransformedProductBuilder implements SingleProductBuilder {
         this.transformedProduct.setAuthor(author);
     }
 
-    @Override
     public void setCertification(String certification) {
         this.transformedProduct.setCertification(certification);
     }
 
-    @Override
     public void setVariety(String variety) {
         this.transformedProduct.setVariety(variety);
     }
@@ -70,6 +71,11 @@ public class TransformedProductBuilder implements SingleProductBuilder {
     @Override
     public void reset() {
         this.transformedProduct = new TransformedProduct();
+    }
+
+    @Override
+    public ContentType supports() {
+        return ContentType.TRANSFORMED_PRODUCT;
     }
 
 }

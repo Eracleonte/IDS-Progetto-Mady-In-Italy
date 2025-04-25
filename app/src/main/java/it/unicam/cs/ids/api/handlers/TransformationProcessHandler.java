@@ -1,51 +1,51 @@
 package it.unicam.cs.ids.api.handlers;
 
-import it.unicam.cs.ids.api.dto.input.InputTransformationProcessDTO;
-import it.unicam.cs.ids.api.dto.output.OutputTransformationProcessDTO;
-import it.unicam.cs.ids.api.model.builder.contentbuilders.transformationprocessbuilder.TransformationProcessBuilder;
+import it.unicam.cs.ids.api.model.contents.ContentType;
 import it.unicam.cs.ids.api.model.contents.transformationprocesses.TransformationProcess;
 import it.unicam.cs.ids.api.repos.content.TransformationProcessRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class TransformationProcessHandler {
+public class TransformationProcessHandler implements ContentHandler<TransformationProcess> {
 
-    private TransformationProcessBuilder transformationProcessBuilder ;
+    private final TransformationProcessRepository transformationProcessRepository;
 
-    private TransformationProcessRepository transformationProcessRepository;
-
-    private ValidationRequestHandler validationRequestHandler;
-
-    public TransformationProcessHandler(TransformationProcessRepository transformationProcessRepository,
-                                        ValidationRequestHandler validationRequestHandler) {
-        this.transformationProcessBuilder = new TransformationProcessBuilder();
+    public TransformationProcessHandler(TransformationProcessRepository transformationProcessRepository) {
+        if (transformationProcessRepository == null)
+            throw new NullPointerException("transformationProcessRepository is null");
         this.transformationProcessRepository = transformationProcessRepository;
-        this.validationRequestHandler = validationRequestHandler;
     }
 
-    // CREATE
-
-    public int saveTransformationProcess(InputTransformationProcessDTO inputTransformationProcessDTO) {
-        TransformationProcess transformationProcess = this.transformationProcessRepository
-                .save(this.transformationProcessBuilder.buildTransformationProcessFromDTO(inputTransformationProcessDTO));
-        this.validationRequestHandler.saveValidationRequest(transformationProcess.getValidationRequest());
-        return transformationProcess.getContentId();
+    @Override
+    public int saveContent(TransformationProcess transformationProcess) {
+        transformationProcess.setContentId(this.transformationProcessRepository.getNextId());
+        return this.transformationProcessRepository.save(transformationProcess).getId();
     }
 
-    // READ
-
-    public OutputTransformationProcessDTO findTransformationProcessById(Integer id) {
-        TransformationProcess transformationProcess = this.transformationProcessRepository.findById(id)
+    @Override
+    public TransformationProcess findContentById(int id) {
+        return this.transformationProcessRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Cannot find raw product with id: " + id));
-        return transformationProcess.getOutputTransformationProcessDTO();
     }
 
-    public List<OutputTransformationProcessDTO> findAllTransformationProcess() {
-        return this.transformationProcessRepository.findAll()
-                .stream()
-                .map(TransformationProcess::getOutputTransformationProcessDTO)
-                .toList();
+    @Override
+    public List<TransformationProcess> findAllContents() {
+        return this.transformationProcessRepository.findAll();
+    }
+
+    @Override
+    public String approveContent(int id, boolean approvalChoice) {
+        boolean result = this.transformationProcessRepository.approve(id, approvalChoice);
+        if (!result)
+            return "Transformation Process with Id " + id + " has been rejected";
+        else
+            return "Transformation Process with Id " + id + " has been approved";
+    }
+
+    @Override
+    public ContentType supports() {
+        return ContentType.TRANSFORMATION_PROCESS;
     }
 
 }

@@ -1,8 +1,6 @@
 package it.unicam.cs.ids.api.model.contents.products;
 
 import it.unicam.cs.ids.api.model.contents.Content;
-import it.unicam.cs.ids.api.model.contents.ContentType;
-import it.unicam.cs.ids.api.model.contents.ValidationRequest;
 
 /**
  * Represents a Product
@@ -13,33 +11,25 @@ public abstract class Product implements Content {
 
     private int supplyChainPointId;
 
-    private String CONTENT_TYPE;
-
     private String name;
 
     private String description;
 
     private String author;
 
-    private boolean published;
+    private boolean approved;
 
-    public Product(ContentType contentType) {
-        CONTENT_TYPE = contentType.getValue();
+    public Product() {
     }
 
     @Override
-    public int getContentId() {
-        return this.id;
+    public int getId() {
+        return id;
     }
 
     @Override
     public int getSupplyChainPointId() {
         return this.supplyChainPointId;
-    }
-
-    @Override
-    public String getContentType() {
-        return this.CONTENT_TYPE;
     }
 
     @Override
@@ -55,11 +45,6 @@ public abstract class Product implements Content {
     @Override
     public String getAuthor() {
         return this.author;
-    }
-
-    @Override
-    public boolean isPublished() {
-        return this.published;
     }
 
     @Override
@@ -98,22 +83,13 @@ public abstract class Product implements Content {
     }
 
     @Override
-    public void publish() {
-        this.published = true;
+    public boolean isApproved() {
+        return this.approved;
     }
 
     @Override
-    public void unpublish() {
-        this.published = false;
-    }
-
-    @Override
-    public ValidationRequest getValidationRequest() {
-        ValidationRequest validationRequest = new ValidationRequest();
-        validationRequest.setSupplyChainPointId(this.getSupplyChainPointId());
-        validationRequest.setContentId(this.getContentId());
-        validationRequest.setContentType(this.getContentType());
-        return validationRequest;
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 
 }

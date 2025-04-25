@@ -1,51 +1,51 @@
 package it.unicam.cs.ids.api.handlers;
 
-import it.unicam.cs.ids.api.dto.input.InputRawProductDTO;
-import it.unicam.cs.ids.api.dto.output.OutputRawProductDTO;
-import it.unicam.cs.ids.api.model.builder.contentbuilders.productbuilder.RawProductBuilder;
+import it.unicam.cs.ids.api.model.contents.ContentType;
 import it.unicam.cs.ids.api.model.contents.products.singles.RawProduct;
 import it.unicam.cs.ids.api.repos.content.RawProductRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class RawProductHandler {
+public class RawProductHandler implements ContentHandler<RawProduct> {
 
-    private RawProductBuilder rawProductBuilder;
+    private final RawProductRepository rawProductRepository;
 
-    private RawProductRepository rawProductRepository;
-
-    private ValidationRequestHandler validationRequestHandler;
-
-    public RawProductHandler(RawProductRepository rawProductRepository,
-                             ValidationRequestHandler validationRequestHandler) {
-        this.rawProductBuilder = new RawProductBuilder();
+    public RawProductHandler(RawProductRepository rawProductRepository) {
+        if (rawProductRepository == null)
+            throw new NullPointerException("RawProductRepository is null");
         this.rawProductRepository = rawProductRepository;
-        this.validationRequestHandler = validationRequestHandler;
     }
 
-    // CREATE
-
-    public int saveRawProduct(InputRawProductDTO inputRawProductDTO) {
-        RawProduct rawProduct = this.rawProductRepository
-                .save(this.rawProductBuilder.buildRawProductFromDTO(inputRawProductDTO));
-        this.validationRequestHandler.saveValidationRequest(rawProduct.getValidationRequest());
-        return rawProduct.getContentId();
+    @Override
+    public int saveContent(RawProduct rawProduct) {
+        rawProduct.setContentId(this.rawProductRepository.getNextId());
+        return this.rawProductRepository.save(rawProduct).getId();
     }
 
-    // READ
-
-    public OutputRawProductDTO findRawProductById(Integer id) {
-        RawProduct rawProduct = this.rawProductRepository.findById(id)
+    @Override
+    public RawProduct findContentById(int id) {
+        return this.rawProductRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Cannot find raw product with id: " + id));
-        return rawProduct.getOutputRawProductDTO();
     }
 
-    public List<OutputRawProductDTO> findAllRawProducts() {
-        return this.rawProductRepository.findAll()
-                .stream()
-                .map(RawProduct::getOutputRawProductDTO)
-                .toList();
+    @Override
+    public List<RawProduct> findAllContents() {
+        return this.rawProductRepository.findAll();
+    }
+
+    @Override
+    public String approveContent(int id, boolean approvalChoice) {
+        boolean result = this.rawProductRepository.approve(id, approvalChoice);
+        if (!result)
+            return "Raw Product with Id " + id + " has been rejected";
+        else
+            return "Raw Product with Id " + id + " has been approved";
+    }
+
+    @Override
+    public ContentType supports() {
+        return ContentType.RAW_PRODUCT;
     }
 
 }

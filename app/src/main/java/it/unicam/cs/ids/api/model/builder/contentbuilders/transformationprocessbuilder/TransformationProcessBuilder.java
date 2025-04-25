@@ -2,9 +2,10 @@ package it.unicam.cs.ids.api.model.builder.contentbuilders.transformationprocess
 
 import it.unicam.cs.ids.api.dto.input.InputTransformationProcessDTO;
 import it.unicam.cs.ids.api.model.builder.contentbuilders.ContentBuilder;
+import it.unicam.cs.ids.api.model.contents.ContentType;
 import it.unicam.cs.ids.api.model.contents.transformationprocesses.TransformationProcess;
 
-public class TransformationProcessBuilder implements ContentBuilder {
+public class TransformationProcessBuilder implements ContentBuilder<TransformationProcess> {
 
     private TransformationProcess transformationProcess;
 
@@ -13,15 +14,16 @@ public class TransformationProcessBuilder implements ContentBuilder {
     }
 
     @Override
-    public void setContentID(int contentID) {
-        this.transformationProcess.setContentId(contentID);
-    }
-
-    @Override
     public void setSupplyChainPointID(int supplyChainPointID) {
        this.transformationProcess.setSupplyChainPointId(supplyChainPointID);
     }
 
+    /**
+     * Builds a Transformation Process from a InputTransformationProcessDTO.
+     *
+     * @param inputTransformationProcessDTO the dto used to build a TransformationProcess.
+     * @return a new TransformationProcess instance.
+     */
     public TransformationProcess buildTransformationProcessFromDTO(InputTransformationProcessDTO inputTransformationProcessDTO) {
         this.reset();
         this.setSupplyChainPointID(inputTransformationProcessDTO.supplyChainPointId());
@@ -64,6 +66,11 @@ public class TransformationProcessBuilder implements ContentBuilder {
     @Override
     public void reset() {
         this.transformationProcess = new TransformationProcess();
+    }
+
+    @Override
+    public ContentType supports() {
+        return ContentType.TRANSFORMATION_PROCESS;
     }
 
 }

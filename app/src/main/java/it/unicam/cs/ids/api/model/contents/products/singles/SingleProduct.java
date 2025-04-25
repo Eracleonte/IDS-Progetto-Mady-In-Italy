@@ -1,7 +1,5 @@
 package it.unicam.cs.ids.api.model.contents.products.singles;
 
-import it.unicam.cs.ids.api.model.contents.ContentType;
-import it.unicam.cs.ids.api.model.contents.ValidationRequest;
 import it.unicam.cs.ids.api.model.contents.products.Product;
 
 public abstract class SingleProduct extends Product {
@@ -10,8 +8,7 @@ public abstract class SingleProduct extends Product {
 
     private String variety;
 
-    public SingleProduct(ContentType contentType) {
-        super(contentType);
+    public SingleProduct() {
     }
 
     public String getCertification() {

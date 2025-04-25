@@ -1,37 +1,19 @@
 package it.unicam.cs.ids.api.repos.supplychain;
 
-import it.unicam.cs.ids.api.repos.Repository;
 import it.unicam.cs.ids.api.model.supplychain.SupplyChainPoint;
+import it.unicam.cs.ids.api.repos.Repository;
 
-import java.util.*;
+public class SupplyChainPointRepository extends Repository<SupplyChainPoint> {
 
-public class SupplyChainPointRepository implements Repository<SupplyChainPoint,Integer> {
+    private static SupplyChainPointRepository instance;
 
-    private Map<Integer, SupplyChainPoint> supplyChainPointMap;
-
-    private int nextSupplyChainPointId;
-
-    public SupplyChainPointRepository() {
-        this.supplyChainPointMap = new HashMap<>();
-        this.nextSupplyChainPointId = 1;
+    private SupplyChainPointRepository() {
+        super();
     }
 
-    @Override
-    public SupplyChainPoint save(SupplyChainPoint element) {
-        element.setId(this.nextSupplyChainPointId);
-        this.supplyChainPointMap.put(element.getId(), element);
-        this.nextSupplyChainPointId++;
-        return element;
-    }
-
-    @Override
-    public Optional<SupplyChainPoint> findById(Integer id) {
-        return Optional.ofNullable(supplyChainPointMap.get(id));
-    }
-
-    @Override
-    public List<SupplyChainPoint> findAll() {
-        return new ArrayList<>(supplyChainPointMap.values());
+    public static SupplyChainPointRepository getInstance() {
+        if (instance == null) instance = new SupplyChainPointRepository();
+        return instance;
     }
 
 }

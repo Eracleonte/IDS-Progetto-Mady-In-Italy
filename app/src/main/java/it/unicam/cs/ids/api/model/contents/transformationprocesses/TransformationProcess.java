@@ -2,8 +2,6 @@ package it.unicam.cs.ids.api.model.contents.transformationprocesses;
 
 import it.unicam.cs.ids.api.dto.output.OutputTransformationProcessDTO;
 import it.unicam.cs.ids.api.model.contents.Content;
-import it.unicam.cs.ids.api.model.contents.ContentType;
-import it.unicam.cs.ids.api.model.contents.ValidationRequest;
 
 /**
  * Represents a Transformation Process
@@ -14,37 +12,29 @@ public class TransformationProcess implements Content {
 
     private int supplyChainPointId;
 
-    private String CONTENT_TYPE;
-
     private String name;
 
     private String description;
 
     private String author;
 
-    private boolean published;
+    private boolean approved;
 
     private String certification;
 
     private String transformationPhases;
 
     public TransformationProcess() {
-        this.CONTENT_TYPE = ContentType.TRANSFORMATION_PROCESS.getValue();
     }
 
     @Override
-    public int getContentId() {
-        return this.id;
+    public int getId() {
+        return id;
     }
 
     @Override
     public int getSupplyChainPointId() {
         return this.supplyChainPointId;
-    }
-
-    @Override
-    public String getContentType() {
-        return this.CONTENT_TYPE;
     }
 
     @Override
@@ -60,11 +50,6 @@ public class TransformationProcess implements Content {
     @Override
     public String getAuthor() {
         return this.author;
-    }
-
-    @Override
-    public boolean isPublished() {
-        return this.published;
     }
 
     public String getCertification() {
@@ -112,13 +97,13 @@ public class TransformationProcess implements Content {
     }
 
     @Override
-    public void publish() {
-        this.published = true;
+    public boolean isApproved() {
+        return this.approved;
     }
 
     @Override
-    public void unpublish() {
-        this.published = false;
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 
     public void setCertification(String certification) {
@@ -133,8 +118,9 @@ public class TransformationProcess implements Content {
         this.transformationPhases = transformationPhases;
     }
 
-    public OutputTransformationProcessDTO getOutputTransformationProcessDTO() {
-        return new OutputTransformationProcessDTO(this.getContentId(),
+    @Override
+    public OutputTransformationProcessDTO getOutputDTO() {
+        return new OutputTransformationProcessDTO(this.getId(),
                 this.getSupplyChainPointId(),
                 this.getName(),
                 this.getDescription(),
@@ -142,15 +128,6 @@ public class TransformationProcess implements Content {
                 this.getCertification(),
                 this.getTransformationPhases()
         );
-    }
-
-    @Override
-    public ValidationRequest getValidationRequest() {
-        ValidationRequest validationRequest = new ValidationRequest();
-        validationRequest.setSupplyChainPointId(this.getSupplyChainPointId());
-        validationRequest.setContentId(this.getContentId());
-        validationRequest.setContentType(this.getContentType());
-        return validationRequest;
     }
 
 }

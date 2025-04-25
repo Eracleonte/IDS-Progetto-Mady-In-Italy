@@ -1,10 +1,15 @@
 package it.unicam.cs.ids.api.model.builder.contentbuilders;
 
 import it.unicam.cs.ids.api.model.contents.Content;
+import it.unicam.cs.ids.api.model.contents.ContentType;
 
-public interface ContentBuilder {
-
-    void setContentID(int contentID);
+/**
+ *
+ * Represents a Builder for Content entities.
+ *
+ * @param <C> the particular type of Content this Content Builder instance builds.
+ */
+public interface ContentBuilder<C extends Content> {
 
     void setSupplyChainPointID(int supplyChainPointID);
 
@@ -14,8 +19,10 @@ public interface ContentBuilder {
 
     void setAuthor(String author);
 
-    Content getResult();
+    C getResult();
 
     void reset();
+
+    ContentType supports();
 
 }
